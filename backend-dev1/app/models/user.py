@@ -5,10 +5,13 @@ User model and related schemas
 from sqlalchemy import Column, String, Integer, Enum, JSON, DateTime, Boolean, Text
 from pydantic import BaseModel
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.dialects.postgresql import UUID as PostgresUUID
 from sqlalchemy.sql import func
 import enum
 import uuid
+
+
+from app.models.types import UUID 
+
 
 Base = declarative_base()
 
@@ -43,7 +46,7 @@ class GenderStatus(str, enum.Enum):
 class User(Base):
     __tablename__ = "users"
     
-    id = Column(PostgresUUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id = Column(UUID(), primary_key=True, default=uuid.uuid4)
     phone = Column(String(20), unique=True, index=True, nullable=True)
     email = Column(String(255), unique=True, index=True, nullable=True)
     firstName = Column(String(100), index=True, nullable=True)
