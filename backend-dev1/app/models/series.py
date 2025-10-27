@@ -7,7 +7,7 @@ from app.models.user import Base
 from app.models.types import PostgresUUID
  
  
-class Series_list(Base):
+class SeriesList(Base):
     __tablename__ = "series_list"
     
     #Basic Info

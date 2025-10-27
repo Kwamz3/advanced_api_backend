@@ -7,7 +7,7 @@ from app.models.user import Base
 from app.models.types import PostgresUUID
  
  
-class Movie_list(Base):
+class MovieList(Base):
     __tablename__ = "movie_list"
     
     #Basic Info
