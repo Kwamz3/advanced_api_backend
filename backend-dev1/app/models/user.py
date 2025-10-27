@@ -3,6 +3,7 @@ User model and related schemas
 """
 
 from sqlalchemy import Column, String, Integer, Enum, JSON, DateTime, Boolean, Text
+from sqlalchemy.orm import relationship
 from pydantic import BaseModel
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql import func
@@ -76,3 +77,6 @@ class User(Base):
     #Timestamps
     createdAt = Column(DateTime(timezone=True), server_default=func.now())
     updatedAt = Column(DateTime(timezone=True), onupdate=func.now())
+    
+    # Relationships
+    user_category = relationship("Category", back_populates="category_chosen")

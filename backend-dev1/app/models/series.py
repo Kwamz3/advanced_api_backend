@@ -7,8 +7,8 @@ from app.models.user import Base
 from app.models.types import PostgresUUID
  
  
-class Movie_list(Base):
-    __tablename__ = "movie_list"
+class Series_list(Base):
+    __tablename__ = "series_list"
     
     #Basic Info
     id = Column(PostgresUUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
@@ -35,4 +35,4 @@ class Movie_list(Base):
     
     # Relationships
     category_id = Column(PostgresUUID(as_uuid=True), ForeignKey("categories.id"), nullable=True)
-    category_rel = relationship("Category", back_populates="movies_rel")
+    category_rel = relationship("Category", back_populates="series_rel")
