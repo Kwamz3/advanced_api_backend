@@ -32,6 +32,12 @@ class VerifyEmail(str, enum.Enum):
     APPROVED = "APPROVED"
     REJECTED = "REJECTED"
     
+class VerifyPhone(str, enum.Enum):
+    NOT_SUBMITTED = "NOT_SUBMITTED"
+    PENDING = "PENDING"
+    APPROVED = "APPROVED"
+    REJECTED = "REJECTED"
+    
 class ServiceStatus(str, enum.Enum):
     FREE = "FREE"
     PREMIUM = "PREMIUM"
@@ -67,9 +73,9 @@ class User(Base):
     location = Column(JSON, nullable=True) #{lat, lng}
     
     #Verifcation
-    isEmailVerified = Column(Boolean, default=False)
-    isPhoneVerified = Column(Boolean, default=False)
-    
+    isEmailVerified = Column(Enum(VerifyEmail), default=VerifyEmail.NOT_SUBMITTED)
+    isPhoneVerified = Column(Enum(VerifyPhone), default=VerifyPhone.NOT_SUBMITTED)
+        
     #Settings
     preferences = Column(JSON, nullable=True)
     notificationSettings = Column(JSON, nullable=True)
