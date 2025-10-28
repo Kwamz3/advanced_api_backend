@@ -60,4 +60,16 @@ class Settings(BaseSettings):
     FIXED_OTP_VALUE: str = "123456"
     
     # File Storage (MinIO/S3)
+    MINIO_ENDPOINT: str = "localhost:9000"
+    MINIO_ACCESS_KEY: str = "minioadmin"
+    MINIO_SECRET_KEY: str = "minioadmin"
+    MINIO_BUCKET_NAME: str = "streamplus"
+    MINIO_SECURE: bool = False
     
+    class Config:
+        env_file = ".env"
+        case_sensitive = True
+        extra = "allow"
+        
+# Create an instance
+setting = Settings()
