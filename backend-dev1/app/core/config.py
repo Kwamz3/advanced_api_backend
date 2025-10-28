@@ -23,4 +23,6 @@ class Settings(BaseSettings):
         "https://your-frontend-domain.onrender.com"
     ]
     
-    
+    # Database - Dual setup (POSGRESQL for production, SQLite for development/testing)
+    DATABASE_URL: str = "postgresql://postgresql:1234567890@localhost:5432/streamplus"
+    DATABASE_TEST_URL: str = "sqlite:///./test_db.sqlite3"
