@@ -26,3 +26,26 @@ class Settings(BaseSettings):
     # Database - Dual setup (POSGRESQL for production, SQLite for development/testing)
     DATABASE_URL: str = "postgresql://postgresql:1234567890@localhost:5432/streamplus"
     DATABASE_TEST_URL: str = "sqlite:///./test_db.sqlite3"
+    USE_SQLITE_FOR_DEV: bool = True
+    
+    # EnvirOnment
+    ENVIRONMENT: str = "production"
+    Debug: bool = True
+    
+    @property
+    def effective_database_url(self) -> str:
+        if self.ENVIRONMENT == "testing":
+            return self.DATABASE_TEST_URL
+        elif self.ENVIRONMENT == "production":
+            # In production, use the DATABASE_URL provided by Render
+            return self.DATABASE_URL
+        elif self.ENVIRONMENT and self.USE_SQLITE_FOR_DEV in ["development", "dev"]:
+            return "sqlite:///./streamplus.sqlite3"
+        else:
+            return self.DATABASE_URL
+        
+    # Redis
+    REDIS_URL: str = "redis://localhost:6379"
+    
+    # Security
+    SECRET_KEY: str = "Streamplus_123"
