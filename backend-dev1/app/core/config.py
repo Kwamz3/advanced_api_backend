@@ -66,10 +66,19 @@ class Settings(BaseSettings):
     MINIO_BUCKET_NAME: str = "streamplus"
     MINIO_SECURE: bool = False
     
+    # SMS Settings (Twilio)
+    TWILIo_ACCoUNT_SID: str = "twilio_account_sid"
+    TWILIo_AUTH_ToKEN: str = "twilio_account_token"
+    TWILIo_PHoNE_NUMBER: str = "+1234567890"
+    
+    # Email Settings
+    SMTP_TLS: bool = True
+    
+    
     class Config:
         env_file = ".env"
         case_sensitive = True
         extra = "allow"
         
 # Create an instance
-setting = Settings()
+settings = Settings()
