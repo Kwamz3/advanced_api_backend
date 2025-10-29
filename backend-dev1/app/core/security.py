@@ -16,15 +16,6 @@ from app.core.config import settings
 # passeword hashing
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# otp storage with expiration
-class OTPEntry(NamedTuple):
-    code: str
-    expires_at: datetime
-    attempts: int = 0
-    
-# In-memory OTP storage (use Redis in production for scalability)
-otp_storage: Dict[str, OTPEntry] = {}
-
 def create_user_token(data: dict, expires_delta: Optional[timedelta] = None):
     """Create jwt token"""
     to_encode = data.copy()
@@ -44,3 +35,32 @@ def create_refresh_token(data: dict):
     refresh_token.update({"exp": expire, "type": "refresh"})
     encoded_jwt = jwt.encode(refresh_token, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
     return encoded_jwt
+
+def verify_token(token: str) -> dict:
+    """Verify token"""
+    try:
+        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+        return payload
+    except JWTError:
+        raise HTTPException(
+            status_code= status.HTTP_401_UNAUTHORIZED,
+            detail= "Could not validate credentials",
+            headers={"WWW-Authenticate": "Bearer"}
+        )
+        
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    """Verify hashed password against plain password"""
+    return pwd_context.verify(plain_password, hashed_password)
+
+def get_password_hash(password: str) -> str:
+    """Generate a hashed password"""
+    return pwd_context.hash(password)
+
+# # otp storage with expiration
+# class OTPEntry(NamedTuple):
+#     code: str
+#     expires_at: datetime
+#     attempts: int = 0
+    
+# # In-memory OTP storage (use Redis in production for scalability)
+# otp_storage: Dict[str, OTPEntry] = {}
