@@ -81,7 +81,6 @@ class Settings(BaseSettings):
     EMAILS_FROM_NAME: Optional[str] = None
     
     
-    
     class Config:
         env_file = ".env"
         case_sensitive = True
