@@ -67,12 +67,19 @@ class Settings(BaseSettings):
     MINIO_SECURE: bool = False
     
     # SMS Settings (Twilio)
-    TWILIo_ACCoUNT_SID: str = "twilio_account_sid"
-    TWILIo_AUTH_ToKEN: str = "twilio_account_token"
-    TWILIo_PHoNE_NUMBER: str = "+1234567890"
+    TWILIO_ACCOUNT_SID: str = "twilio_account_sid"
+    TWILIO_AUTH_TOKEN: str = "twilio_account_token"
+    TWILIO_PHONE_NUMBER: str = "+1234567890"
     
     # Email Settings
     SMTP_TLS: bool = True
+    SMTP_PORT: Optional[str] = None
+    SMTP_HOST: Optional[str] = None
+    SMTP_USER: Optional[str] = None
+    SMTP_PASSWORD: Optional[str] = None
+    EMAILS_FROM_EMAIL: Optional[str] = None
+    EMAILS_FROM_NAME: Optional[str] = None
+    
     
     
     class Config:
