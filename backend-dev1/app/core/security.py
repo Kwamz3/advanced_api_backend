@@ -13,7 +13,7 @@ import string
 from app.core.config import settings
 
 
-# passeword hashing
+# password hashing
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 def create_user_token(data: dict, expires_delta: Optional[timedelta] = None):
