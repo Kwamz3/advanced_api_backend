@@ -40,6 +40,9 @@ def verify_token(token: str) -> dict:
     """Verify token"""
     try:
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+        if payload.get("type") != "access":
+            raise HTTPException(status_code=401, detail="Invalid token type")
+        
         return payload
     except JWTError:
         raise HTTPException(

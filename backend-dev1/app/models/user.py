@@ -5,16 +5,15 @@ User model and related schemas
 from sqlalchemy import Column, String, Integer, Enum, JSON, DateTime, Boolean, Text
 from sqlalchemy.orm import relationship
 from pydantic import BaseModel
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql import func
 import enum
 import uuid
 
 
 from app.models.types import UUID 
+from app.core.database import Base
 
-
-Base = declarative_base()
+Base()
 
 class UserRole(str, enum.Enum):
     CLIENT = "CLIENT"
