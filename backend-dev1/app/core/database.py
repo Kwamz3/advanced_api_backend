@@ -34,7 +34,7 @@ if db_url.startswith("sqlite"):
             os.makedirs(db_dir)
             logger.info(f"Created SQLite database: {db_dir}")
             
-    create_async_engine(
+    engine = create_async_engine(
         async_db_url,
         echo = settings.DEBUG,
         future = True,
@@ -42,3 +42,23 @@ if db_url.startswith("sqlite"):
     )
 else:
     logger.info(f"Using postgreSQL databse")
+    async_db_url = db_url.replace("postgresql://", "postgresql+asyncpg://")
+    
+    engine = create_async_engine(
+        async_db_url,
+        echo = settings.DEBUG,
+        future = True,
+        pool_pre_ping= True,
+        pool_recycle= 300
+    )
+    
+    
+AsyncSessionLocal = async_sessionmaker(
+    bind = engine,
+    class_ = AsyncSession,
+    autoflush= False,
+    autocommit=True,
+    expire_on_commit=False
+)
+
+async def getdb():
