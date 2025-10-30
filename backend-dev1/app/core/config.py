@@ -1,0 +1,90 @@
+"""
+Application settings for Streamplus Backend
+"""
+
+from typing import List, Optional
+from pydantic_settings import BaseSettings
+
+
+class Settings(BaseSettings):
+    """Application settings"""
+    
+    # API SETTINGS
+    API_V1_STR: str = "/api/v1"
+    APP_NAME: str = "StreamPlus"
+    VERSION: str = "1.0.0"
+    
+    # CORS
+    ALLOWED_ORIGINS: list[str] = [
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:5173",
+        "https://your-frontend-domain.onrender.com"
+    ]
+    
+    # DATABASE - Dual setup (POSGRESQL for production, SQLite for development/testing)
+    DATABASE_URL: str = "postgresql://postgresql:1234567890@localhost:5432/streamplus"
+    DATABASE_TEST_URL: str = "sqlite:///./test_db.sqlite3"
+    USE_SQLITE_FOR_DEV: bool = True
+    
+    # ENVIRONMENT
+    ENVIRONMENT: str = "production"
+    Debug: bool = True
+    
+    @property
+    def effective_database_url(self) -> str:
+        if self.ENVIRONMENT == "testing":
+            return self.DATABASE_TEST_URL
+        elif self.ENVIRONMENT == "production":
+            # In production, use the DATABASE_URL provided by Render
+            return self.DATABASE_URL
+        elif self.ENVIRONMENT and self.USE_SQLITE_FOR_DEV in ["development", "dev"]:
+            return "sqlite:///./streamplus.sqlite3"
+        else:
+            return self.DATABASE_URL
+        
+    # REDIS
+    REDIS_URL: str = "redis://localhost:6379"
+    
+    # SECURITY
+    SECRET_KEY: str = "Streamplus_123"
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_IN_MINS: int = 30
+    REFRESH_TOKEN_EXPIRE_IN_DAYS: int = 7
+    
+    # OTP SETTINGS
+    OTP_EXPIRE_IN_MINS: int = 5
+    OTP_LENGTH: int = 6
+    USE_FIXED_OTP_LENGTH_FOR_TESTING: bool = True
+    FIXED_OTP_VALUE: str = "123456"
+    
+    # File Storage (MinIO/S3)
+    MINIO_ENDPOINT: str = "localhost:9000"
+    MINIO_ACCESS_KEY: str = "minioadmin"
+    MINIO_SECRET_KEY: str = "minioadmin"
+    MINIO_BUCKET_NAME: str = "streamplus"
+    MINIO_SECURE: bool = False
+    
+    # SMS Settings (Twilio)
+    TWILIO_ACCOUNT_SID: str = "twilio_account_sid"
+    TWILIO_AUTH_TOKEN: str = "twilio_account_token"
+    TWILIO_PHONE_NUMBER: str = "+1234567890"
+    
+    # Email Settings
+    SMTP_TLS: bool = True
+    SMTP_PORT: Optional[str] = None
+    SMTP_HOST: Optional[str] = None
+    SMTP_USER: Optional[str] = None
+    SMTP_PASSWORD: Optional[str] = None
+    EMAILS_FROM_EMAIL: Optional[str] = None
+    EMAILS_FROM_NAME: Optional[str] = None
+    
+    
+    class Config:
+        env_file = ".env"
+        case_sensitive = True
+        extra = "allow"
+        
+# Create an instance
+settings = Settings()
