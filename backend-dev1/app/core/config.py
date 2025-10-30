@@ -30,7 +30,7 @@ class Settings(BaseSettings):
     
     # ENVIRONMENT
     ENVIRONMENT: str = "production"
-    Debug: bool = True
+    DEBUG: bool = True
     
     @property
     def effective_database_url(self) -> str:

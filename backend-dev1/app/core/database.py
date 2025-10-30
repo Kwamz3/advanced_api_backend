@@ -33,3 +33,12 @@ if db_url.startswith("sqlite"):
         if db_dir and not os.path.exists(db_dir):
             os.makedirs(db_dir)
             logger.info(f"Created SQLite database: {db_dir}")
+            
+    create_async_engine(
+        async_db_url,
+        echo = settings.DEBUG,
+        future = True,
+        connect_args = {"check_same_thread": False}
+    )
+else:
+    logger.info(f"Using postgreSQL databse")
