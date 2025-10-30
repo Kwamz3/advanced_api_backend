@@ -61,4 +61,35 @@ AsyncSessionLocal = async_sessionmaker(
     expire_on_commit=False
 )
 
-async def getdb():
+async def get_db():
+    """Dependency to get db session"""
+    async with AsyncSessionLocal() as session:
+        try:
+            yield session
+        finally:
+            await session.close()
+            
+async def init_db():
+    """Initialize database tabels"""
+    try:
+        from app.models import admin, category, movies, series, types, user
+        
+        async with engine.begin() as conn:
+            await conn.run_sync(Base.metadata.create_all)
+            logger.info("Database tables created successfully...")
+            
+    except ImportError as e:
+        logger.warning(f"Could not import models: {e}")
+        logger.warning("Creating tables without model imports...")
+        try:
+            async with engine.begin() as conn:
+                await conn.run_sync(Base.metadata.create_all)
+                logger.info("Database tables created successfully (without models)...")
+        except ImportError as e2:
+            logger.error(f"Error creating database tables: {e2}")
+            logger.warning("Continuing without database initialization...")
+            
+    except Exception as e:
+        logger.error(f"Error creating database tables: {e}")
+        logger.warning(f"Continuing without database initialization...")
+            
