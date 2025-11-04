@@ -16,11 +16,12 @@ class Settings(BaseSettings):
     
     # CORS
     ALLOWED_ORIGINS: list[str] = [
-        "http://localhost:3000",
-        "http://localhost:5173",
-        "http://127.0.0.1:3000",
-        "http://127.0.0.1:5173",
-        "https://your-frontend-domain.onrender.com"
+        # "http://localhost:3000",
+        # "http://localhost:5173",
+        # "http://127.0.0.1:3000",
+        # "http://127.0.0.1:5173",
+        # "https://your-frontend-domain.onrender.com"
+        "*"
     ]
     
     # DATABASE - Dual setup (POSGRESQL for production, SQLite for development/testing)
@@ -30,7 +31,7 @@ class Settings(BaseSettings):
     
     # ENVIRONMENT
     ENVIRONMENT: str = "production"
-    Debug: bool = True
+    DEBUG: bool = True
     
     @property
     def effective_database_url(self) -> str:
