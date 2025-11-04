@@ -11,7 +11,7 @@ from app.core.security import verify_token
 router = APIRouter()
 security = HTTPBearer() 
 
-async def verify_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
     
     token = credentials.credentials
     
@@ -35,3 +35,40 @@ async def verify_current_user(credentials: HTTPAuthorizationCredentials = Depend
             detail= "Could not validate credentials",
             headers= {"WWW-Authentication": "Bearer"}
         )
+
+@router.get("/profile")
+async def get_user_profile(
+    current_user: dict = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    
+    try:
+        result = await db.execute(select(User).where(User.id == current_user["user_id"]))
+        user = result.scalar_one_or_none()
+        
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail= "User not found"
+            )
+    
+        return{
+            "success": True,
+            "data": {
+                "id": user.id,
+                "phone": user.phone,
+                "email": user.email,
+                "firstName": user.firstName,
+                "lastName": user.lastName,
+                "role": user.role,
+                "status": user.status
+            }
+        }        
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail= f"Failed to retrieve user: {str(e)}"
+        ) 
