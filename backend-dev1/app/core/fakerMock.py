@@ -29,7 +29,6 @@ def generate_mock_users(n=20):
         
         user = {
             "id": str(uuid.uuid4()),
-            # "phone": fake.phone_number(),
             "phone": ghana_num(),
             "email": fake.unique.email(),
             "firstName": fake.first_name_male() if gender == GenderStatus.MALE else fake.first_name_female(),
