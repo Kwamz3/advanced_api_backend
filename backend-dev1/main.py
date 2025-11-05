@@ -9,7 +9,7 @@ import uvicorn
 import os
 load_dotenv()
 
-from app.api.v1 import users
+from app.api.v1 import users, movies
 from app.core.config import settings
 from app.core.database import init_db
 from app.core.security import verify_token
@@ -45,3 +45,40 @@ app.add_middleware(
     allow_methods=["*"],
 )
 
+@app.get("/health")
+async def health_check():
+    import platform
+    from datetime import datetime
+    
+    return{
+        "status": "healthy",
+        "message": "Streamplus API is running",
+        "version": "1.0.0",
+        "environment": settings.ENVIRONMENT,
+        "timestamp": datetime.utcnow().isoformat(),
+        "database": "connected" if settings.effective_database_url else "not configured",
+        "python_version": platform.python_version(),
+        "platform": platform.system()
+    }
+    
+    
+app.include_router(users.router, prefix= "/api/v1/users", tags=["Users"])
+app.include_router(movies.router, prefix="/api/v1/movies", tags=["Movies"])
+
+@app.get("/")
+async def root():
+    return{
+        "message": "Welcome to Streamplus",
+        "docs": "/docs",
+        "health": "/health",
+        "version": "1.0.0"
+    }
+    
+if __name__ == "__main__":
+    uvicorn.run(
+        "main:app",
+        host= "localhost",
+        port= 8000,
+        reload= True,
+        log_level= "info"
+    )

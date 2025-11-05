@@ -32,7 +32,7 @@ class MovieList(Base):
     views = Column(Integer, default=0)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
-    is_liked = Column(Boolean, default=None)
+    is_liked = Column(Boolean, default=False)
 
     
     # Relationships

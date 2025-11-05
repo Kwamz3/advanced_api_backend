@@ -2,4 +2,7 @@ fastapi
 uvicorn
 sqlalchemy
 passlib[bycrypt]
-python-jose
+python-jose[cryptography]
+python-dotenv
+asyncpg
+faker
