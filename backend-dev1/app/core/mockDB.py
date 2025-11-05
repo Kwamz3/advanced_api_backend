@@ -1,4 +1,5 @@
 from typing import List, Optional
+from app.models.user import UserStatus, UserRole, GenderStatus, ServiceStatus,VerifyEmail, VerifyPhone
 
 
 movies_db = [
@@ -365,5 +366,644 @@ movies_db = [
 ]
 
 user_db = [
-    
+  {
+    "id": "ed0f9045-6f6a-46e5-8f5b-6f165b28e802",
+    "phone": "+233-24-682-3277",
+    "email": "jessicasmall@example.com",
+    "firstName": "Kimberly",
+    "lastName": "Carson",
+    "role": UserRole.CLIENT,
+    "status": UserStatus.SUSPENDED,
+    "service": ServiceStatus.PREMIUM,
+    "profilePicture": "https://dummyimage.com/674x299",
+    "dateOfbirth": "1989-04-15",
+    "gender": GenderStatus.RATHER_NOT_SAY,
+    "bio": "Choice fear heavy he travel language rather whom as early yourself.",
+    "location": {
+      "lat": "8.806164",
+      "lng": "-110.508311"
+    },
+    "address": "51900 Monica Hill\nVaughnshire, VT 72276",
+    "isEmailVerified": VerifyEmail.PENDING,
+    "isPhoneVerified": VerifyPhone.REJECTED,
+    "preferences": {
+      "theme": "dark",
+      "language": "es"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": True,
+      "pushNotifications": True
+    },
+    "createdAt": "2025-11-05T16:40:54.569721",
+    "updatedAt": "2025-11-05T16:40:54.569727"
+  },
+  {
+    "id": "5b4fb3be-2e8b-4cb3-8cbc-687fcabeaca0",
+    "phone": "+233-20-628-3360",
+    "email": "danajones@example.com",
+    "firstName": "Erin",
+    "lastName": "Hernandez",
+    "role": UserRole.ADMIN,
+    "status": UserStatus.ACTIVE,
+    "service": ServiceStatus.FREE,
+    "profilePicture": "https://picsum.photos/137/248",
+    "dateOfbirth": "1983-02-26",
+    "gender": GenderStatus.NOT_SELECTED,
+    "bio": "Even strong smile other others key herself economy rule apply poor need truth heart.",
+    "location": {
+      "lat": "61.184431",
+      "lng": "-7.381318"
+    },
+    "address": "611 Jefferson Island\nPort Dominicmouth, LA 01799",
+    "isEmailVerified": VerifyEmail.REJECTED,
+    "isPhoneVerified": VerifyPhone.PENDING,
+    "preferences": {
+      "theme": "light",
+      "language": "es"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": False,
+      "pushNotifications": False
+    },
+    "createdAt": "2025-11-05T16:40:54.571410",
+    "updatedAt": "2025-11-05T16:40:54.571417"
+  },
+  {
+    "id": "8dfc4a90-7519-415c-89bc-c2ed494cb307",
+    "phone": "+233-20-103-4610",
+    "email": "kparker@example.org",
+    "firstName": "Carla",
+    "lastName": "Torres",
+    "role": UserRole.CLIENT,
+    "status": UserStatus.ACTIVE,
+    "service": ServiceStatus.PREMIUM,
+    "profilePicture": "https://dummyimage.com/224x505",
+    "dateOfbirth": "1966-01-06",
+    "gender": GenderStatus.FEMALE,
+    "bio": "Office quite agreement source business want ten most memory want pay I mission partner task head.",
+    "location": {
+      "lat": "21.414355",
+      "lng": "51.814855"
+    },
+    "address": "PSC 5286, Box 8298\nAPO AE 31226",
+    "isEmailVerified": VerifyEmail.APPROVED,
+    "isPhoneVerified": VerifyPhone.PENDING,
+    "preferences": {
+      "theme": "light",
+      "language": "es"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": True,
+      "pushNotifications": False
+    },
+    "createdAt": "2025-11-05T16:40:54.572220",
+    "updatedAt": "2025-11-05T16:40:54.572224"
+  },
+  {
+    "id": "7de58417-3f8c-44c1-89e8-b374b87b0a5f",
+    "phone": "+233-24-614-4288",
+    "email": "ytate@example.com",
+    "firstName": "Amanda",
+    "lastName": "Davis",
+    "role": UserRole.ADMIN,
+    "status": UserStatus.SUSPENDED,
+    "service": ServiceStatus.PREMIUM_PLUS,
+    "profilePicture": "https://picsum.photos/370/138",
+    "dateOfbirth": "1987-03-20",
+    "gender": GenderStatus.NOT_SELECTED,
+    "bio": "And office class themselves station argue western.",
+    "location": {
+      "lat": "-4.520859",
+      "lng": "48.620901"
+    },
+    "address": "20655 Philip Inlet\nMarquezberg, OH 42133",
+    "isEmailVerified": VerifyEmail.APPROVED,
+    "isPhoneVerified": VerifyPhone.REJECTED,
+    "preferences": {
+      "theme": "light",
+      "language": "fr"
+    },
+    "notificationSettings": {
+      "emailNotifications": False,
+      "smsNotifications": True,
+      "pushNotifications": False
+    },
+    "createdAt": "2025-11-05T16:40:54.573159",
+    "updatedAt": "2025-11-05T16:40:54.573164"
+  },
+  {
+    "id": "22fe62e6-3186-494f-9422-d7b421af0c76",
+    "phone": "+233-27-423-5345",
+    "email": "brooksshaun@example.net",
+    "firstName": "Jessica",
+    "lastName": "Hamilton",
+    "role": UserRole.TASKER,
+    "status": UserStatus.INACTIVE,
+    "service": ServiceStatus.PREMIUM_PLUS,
+    "profilePicture": "https://picsum.photos/950/531",
+    "dateOfbirth": "1960-08-05",
+    "gender": GenderStatus.NOT_SELECTED,
+    "bio": "Republican Mrs item example room good yourself skill fact.",
+    "location": {
+      "lat": "20.575970",
+      "lng": "-156.863325"
+    },
+    "address": "64908 Christine Plaza Suite 096\nToddmouth, AS 94804",
+    "isEmailVerified": VerifyEmail.PENDING,
+    "isPhoneVerified": VerifyEmail.NOT_SUBMITTED,
+    "preferences": {
+      "theme": "light",
+      "language": "fr"
+    },
+    "notificationSettings": {
+      "emailNotifications": False,
+      "smsNotifications": True,
+      "pushNotifications": False
+    },
+    "createdAt": "2025-11-05T16:40:54.574125",
+    "updatedAt": "2025-11-05T16:40:54.574129"
+  },
+  {
+    "id": "c10ab939-f4dc-4772-96b2-6e912f3d35c1",
+    "phone": "+233-50-613-4725",
+    "email": "todd41@example.org",
+    "firstName": "Ashley",
+    "lastName": "Santiago",
+    "role": UserRole.ADMIN,
+    "status": UserStatus.SUSPENDED,
+    "service": ServiceStatus.PREMIUM,
+    "profilePicture": "https://picsum.photos/914/488",
+    "dateOfbirth": "1970-06-23",
+    "gender": GenderStatus.FEMALE,
+    "bio": "Three see main family make trade employee idea.",
+    "location": {
+      "lat": "85.8743775",
+      "lng": "93.066492"
+    },
+    "address": "7106 Taylor Club Suite 104\nConleyshire, CA 59160",
+    "isEmailVerified": VerifyEmail.NOT_SUBMITTED,
+    "isPhoneVerified": VerifyEmail.PENDING,
+    "preferences": {
+      "theme": "dark",
+      "language": "es"
+    },
+    "notificationSettings": {
+      "emailNotifications": False,
+      "smsNotifications": True,
+      "pushNotifications": True
+    },
+    "createdAt": "2025-11-05T16:40:54.575061",
+    "updatedAt": "2025-11-05T16:40:54.575066"
+  },
+  {
+    "id": "70076334-3178-4f7a-a38b-7815b0bd2add",
+    "phone": "+233-26-817-5910",
+    "email": "rodriguezkevin@example.org",
+    "firstName": "Tara",
+    "lastName": "Delacruz",
+    "role": UserRole.ADMIN,
+    "status": UserStatus.SUSPENDED,
+    "service": ServiceStatus.PREMIUM,
+    "profilePicture": "https://dummyimage.com/364x780",
+    "dateOfbirth": "1988-01-26",
+    "gender": GenderStatus.NOT_SELECTED,
+    "bio": "Peace recently east decision job north past nation force challenge.",
+    "location": {
+      "lat": "72.3807625",
+      "lng": "59.395536"
+    },
+    "address": "35937 Jacqueline Meadow Suite 077\nNicholastown, VI 41689",
+    "isEmailVerified": VerifyEmail.PENDING,
+    "isPhoneVerified": VerifyEmail.APPROVED,
+    "preferences": {
+      "theme": "light",
+      "language": "en"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": False,
+      "pushNotifications": False
+    },
+    "createdAt": "2025-11-05T16:40:54.576042",
+    "updatedAt": "2025-11-05T16:40:54.576046"
+  },
+  {
+    "id": "fb95ce74-c8b9-4e59-9946-93c3ad903989",
+    "phone": "+233-20-205-4995",
+    "email": "alison74@example.com",
+    "firstName": "Savannah",
+    "lastName": "Shelton",
+    "role": UserRole.TASKER,
+    "status": UserStatus.INACTIVE,
+    "service": ServiceStatus.PREMIUM,
+    "profilePicture": "https://placekitten.com/4/647",
+    "dateOfbirth": "1989-01-20",
+    "gender": GenderStatus.FEMALE,
+    "bio": "Onto election conference whole heart ok war according key me indicate audience product act.",
+    "location": {
+      "lat": "76.829261",
+      "lng": "-153.792289"
+    },
+    "address": "527 Dunn Prairie\nWest Michaelmouth, WI 90797",
+    "isEmailVerified": VerifyEmail.PENDING,
+    "isPhoneVerified": VerifyPhone.REJECTED,
+    "preferences": {
+      "theme": "light",
+      "language": "en"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": False,
+      "pushNotifications": False
+    },
+    "createdAt": "2025-11-05T16:40:54.576892",
+    "updatedAt": "2025-11-05T16:40:54.576896"
+  },
+  {
+    "id": "11323935-1cd7-4514-b326-1cdb3f0a894d",
+    "phone": "+233-55-310-5254",
+    "email": "castroshelley@example.org",
+    "firstName": "Kenneth",
+    "lastName": "Baldwin",
+    "role": UserRole.CLIENT,
+    "status": UserStatus.INACTIVE,
+    "service": ServiceStatus.FREE,
+    "profilePicture": "https://dummyimage.com/389x738",
+    "dateOfbirth": "1963-07-16",
+    "gender": GenderStatus.MALE,
+    "bio": "Few style need physical fly something page.",
+    "location": {
+      "lat": "-85.8401145",
+      "lng": "-137.351158"
+    },
+    "address": "1886 Sarah Plains Suite 423\nEast Sheena, WI 81693",
+    "isEmailVerified": VerifyEmail.PENDING,
+    "isPhoneVerified": VerifyEmail.PENDING,
+    "preferences": {
+      "theme": "dark",
+      "language": "fr"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": False,
+      "pushNotifications": True
+    },
+    "createdAt": "2025-11-05T16:40:54.577872",
+    "updatedAt": "2025-11-05T16:40:54.577876"
+  },
+  {
+    "id": "d8c63aaf-945d-43d6-9576-d1986023f217",
+    "phone": "+233-59-319-1821",
+    "email": "bbennett@example.net",
+    "firstName": "Lindsey",
+    "lastName": "Macdonald",
+    "role": UserRole.ADMIN,
+    "status": UserStatus.SUSPENDED,
+    "service": ServiceStatus.FREE,
+    "profilePicture": "https://dummyimage.com/311x851",
+    "dateOfbirth": "1956-01-14",
+    "gender": GenderStatus.RATHER_NOT_SAY,
+    "bio": "Product attack attack standard while movie pretty reason Democrat news appear.",
+    "location": {
+      "lat": "79.911333",
+      "lng": "-61.513735"
+    },
+    "address": "254 Austin Row Apt. 663\nSouth Michael, AZ 89056",
+    "isEmailVerified": VerifyPhone.REJECTED,
+    "isPhoneVerified": VerifyPhone.REJECTED,
+    "preferences": {
+      "theme": "light",
+      "language": "fr"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": False,
+      "pushNotifications": True
+    },
+    "createdAt": "2025-11-05T16:40:54.578740",
+    "updatedAt": "2025-11-05T16:40:54.578745"
+  },
+  {
+    "id": "17c3cd40-ce34-4ed6-bd7e-c4166494b201",
+    "phone": "+233-55-572-4485",
+    "email": "andrescarpenter@example.com",
+    "firstName": "Denise",
+    "lastName": "Nelson",
+    "role": UserRole.CLIENT,
+    "status": UserStatus.SUSPENDED,
+    "service": ServiceStatus.FREE,
+    "profilePicture": "https://placekitten.com/535/663",
+    "dateOfbirth": "1985-07-28",
+    "gender": GenderStatus.NOT_SELECTED,
+    "bio": "Write agency top skill or those place important.",
+    "location": {
+      "lat": "67.972944",
+      "lng": "149.805184"
+    },
+    "address": "75654 Rice Canyon\nEast Nicole, OH 93937",
+    "isEmailVerified": VerifyPhone.REJECTED,
+    "isPhoneVerified": VerifyEmail.APPROVED,
+    "preferences": {
+      "theme": "dark",
+      "language": "es"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": True,
+      "pushNotifications": True
+    },
+    "createdAt": "2025-11-05T16:40:54.579759",
+    "updatedAt": "2025-11-05T16:40:54.579763"
+  },
+  {
+    "id": "b0632b50-15c7-40f5-9aec-5b603f4f00c3",
+    "phone": "+233-20-310-6855",
+    "email": "hmiller@example.org",
+    "firstName": "Kim",
+    "lastName": "White",
+    "role": UserRole.TASKER,
+    "status": UserStatus.SUSPENDED,
+    "service": ServiceStatus.PREMIUM,
+    "profilePicture": "https://placekitten.com/602/309",
+    "dateOfbirth": "1966-01-11",
+    "gender": GenderStatus.NOT_SELECTED,
+    "bio": "Break skin whom rest country whom next act tell change.",
+    "location": {
+      "lat": "1.2000095",
+      "lng": "114.965582"
+    },
+    "address": "33121 Rebecca Crest\nLake Christopherbury, ME 92069",
+    "isEmailVerified": VerifyEmail.PENDING,
+    "isPhoneVerified": VerifyEmail.APPROVED,
+    "preferences": {
+      "theme": "dark",
+      "language": "en"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": False,
+      "pushNotifications": False
+    },
+    "createdAt": "2025-11-05T16:40:54.582225",
+    "updatedAt": "2025-11-05T16:40:54.582236"
+  },
+  {
+    "id": "f43083d5-4f1e-47d9-a1ae-2587fe76aeaa",
+    "phone": "+233-23-682-3397",
+    "email": "patriciapalmer@example.org",
+    "firstName": "Anna",
+    "lastName": "Ford",
+    "role": UserRole.TASKER,
+    "status": UserStatus.ACTIVE,
+    "service": ServiceStatus.PREMIUM,
+    "profilePicture": "https://placekitten.com/831/387",
+    "dateOfbirth": "1990-12-30",
+    "gender": GenderStatus.NOT_SELECTED,
+    "bio": "Whether pretty minute contain maintain series break three knowledge school but else player plant over.",
+    "location": {
+      "lat": "-7.1412385",
+      "lng": "-59.609381"
+    },
+    "address": "95890 Ashley Estate Apt. 347\nJohnfurt, NH 97519",
+    "isEmailVerified": VerifyPhone.REJECTED,
+    "isPhoneVerified": VerifyEmail.APPROVED,
+    "preferences": {
+      "theme": "light",
+      "language": "en"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": False,
+      "pushNotifications": False
+    },
+    "createdAt": "2025-11-05T16:40:54.583778",
+    "updatedAt": "2025-11-05T16:40:54.583784"
+  },
+  {
+    "id": "91836d59-4f90-4224-85a0-78ae00ad2e5b",
+    "phone": "+233-20-554-2343",
+    "email": "amanda42@example.com",
+    "firstName": "Destiny",
+    "lastName": "Liu",
+    "role": UserRole.TASKER,
+    "status": UserStatus.ACTIVE,
+    "service": ServiceStatus.FREE,
+    "profilePicture": "https://dummyimage.com/615x634",
+    "dateOfbirth": "1980-02-28",
+    "gender": GenderStatus.RATHER_NOT_SAY,
+    "bio": "Difference citizen watch level only should cultural form this politics not college leader.",
+    "location": {
+      "lat": "55.1908235",
+      "lng": "147.849630"
+    },
+    "address": "3899 Stephen Burg Apt. 196\nHensleybury, MO 77518",
+    "isEmailVerified": VerifyEmail.APPROVED,
+    "isPhoneVerified": VerifyPhone.REJECTED,
+    "preferences": {
+      "theme": "dark",
+      "language": "fr"
+    },
+    "notificationSettings": {
+      "emailNotifications": False,
+      "smsNotifications": True,
+      "pushNotifications": False
+    },
+    "createdAt": "2025-11-05T16:40:54.584952",
+    "updatedAt": "2025-11-05T16:40:54.584957"
+  },
+  {
+    "id": "93dead5b-b598-456c-972b-1c3535a5b5f3",
+    "phone": "+233-27-349-6123",
+    "email": "ashleymartinez@example.com",
+    "firstName": "Maria",
+    "lastName": "Benson",
+    "role": UserRole.ADMIN,
+    "status": UserStatus.INACTIVE,
+    "service": ServiceStatus.PREMIUM,
+    "profilePicture": "https://placekitten.com/96/371",
+    "dateOfbirth": "1978-08-11",
+    "gender": GenderStatus.RATHER_NOT_SAY,
+    "bio": "Home week occur know law actually party say or stop manage interview.",
+    "location": {
+      "lat": "13.9466605",
+      "lng": "72.006275"
+    },
+    "address": "00149 Mejia Terrace Apt. 847\nPort Brent, CT 98540",
+    "isEmailVerified": VerifyEmail.NOT_SUBMITTED,
+    "isPhoneVerified": VerifyEmail.PENDING,
+    "preferences": {
+      "theme": "light",
+      "language": "fr"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": True,
+      "pushNotifications": True
+    },
+    "createdAt": "2025-11-05T16:40:54.586035",
+    "updatedAt": "2025-11-05T16:40:54.586039"
+  },
+  {
+    "id": "4a4551a2-658f-407d-8d14-4690e924bf43",
+    "phone": "+233-23-331-4044",
+    "email": "walter93@example.org",
+    "firstName": "Heather",
+    "lastName": "Pope",
+    "role": UserRole.ADMIN,
+    "status": UserStatus.ACTIVE,
+    "service": ServiceStatus.FREE,
+    "profilePicture": "https://picsum.photos/401/995",
+    "dateOfbirth": "1992-04-23",
+    "gender": GenderStatus.NOT_SELECTED,
+    "bio": "Pull world forward manager miss information matter every relate protect artist trial.",
+    "location": {
+      "lat": "58.803478",
+      "lng": "165.043151"
+    },
+    "address": "5333 Williams Meadows Suite 812\nPort Richardton, CA 26596",
+    "isEmailVerified": VerifyEmail.PENDING,
+    "isPhoneVerified": VerifyPhone.REJECTED,
+    "preferences": {
+      "theme": "light",
+      "language": "es"
+    },
+    "notificationSettings": {
+      "emailNotifications": False,
+      "smsNotifications": False,
+      "pushNotifications": True
+    },
+    "createdAt": "2025-11-05T16:40:54.586891",
+    "updatedAt": "2025-11-05T16:40:54.586895"
+  },
+  {
+    "id": "ceabe13e-135e-4baa-9fb3-569cf891b503",
+    "phone": "+233-23-36-3296",
+    "email": "shawnellis@example.com",
+    "firstName": "Martha",
+    "lastName": "Smith",
+    "role": UserRole.CLIENT,
+    "status": UserStatus.SUSPENDED,
+    "service": ServiceStatus.FREE,
+    "profilePicture": "https://picsum.photos/815/957",
+    "dateOfbirth": "1983-11-29",
+    "gender": GenderStatus.FEMALE,
+    "bio": "Including speak face throw listen system analysis fall among animal push around fine none president.",
+    "location": {
+      "lat": "70.2919765",
+      "lng": "-90.342151"
+    },
+    "address": "1801 Donna Fork\nJohnsontown, NM 67304",
+    "isEmailVerified": VerifyEmail.NOT_SUBMITTED,
+    "isPhoneVerified": VerifyEmail.PENDING,
+    "preferences": {
+      "theme": "dark",
+      "language": "fr"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": True,
+      "pushNotifications": False
+    },
+    "createdAt": "2025-11-05T16:40:54.587861",
+    "updatedAt": "2025-11-05T16:40:54.587865"
+  },
+  {
+    "id": "28ac1971-913c-4c57-86fe-c9c24f4a4165",
+    "phone": "+233-23-211-8077",
+    "email": "ronaldlopez@example.net",
+    "firstName": "Elizabeth",
+    "lastName": "West",
+    "role": UserRole.TASKER,
+    "status": UserStatus.INACTIVE,
+    "service": ServiceStatus.PREMIUM_PLUS,
+    "profilePicture": "https://placekitten.com/828/68",
+    "dateOfbirth": "2007-03-22",
+    "gender": GenderStatus.RATHER_NOT_SAY,
+    "bio": "Arm hard number long his north affect future usually series good field vote.",
+    "location": {
+      "lat": "65.0742705",
+      "lng": "-90.347163"
+    },
+    "address": "020 Smith Fall Apt. 104\nNorth Biancahaven, PR 67520",
+    "isEmailVerified": VerifyEmail.PENDING,
+    "isPhoneVerified": VerifyEmail.PENDING,
+    "preferences": {
+      "theme": "dark",
+      "language": "es"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": True,
+      "pushNotifications": False
+    },
+    "createdAt": "2025-11-05T16:40:54.588846",
+    "updatedAt": "2025-11-05T16:40:54.588851"
+  },
+  {
+    "id": "364592dc-0506-4a3c-b616-d5fb93269b0f",
+    "phone": "+233-59-797-5386",
+    "email": "thomashiggins@example.net",
+    "firstName": "Brent",
+    "lastName": "Burnett",
+    "role": UserRole.CLIENT,
+    "status": UserStatus.SUSPENDED,
+    "service": ServiceStatus.PREMIUM_PLUS,
+    "profilePicture": "https://dummyimage.com/726x217",
+    "dateOfbirth": "1994-05-09",
+    "gender": GenderStatus.MALE,
+    "bio": "Nearly and responsibility research religious this we suffer.",
+    "location": {
+      "lat": "-0.459702",
+      "lng": "82.964145"
+    },
+    "address": "110 Matthew Vista\nNorth Tamara, ND 08564",
+    "isEmailVerified": VerifyEmail.APPROVED,
+    "isPhoneVerified": VerifyEmail.PENDING,
+    "preferences": {
+      "theme": "dark",
+      "language": "en"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": True,
+      "pushNotifications": True
+    },
+    "createdAt": "2025-11-05T16:40:54.589798",
+    "updatedAt": "2025-11-05T16:40:54.589802"
+  },
+  {
+    "id": "c3088309-e105-4d6e-9acd-8330cfc1671b",
+    "phone": "+233-26-86-3894",
+    "email": "robert74@example.com",
+    "firstName": "Carrie",
+    "lastName": "Drake",
+    "role": UserRole.CLIENT,
+    "status": UserStatus.INACTIVE,
+    "service": ServiceStatus.PREMIUM,
+    "profilePicture": "https://placekitten.com/667/336",
+    "dateOfbirth": "1964-01-10",
+    "gender": GenderStatus.RATHER_NOT_SAY,
+    "bio": "Assume data tell blood station lot whatever most certain people yeah yes force top.",
+    "location": {
+      "lat": "79.0825075",
+      "lng": "78.820564"
+    },
+    "address": "11388 Garrett Locks Apt. 339\nToddland, MA 56536",
+    "isEmailVerified": VerifyEmail.NOT_SUBMITTED,
+    "isPhoneVerified": VerifyEmail.PENDING,
+    "preferences": {
+      "theme": "light",
+      "language": "en"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": True,
+      "pushNotifications": False
+    },
+    "createdAt": "2025-11-05T16:40:54.590597",
+    "updatedAt": "2025-11-05T16:40:54.590601"
+  }
 ]

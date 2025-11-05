@@ -1,6 +1,7 @@
 from faker import Faker
 import random
 import uuid
+import json
 from datetime import datetime
 from app.models.user import UserRole, UserStatus, VerifyEmail, VerifyPhone, ServiceStatus, GenderStatus
 
@@ -8,6 +9,17 @@ fake = Faker()
 
 def generate_mock_users(n=20):
     users = []
+    
+    def ghana_num():
+        
+        prefixes = ["20", "23", "24", "26", "27", "28", "50", "54", "55", "59"]
+        prefix = random.choice(prefixes)
+        
+        mid = random.randint(000, 999)
+        end = random.randint(1111, 9999)
+        
+        return f"+233-{prefix}-{mid}-{end}"
+        
     
     for _ in range(n):
         gender = random.choice(list(GenderStatus))
@@ -17,7 +29,8 @@ def generate_mock_users(n=20):
         
         user = {
             "id": str(uuid.uuid4()),
-            "phone": fake.phone_number(),
+            # "phone": fake.phone_number(),
+            "phone": ghana_num(),
             "email": fake.unique.email(),
             "firstName": fake.first_name_male() if gender == GenderStatus.MALE else fake.first_name_female(),
             "lastName": fake.last_name(),
@@ -44,8 +57,8 @@ def generate_mock_users(n=20):
                 "smsNotifications": fake.boolean(),
                 "pushNotifications": fake.boolean(),
             },
-            "createdAt": datetime.utcnow().isoformat(),
-            "updatedAt": datetime.utcnow().isoformat(),
+            "createdAt": datetime.now().isoformat(),
+            "updatedAt": datetime.now().isoformat(),
         }
         users.append(user)
     return users
@@ -53,5 +66,11 @@ def generate_mock_users(n=20):
 
 if __name__ == "__main__":
     mock_users = generate_mock_users(20)
-    print(mock_users[:5])  # preview the first 5 users
-    print(f"✅ Generated {len(mock_users)} mock users.")
+    
+    # Write to JSON file
+    output_file = "mock_users.json"
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(mock_users, f, indent=2, ensure_ascii=False, default=str)
+    
+    print(f" Generated {len(mock_users)} mock users.")
+    print(f" Written to {output_file}")
