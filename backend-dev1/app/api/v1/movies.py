@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, APIRouter, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy import text, select,insert, update, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List, Optional
@@ -16,7 +16,7 @@ from app.models.movies import MovieList
 from app.core.security import verify_token
 from app.core.database import init_db
 
-security = HTTPBearer()
+security = OAuth2PasswordBearer(tokenUrl="token")
 router = APIRouter()
 db = get_db()
 
@@ -37,7 +37,7 @@ class CreateMovieMock(BaseModel):
     views : Optional[int] = None
     created_at : datetime
     updated_at : datetime
-    is_liked : bool
+    is_liked : bool = False
     
     
     @field_validator('title')
@@ -62,7 +62,7 @@ class CreateMovieMock(BaseModel):
         return v
     
  
-async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+async def get_current_user(credentials: OAuth2PasswordBearer = Depends(security)):
     
     token = credentials.credentials
     
@@ -92,25 +92,9 @@ async def create_movie(
     request: CreateMovieMock,
     current_user: dict = Depends(security)
 ):      
-        # movie_data = {
-        #     "id" : str(uuid.uuid4()),
-        #     "title" : MovieList.title,
-        #     "category" : MovieList.category,
-        #     "description" : MovieList.description,
-        #     "poster_url" : MovieList.poster_url,
-        #     "trailer_url" : MovieList.trailer_url,
-        #     "duration " : MovieList.duration,
-        #     "poster_url" : MovieList.poster_url,
-        #     "release_year" : MovieList.release_year,
-        #     "rating" : MovieList.rating,
-        #     "cast" : MovieList.cast,
-        #     "is_featured" : MovieList.is_featured,
-        #     "created_at" : MovieList.created_at,
-        #     "updated_at" : MovieList.updated_at,
-        #     "is_liked" : MovieList.is_liked
-        # }
         
         new_dict = request.model_dump()
+        new_dict["id"] = str(uuid.uuid4())
         movies_db.append(new_dict)
         
         return {"mesage": "Movie added successfully to mock database", "data": new_dict}
