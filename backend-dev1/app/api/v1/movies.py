@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, APIRouter, Depends, status
+from fastapi import FastAPI, HTTPException, APIRouter, Depends, status, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy import text, select,insert, update, delete
@@ -89,7 +89,7 @@ async def get_current_user(credentials = Depends(security)):
  
 @router.post("/", response_model= dict)       
 async def create_movie(
-    request: CreateMovieMock,
+    request: CreateMovieMock = Query(..., description= "add a new movie"),
     current_user: dict = Depends(security)
 ):      
         

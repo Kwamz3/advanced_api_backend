@@ -40,8 +40,8 @@ async def get_current_user(credentials: str = Depends(security)):
 
 @router.get("/profile")
 async def get_user_profile(
-    firstName: str = Query(..., description= "User's first name"),
-    lastName: str = Query(..., description= "User's last name"),
+    firstName: str = Query(..., description= "user's first name"),
+    lastName: str = Query(..., description= "user's last name"),
 ):
     
     try:
@@ -80,7 +80,7 @@ async def get_user_profile(
 
 @router.post("/profile")
 async def create_user_profile(
-    create_user: UserCreate
+    create_user: UserCreate = Query(..., description= "create new User")
 ):
     existing_user = next(
         (u for u in user_db if u["email"].lower() == create_user.email.lower()),
