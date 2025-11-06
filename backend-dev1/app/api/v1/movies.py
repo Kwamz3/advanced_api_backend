@@ -62,9 +62,9 @@ class CreateMovieMock(BaseModel):
         return v
     
  
-async def get_current_user(credentials: OAuth2PasswordBearer = Depends(security)):
+async def get_current_user(credentials = Depends(security)):
     
-    token = credentials.credentials
+    token = credentials
     
     try:
         payload = verify_token(token)

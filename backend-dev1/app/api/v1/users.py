@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends, status, Query
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.ext.asyncio import AsyncSession
+from typing import List, Optional
 from sqlalchemy import text, select, insert, update, delete
 from jose import JWTError
 
@@ -75,3 +76,9 @@ async def get_user_profile(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail= f"Failed to retrieve user: {str(e)}"
         ) 
+        
+
+# @router.post("/profile")
+# async def create_user_profile(
+#     create_user: List[dict] = user_db
+# ):   

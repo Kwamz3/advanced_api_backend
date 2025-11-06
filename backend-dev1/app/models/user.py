@@ -4,10 +4,12 @@ User model and related schemas
 
 from sqlalchemy import Column, String, Integer, Enum, JSON, DateTime, Boolean, Text
 from sqlalchemy.orm import relationship
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing import List, Optional, Dict, Any
 from sqlalchemy.sql import func
 import enum
 import uuid
+from datetime import datetime
 
 
 from app.models.types import UUID 
@@ -48,8 +50,8 @@ class GenderStatus(str, enum.Enum):
     RATHER_NOT_SAY = "RATHER_NOT_SAY"
     NOT_SELECTED = "NOT_SELECTED"
     
-    
 class User(Base):
+    
     __tablename__ = "user"
     
     id = Column(UUID(), primary_key=True, default=uuid.uuid4)
@@ -83,5 +85,36 @@ class User(Base):
     createdAt = Column(DateTime(timezone=True), server_default=func.now())
     updatedAt = Column(DateTime(timezone=True), onupdate=func.now())
     
-    # Relationships
-    user_category = relationship("Category", back_populates="category_chosen")
+
+class UserCreate(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()), examples=["37c65b57-5f58-4a3d-93d8-12a3f8cd71a7"])
+    phone: str = Field(..., examples=["+233-54-768-8745"])
+    email: str = Field(..., examples=["john.doe@example.com"])
+    firstName: str = Field(..., examples=["John"])
+    lastName: str = Field(..., examples=["Doe"])
+    role: UserRole = Field(default=UserRole.CLIENT, examples=["user"])
+    status: UserStatus = Field(default=UserStatus.INACTIVE, examples=["active"])
+
+    # Profile info
+    profilePicture: Optional[str] = Field(None, examples=["https://example.com/avatar.jpg"])
+    dateOfbirth: Optional[datetime] = Field(None, examples=["2000-01-01T00:00:00Z"])
+    gender: Optional[GenderStatus] = Field(None, examples=["male"])
+    bio: Optional[str] = Field(None, examples=["Creative designer and movie lover."])
+
+    # Location
+    address: Optional[str] = Field(None, examples=["123 Main Street, Accra"])
+    location: Optional[Dict[str, Any]] = Field(None, examples=[{"latitude": 5.6037, "longitude": -0.1870}])
+
+    # Verification
+    isEmailVerified: bool = Field(default=False, examples=[False])
+    isPhoneVerified: bool = Field(default=False, examples=[True])
+
+    # Settings
+    preferences: Optional[Dict[str, Any]] = Field(None, examples=[{"theme": "dark"}])
+    notificationSettings: Optional[Dict[str, Any]] = Field(None, examples=[{"email": True, "sms": False}])
+
+    # Timestamps
+    createdAt: datetime = Field(default_factory=lambda: datetime.now(), examples=["2025-11-06T00:00:00Z"])
+    updatedAt: datetime = Field(default_factory=lambda: datetime.now(), examples=["2025-11-06T00:00:00Z"])
+    
+    
