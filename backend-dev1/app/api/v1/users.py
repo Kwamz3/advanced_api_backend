@@ -7,6 +7,7 @@ from jose import JWTError
 
 from app.core.database import get_db
 from app.models.user import UserCreate
+from app.models.user import UserResponse
 from app.core.security import verify_token
 from app.core.mockDB import user_db
 
@@ -80,7 +81,7 @@ async def get_user_profile(
 
 @router.post("/profile")
 async def create_user_profile(
-    create_user: UserCreate = Query(..., description= "create new User")
+    create_user: UserResponse = Query(..., description= "create new User")
 ):
     existing_user = next(
         (u for u in user_db if u["email"].lower() == create_user.email.lower()),

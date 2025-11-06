@@ -12,7 +12,7 @@ import uuid
 from app.api.v1 import users
 from app.core.database import get_db
 from app.core.mockDB import movies_db
-from app.models.movies import MovieList
+from app.models.movies import CreateMovieMock
 from app.core.security import verify_token
 from app.core.database import init_db
 
@@ -21,29 +21,26 @@ router = APIRouter()
 db = get_db()
 
 
-
+@field_validator('title')
+@classmethod
+def validate_title(cls, v):
+    if len(v) < 5:
+        raise ValueError("title has to be atleast 5 characters")
+    return v
     
+@field_validator('rating')
+@classmethod
+def validate_rating(cls, v):
+    if v > 10.0:
+        raise ValueError("rating can not be more than 10.0")
+    return v
     
-    @field_validator('title')
-    @classmethod
-    def validate_title(cls, v):
-        if len(v) < 5:
-            raise ValueError("title has to be atleast 5 characters")
-        return v
-    
-    @field_validator('rating')
-    @classmethod
-    def validate_rating(cls, v):
-        if v > 10.0:
-            raise ValueError("rating can not be more than 10.0")
-        return v
-    
-    @field_validator('duration')
-    @classmethod
-    def validate_duration(cls, v):
-        if v < 70:
-            raise ValueError("duration can not be less than 1hr 10mins")
-        return v
+@field_validator('duration')
+@classmethod
+def validate_duration(cls, v):
+    if v < 70:
+        raise ValueError("duration can not be less than 1hr 10mins")
+    return v
     
  
 async def get_current_user(credentials = Depends(security)):

@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Integer, Boolean, DateTime, Enum, Text, JSON, ForeignKey, Float
 from sqlalchemy.orm import relationship
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List, Optional, Any
 from datetime import datetime
 from sqlalchemy.sql import func
@@ -44,8 +44,7 @@ class MovieList(Base):
     
     
 class CreateMovieMock(BaseModel):
-    id : str
-    title : str
+    title : str = Field(..., examples=["Inception"])
     category : Optional[str] = None
     description : Optional [str] = None
     poster_url : str
@@ -59,3 +58,6 @@ class CreateMovieMock(BaseModel):
     created_at : datetime
     updated_at : datetime
     is_liked : bool = False
+
+class ResponseMovieMock(CreateMovieMock):
+    id : str = Field(default_factory=lambda: str(uuid.uuid4()), examples=["37c65b57-5f58-4a3d-93d8-12a3f8cd71a7"])

@@ -87,20 +87,19 @@ class User(Base):
     
 
 class UserCreate(BaseModel):
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()), examples=["37c65b57-5f58-4a3d-93d8-12a3f8cd71a7"])
     phone: str = Field(..., examples=["+233-54-768-8745"])
     email: str = Field(..., examples=["john.doe@example.com"])
     firstName: str = Field(..., examples=["John"])
     lastName: str = Field(..., examples=["Doe"])
-    role: UserRole = Field(default=UserRole.CLIENT, examples=["user"])
-    status: UserStatus = Field(default=UserStatus.INACTIVE, examples=["active"])
+    role: UserRole = Field(default=UserRole.CLIENT, examples=["client"])
+    status: UserStatus = Field(default=UserStatus.INACTIVE, examples=["inactive"])
 
     # Profile info
     profilePicture: Optional[str] = Field(None, examples=["https://example.com/avatar.jpg"]) 
     dateOfbirth: Optional[datetime] = Field(None, examples=["2000-01-01T00:00:00Z"])
     gender: Optional[GenderStatus] = Field(None, examples=["male"])
     bio: Optional[str] = Field(None, examples=["Creative designer and movie lover."])
-    serverStatus: ServiceStatus = Field(default= ServiceStatus.FREE, examples=[True])
+    serverStatus: ServiceStatus = Field(default= ServiceStatus.FREE, examples=["Premium"])
 
     # Location
     address: Optional[str] = Field(None, examples=["123 Main Street, Accra"])
@@ -117,5 +116,9 @@ class UserCreate(BaseModel):
     # Timestamps
     createdAt: datetime = Field(default_factory=lambda: datetime.now(), examples=["2025-11-06T00:00:00Z"])
     updatedAt: datetime = Field(default_factory=lambda: datetime.now(), examples=["2025-11-06T00:00:00Z"])
+
+
+class UserResponse(UserCreate):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()), examples=["37c65b57-5f58-4a3d-93d8-12a3f8cd71a7"])
     
     
