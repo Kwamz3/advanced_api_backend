@@ -1,5 +1,8 @@
 from sqlalchemy import Column, String, Integer, Boolean, DateTime, Enum, Text, JSON, ForeignKey, Float
 from sqlalchemy.orm import relationship
+from pydantic import BaseModel
+from typing import List, Optional, Any
+from datetime import datetime
 from sqlalchemy.sql import func
 import uuid 
 
@@ -28,7 +31,6 @@ class MovieList(Base):
     producer = Column(String(500), nullable=True)
     
     # Tracking Info
-    is_featured = Column(Boolean, default=False)
     views = Column(Integer, default=0)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
@@ -38,3 +40,22 @@ class MovieList(Base):
     # Relationships
     category_id = Column(PostgresUUID(as_uuid=True), ForeignKey("categories.id"), nullable=True)
     category_rel = relationship("Category", back_populates="movies_rel")
+    
+    
+    
+class CreateMovieMock(BaseModel):
+    id : str
+    title : str
+    category : Optional[str] = None
+    description : Optional [str] = None
+    poster_url : str
+    trailer_url : str
+    duration : int
+    release_year : int
+    rating : float
+    cast : str
+    producer : str
+    views : Optional[int] = None
+    created_at : datetime
+    updated_at : datetime
+    is_liked : bool = False

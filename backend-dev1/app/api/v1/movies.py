@@ -21,23 +21,7 @@ router = APIRouter()
 db = get_db()
 
 
-class CreateMovieMock(BaseModel):
-    id : str
-    title : str
-    category : Optional[str] = None
-    description : Optional [str] = None
-    poster_url : str
-    trailer_url : str
-    duration : int
-    release_year : int
-    rating : float
-    cast : str
-    producer : str
-    is_featured : Optional[bool] = None
-    views : Optional[int] = None
-    created_at : datetime
-    updated_at : datetime
-    is_liked : bool = False
+
     
     
     @field_validator('title')
