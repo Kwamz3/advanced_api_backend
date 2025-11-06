@@ -8,13 +8,14 @@ import uuid
 
 from app.models.user import Base
 from app.models.types import PostgresUUID
+from app.models.types import UUID 
  
  
 class MovieList(Base):
     __tablename__ = "movie_list"
     
     #Basic Info
-    id = Column(PostgresUUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id = Column(UUID(), primary_key=True, default=uuid.uuid4)
     title = Column(String(225), nullable=False)
     category = Column(String(50), nullable=True)
     description = Column(Text, nullable=True)
@@ -38,15 +39,15 @@ class MovieList(Base):
 
     
     # Relationships
-    category_id = Column(PostgresUUID(as_uuid=True), ForeignKey("categories.id"), nullable=True)
+    category_id = Column(UUID(as_uuid=True), ForeignKey("categories.id"), nullable=True)
     category_rel = relationship("Category", back_populates="movies_rel")
     
     
     
 class CreateMovieMock(BaseModel):
     title : str = Field(..., examples=["Inception"])
-    category : Optional[str] = None
-    description : Optional [str] = None
+    category : Optional[str] = Field(..., examples=["Action"])
+    description : Optional [str] = Field(None, examples=["Action with the best female actress in the bizz"])
     poster_url : str
     trailer_url : str
     duration : int
