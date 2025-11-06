@@ -96,10 +96,11 @@ class UserCreate(BaseModel):
     status: UserStatus = Field(default=UserStatus.INACTIVE, examples=["active"])
 
     # Profile info
-    profilePicture: Optional[str] = Field(None, examples=["https://example.com/avatar.jpg"])
+    profilePicture: Optional[str] = Field(None, examples=["https://example.com/avatar.jpg"]) 
     dateOfbirth: Optional[datetime] = Field(None, examples=["2000-01-01T00:00:00Z"])
     gender: Optional[GenderStatus] = Field(None, examples=["male"])
     bio: Optional[str] = Field(None, examples=["Creative designer and movie lover."])
+    serverStatus: ServiceStatus = Field(default= ServiceStatus.FREE, examples=[True])
 
     # Location
     address: Optional[str] = Field(None, examples=["123 Main Street, Accra"])

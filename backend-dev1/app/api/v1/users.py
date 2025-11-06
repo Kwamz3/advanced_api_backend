@@ -6,7 +6,7 @@ from sqlalchemy import text, select, insert, update, delete
 from jose import JWTError
 
 from app.core.database import get_db
-from app.models.user import User
+from app.models.user import UserCreate
 from app.core.security import verify_token
 from app.core.mockDB import user_db
 
@@ -78,7 +78,35 @@ async def get_user_profile(
         ) 
         
 
-# @router.post("/profile")
-# async def create_user_profile(
-#     create_user: List[dict] = user_db
-# ):   
+@router.post("/profile")
+async def create_user_profile(
+    create_user: UserCreate
+):
+    existing_user = next(
+        (u for u in user_db if u["email"].lower() == create_user.email.lower()),
+        None
+    )
+    
+    if not existing_user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail= "User with this email already exists"
+        )
+        
+    new_user = {
+        "id": create_user.id,
+        "phone": create_user.phone,
+        "email": create_user.email,
+        "firstName": create_user.firstName,
+        "lastName": create_user.lastName,
+        "role": create_user.role,
+        "status": create_user.status 
+    }
+    
+    user_db.append(new_user)
+    
+    return{
+        "success": True,
+        "message": "New user created successfully",
+        "data": new_user
+    }
