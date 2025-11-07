@@ -8,10 +8,12 @@ from pydantic import BaseModel, field_validator
 from datetime import datetime
 from jose import JWTError
 import uuid
+import json
 
 from app.api.v1 import users
 from app.core.database import get_db
 from app.core.mockDB import movies_db
+from app.models.movies import ResponseMovieMock
 from app.models.movies import CreateMovieMock
 from app.core.security import verify_token
 from app.core.database import init_db
@@ -68,7 +70,7 @@ async def get_current_user(credentials = Depends(security)):
             headers= {"WWW-Authentication": "Bearer"}
         )
  
-@router.post("/", response_model= dict)       
+@router.post("/create", response_model= dict)       
 async def create_movie(
     request: CreateMovieMock = Query(..., description= "add a new movie"),
     current_user: dict = Depends(security)
@@ -79,5 +81,33 @@ async def create_movie(
         movies_db.append(new_dict)
         
         return {"mesage": "Movie added successfully to mock database", "data": new_dict}
-        
-        
+    
+    
+@router.get("/", response_model= dict)
+async def get_all_movies():
+    
+    return{
+        "success": True,
+        "data": movies_db   
+        }
+    
+@router.get("/{movie_name}")
+async def get_movie_by_name(
+    movie_name: str 
+):
+    
+    movie = next(
+        (u for u in movies_db if u["title"].lower() == movie_name.lower()),
+        None
+    )
+    
+    if not movie:
+        raise HTTPException(
+            status_code= status.HTTP_404_NOT_FOUND,
+            detail= "movie not found"
+        )
+    
+    return {
+        "success": True,
+        "data": movie
+    }

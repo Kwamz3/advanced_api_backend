@@ -39,17 +39,17 @@ async def get_current_user(credentials: str = Depends(security)):
             headers= {"WWW-Authenticate": "Bearer"}
         )
 
+
 @router.get("/profile")
 async def get_user_profile(
-    firstName: str = Query(..., description= "user's first name"),
-    lastName: str = Query(..., description= "user's last name"),
+    email: str = Query(..., description= "user's email")
 ):
     
     try:
         user = next(
-            (u for u in user_db if u["firstName"].lower() == firstName.lower() and u["lastName"].lower() == lastName.lower()),
-            None
-        )
+        (u for u in user_db if u["email"].lower() == email.lower()),
+        None
+    )
         
         if not user:
             raise HTTPException(

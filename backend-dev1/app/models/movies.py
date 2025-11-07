@@ -39,7 +39,7 @@ class MovieList(Base):
 
     
     # Relationships
-    category_id = Column(UUID(as_uuid=True), ForeignKey("categories.id"), nullable=True)
+    category_id = Column(UUID(), ForeignKey("categories.id"), nullable=True)
     category_rel = relationship("Category", back_populates="movies_rel")
     
     
@@ -48,16 +48,16 @@ class CreateMovieMock(BaseModel):
     title : str = Field(..., examples=["Inception"])
     category : Optional[str] = Field(..., examples=["Action"])
     description : Optional [str] = Field(None, examples=["Action with the best female actress in the bizz"])
-    poster_url : str
-    trailer_url : str
-    duration : int
-    release_year : int
-    rating : float
-    cast : str
-    producer : str
-    views : Optional[int] = None
-    created_at : datetime
-    updated_at : datetime
+    poster_url : str = Field(..., examples=["https://example.com/inception.jpg"])
+    trailer_url : str = Field(..., examples=["https://youtube.com/watch?v=YoHD9XEInc0"])
+    duration : int =Field(..., examples=[140])
+    release_year : int = Field(..., examples=[2024])
+    rating : float = Field(..., examples=[7.4])
+    cast : Optional[str] = Field(None, examples=["Leonardo DiCaprio"])
+    producer : Optional[str] = Field(None, examples=["Christopher Nolan"])
+    views : Optional[int] = Field(None, examples=[1037])
+    created_at : Optional[datetime] = Field(None, examples=["2025-01-01T00:00:00"])
+    updated_at : Optional[datetime] = Field(None, examples=["2025-01-01T00:00:00"])
     is_liked : bool = False
 
 class ResponseMovieMock(CreateMovieMock):
