@@ -111,3 +111,25 @@ async def get_movie_by_name(
         "success": True,
         "data": movie
     }
+
+
+@router.get("/{movie_date}")
+async def get_movie_by_date(
+    movie_date: int 
+):
+    
+    date = next(
+        (u for u in movies_db if u["release_year"] == movie_date),
+        None
+    )
+    
+    if not date:
+        raise HTTPException(
+            status_code= status.HTTP_404_NOT_FOUND,
+            detail= "No movie with current date"
+        )
+    
+    return {
+        "success": True,
+        "data": date
+    }
