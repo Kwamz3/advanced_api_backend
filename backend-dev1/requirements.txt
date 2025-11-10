@@ -5,4 +5,4 @@ passlib[bycrypt]
 python-jose[cryptography]
 python-dotenv
 asyncpg
-faker
+# faker
