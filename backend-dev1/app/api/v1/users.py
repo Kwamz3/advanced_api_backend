@@ -1,19 +1,22 @@
-from fastapi import APIRouter, HTTPException, Depends, status
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi import APIRouter, HTTPException, Depends, status, Query
+from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.ext.asyncio import AsyncSession
+from typing import List, Optional
 from sqlalchemy import text, select, insert, update, delete
 from jose import JWTError
 
 from app.core.database import get_db
-from app.models.user import User
+from app.models.user import UserCreate
+from app.models.user import UserResponse
 from app.core.security import verify_token
+from app.core.mockDB import user_db
 
 router = APIRouter()
-security = HTTPBearer() 
+security = OAuth2PasswordBearer(tokenUrl="token") 
 
-async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+async def get_current_user(credentials: str = Depends(security)):
     
-    token = credentials.credentials
+    token = credentials
     
     try:
         payload = verify_token(token)
@@ -24,27 +27,29 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
             raise HTTPException(
                 status_code= status.HTTP_401_UNAUTHORIZED,
                 detail= "Invalid authenttication token: missing subject (sub)",
-                headers= {"WWW-Authentication": "Bearer"}
+                headers= {"WWW-Authenticate": "Bearer"}
             )
         
-        return {"user": user_id, "role": role}
+        return {"user_id": user_id, "role": role}
     
     except JWTError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail= "Could not validate credentials",
-            headers= {"WWW-Authentication": "Bearer"}
+            headers= {"WWW-Authenticate": "Bearer"}
         )
+
 
 @router.get("/profile")
 async def get_user_profile(
-    current_user: dict = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db)
+    email: str = Query(..., description= "user's email")
 ):
     
     try:
-        result = await db.execute(select(User).where(User.id == current_user["user_id"]))
-        user = result.scalar_one_or_none()
+        user = next(
+        (u for u in user_db if u["email"].lower() == email.lower()),
+        None
+    )
         
         if not user:
             raise HTTPException(
@@ -55,13 +60,13 @@ async def get_user_profile(
         return{
             "success": True,
             "data": {
-                "id": user.id,
-                "phone": user.phone,
-                "email": user.email,
-                "firstName": user.firstName,
-                "lastName": user.lastName,
-                "role": user.role,
-                "status": user.status
+                "id": user["id"],
+                "phone": user["phone"],
+                "email": user["email"],
+                "firstName": user["firstName"],
+                "lastName": user["lastName"],
+                "role": user["role"],
+                "status": user["status"]
             }
         }        
         
@@ -72,3 +77,37 @@ async def get_user_profile(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail= f"Failed to retrieve user: {str(e)}"
         ) 
+        
+
+@router.post("/profile")
+async def create_user_profile(
+    create_user: UserResponse = Query(..., description= "create new User")
+):
+    existing_user = next(
+        (u for u in user_db if u["email"].lower() == create_user.email.lower()),
+        None
+    )
+    
+    if not existing_user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail= "User with this email already exists"
+        )
+        
+    new_user = {
+        "id": create_user.id,
+        "phone": create_user.phone,
+        "email": create_user.email,
+        "firstName": create_user.firstName,
+        "lastName": create_user.lastName,
+        "role": create_user.role,
+        "status": create_user.status 
+    }
+    
+    user_db.append(new_user)
+    
+    return{
+        "success": True,
+        "message": "New user created successfully",
+        "data": new_user
+    }

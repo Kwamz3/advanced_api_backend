@@ -15,14 +15,7 @@ class Settings(BaseSettings):
     VERSION: str = "1.0.0"
     
     # CORS
-    ALLOWED_ORIGINS: list[str] = [
-        # "http://localhost:3000",
-        # "http://localhost:5173",
-        # "http://127.0.0.1:3000",
-        # "http://127.0.0.1:5173",
-        # "https://your-frontend-domain.onrender.com"
-        "*"
-    ]
+    ALLOWED_ORIGINS: List[str] = ["*"]
     
     # DATABASE - Dual setup (POSGRESQL for production, SQLite for development/testing)
     DATABASE_URL: str = "postgresql://postgresql:1234567890@localhost:5432/streamplus"
