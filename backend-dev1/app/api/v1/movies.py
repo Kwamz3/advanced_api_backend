@@ -91,6 +91,7 @@ async def get_all_movies():
         "data": movies_db   
         }
     
+    
 @router.get("/{movie_name}")
 async def get_movie_by_name(
     movie_name: str 
