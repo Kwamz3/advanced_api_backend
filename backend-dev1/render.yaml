@@ -4,7 +4,7 @@ services:
     runtime: python
     region: oregon
     buildCommand: pip install -r backend-dev1/requirements.txt
-    startCommand: cd backend-dev1 && python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+    startCommand: cd backend-dev1 && uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
         value: 3.13.4
