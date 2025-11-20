@@ -1,21 +1,22 @@
 from sqlalchemy import Column, String, Integer, Boolean, DateTime, Enum, Text, JSON, ForeignKey, Float
 from sqlalchemy.orm import relationship
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from typing import List, Optional, Any
 from datetime import datetime
 from sqlalchemy.sql import func
 import uuid 
 
-from app.models.user import Base
+from app.models.users import Base
 from app.models.types import PostgresUUID
 from app.models.types import UUID 
+ 
  
  
 class MovieList(Base):
     __tablename__ = "movie_list"
     
     #Basic Info
-    id = Column(UUID(), primary_key=True, default=uuid.uuid4)
+    id = Column(Integer, primary_key=True, nullable=False)
     title = Column(String(225), nullable=False)
     category = Column(String(50), nullable=True)
     description = Column(Text, nullable=True)
@@ -61,4 +62,11 @@ class CreateMovieMock(BaseModel):
     is_liked : bool = False
 
 class ResponseMovieMock(CreateMovieMock):
-    id : str = Field(default_factory=lambda: str(uuid.uuid4()), examples=["37c65b57-5f58-4a3d-93d8-12a3f8cd71a7"])
+    id : str = Field(..., examples=["001"])
+    
+    @field_validator('id', mode='before')
+    @classmethod
+    def format_movie_id(cls, value):
+        if isinstance(value, int):
+            return f'{value:03d}'
+        return value

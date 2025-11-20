@@ -1,5 +1,5 @@
 from typing import List, Optional
-from app.models.user import UserStatus, UserRole, GenderStatus, ServiceStatus,VerifyEmail, VerifyPhone
+from app.models.users import UserStatus, UserRole, GenderStatus, ServiceStatus,VerifyEmail, VerifyPhone
 
 
 movies_db = [

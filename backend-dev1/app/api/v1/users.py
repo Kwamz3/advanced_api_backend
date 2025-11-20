@@ -6,8 +6,7 @@ from sqlalchemy import text, select, insert, update, delete
 from jose import JWTError
 
 from app.core.database import get_db
-from app.models.user import UserCreate
-from app.models.user import UserResponse
+from app.models.users import UserResponse, UserUpdate
 from app.core.security import verify_token
 from app.core.mockDB import user_db
 
@@ -110,4 +109,31 @@ async def create_user_profile(
         "success": True,
         "message": "New user created successfully",
         "data": new_user
+    }
+  
+    
+@router.put("/profile")
+async def update_user_profile(
+    find_user: str = Query(..., description= "update user profile"),
+    update_user: UserUpdate = Query(..., description= "update user profile")
+):
+    
+    existing_user = next(
+        (u for u in user_db if u["email"].lower() == find_user.lower())
+    )
+    
+    if not existing_user:
+        raise HTTPException(
+            status_code= status.HTTP_404_NOT_FOUND,
+            detail= "User not found"
+        )
+        
+    data_update = update_user.model_dump(exclude_unset= True)
+    
+    for key, value in data_update.items():
+        existing_user[key] = value
+        
+    return{
+        "Success": "Profile updated succesfully",
+        "phone": data_update["phone"]
     }
