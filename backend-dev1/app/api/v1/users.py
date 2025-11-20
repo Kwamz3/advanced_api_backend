@@ -39,17 +39,25 @@ async def get_current_user(credentials: str = Depends(security)):
         )
 
 
+@router.get("/")
+async def get_all_users():
+    
+    return {
+        "success": True,
+        "data": user_db
+    }
+
 @router.get("/profile")
 async def get_user_profile(
-    email: str = Query(..., description= "user's email")
+    id: str = Query(..., description= "user's email")
 ):
     
     try:
         user = next(
-        (u for u in user_db if u["email"].lower() == email.lower()),
+        (u for u in user_db if u["id"] == id),
         None
     )
-        
+                
         if not user:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,

@@ -46,7 +46,7 @@ class MovieList(Base):
     
     
 class CreateMovieMock(BaseModel):
-    id : str = Field(..., examples=["001"])    
+    id : str = Field(...,examples=["001"])    
     title : str = Field(..., examples=["Inception"])
     category : Optional[str] = Field(..., examples=["Action"])
     description : Optional [str] = Field(None, examples=["Action with the best female actress in the bizz"])

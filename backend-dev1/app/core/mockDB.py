@@ -4,6 +4,7 @@ from app.models.users import UserStatus, UserRole, GenderStatus, ServiceStatus,V
 
 movies_db = [
   {
+    "id": "001",
     "title": "The Shawshank Redemption",
     "category": "Drama",
     "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
@@ -20,6 +21,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "002",
     "title": "The Dark Knight",
     "category": "Action",
     "description": "When the menace known as the Joker wreaks havoc on Gotham, Batman must accept one of the greatest psychological and physical tests to fight injustice.",
@@ -36,6 +38,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "003",
     "title": "The Lord of the Rings: The Return of the King",
     "category": "Fantasy",
     "description": "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
@@ -52,6 +55,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "004",
     "title": "Inception",
     "category": "Sci-Fi",
     "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",
@@ -68,6 +72,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "005",
     "title": "The Matrix",
     "category": "Sci-Fi",
     "description": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
@@ -84,6 +89,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "006",
     "title": "The Lord of the Rings: The Fellowship of the Ring",
     "category": "Fantasy",
     "description": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
@@ -100,6 +106,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "007",
     "title": "The Silence of the Lambs",
     "category": "Thriller",
     "description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.",
@@ -116,6 +123,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "008",
     "title": "Interstellar",
     "category": "Sci-Fi",
     "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
@@ -132,6 +140,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "009",
     "title": "Forrest Gump",
     "category": "Drama",
     "description": "The presidencies of Kennedy and Johnson, the Vietnam War, and other historical events unfold from the perspective of an Alabama man with an IQ of 75.",
@@ -148,6 +157,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "010",
     "title": "Gladiator",
     "category": "Action",
     "description": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
@@ -164,6 +174,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "011",
     "title": "Spirited Away",
     "category": "Animation",
     "description": "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits where humans are changed into beasts.",
@@ -180,6 +191,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "012",
     "title": "Parasite",
     "category": "Thriller",
     "description": "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
@@ -196,6 +208,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "013",
     "title": "The Departed",
     "category": "Thriller",
     "description": "An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.",
@@ -212,6 +225,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "014",
     "title": "Pulp Fiction",
     "category": "Thriller",
     "description": "The lives of two mob hitmen, a boxer, a gangster and his wife intertwine in four tales of violence and redemption.",
@@ -228,6 +242,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "015",
     "title": "The Godfather",
     "category": "Drama",
     "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
@@ -244,6 +259,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "016",
     "title": "Schindler's List",
     "category": "Drama",
     "description": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution.",
@@ -260,6 +276,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "017",
     "title": "WALL-E",
     "category": "Animation",
     "description": "In the distant future, a small waste-collecting robot inadvertently embarks on a space journey that will ultimately decide the fate of mankind.",
@@ -276,6 +293,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "018",
     "title": "The Green Mile",
     "category": "Drama",
     "description": "The lives of guards on Death Row are affected by one of their charges: a black man accused of child murder who has a mysterious gift.",
@@ -292,6 +310,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "019",
     "title": "Django Unchained",
     "category": "Drama",
     "description": "With the help of a German bounty hunter, a freed slave sets out to rescue his wife from a brutal Mississippi plantation owner.",
@@ -308,6 +327,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "020",
     "title": "The Prestige",
     "category": "Drama",
     "description": "After a tragic accident, two stage magicians engage in a battle to create the ultimate illusion while sacrificing everything they have to outwit each other.",

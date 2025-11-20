@@ -69,6 +69,29 @@ async def get_current_user(credentials = Depends(security)):
             headers= {"WWW-Authentication": "Bearer"}
         )
  
+       
+@router.get("/{movie_id}")
+async def get_movie_by_id(
+    movie_id: str
+):
+    
+    movie = next(
+        (u for u in movies_db if u["id"].lower() == '00'+ movie_id.lower()),
+        None
+    )
+    
+    if not movie:
+        raise HTTPException(
+            status_code= status.HTTP_404_NOT_FOUND,
+            detail= "movie not found"
+        )
+    
+    return {
+        "success": True,
+        "data": movie
+    }
+
+
 @router.post("/create", response_model= dict)       
 async def create_movie(
     request: CreateMovieMock = Query(..., description= "add a new movie"),
@@ -91,48 +114,4 @@ async def get_all_movies():
     return {
         "success": True,
         "data": movies_db
-    }
-    
-    
-@router.get("/{movie_name}")
-async def get_movie_by_name(
-    movie_name: str 
-):
-    
-    movie = next(
-        (u for u in movies_db if u["title"].lower() == movie_name.lower()),
-        None
-    )
-    
-    if not movie:
-        raise HTTPException(
-            status_code= status.HTTP_404_NOT_FOUND,
-            detail= "movie not found"
-        )
-    
-    return {
-        "success": True,
-        "data": movie
-    }
-
-
-@router.get("/{movie_date}")
-async def get_movie_by_date(
-    movie_date: int 
-):
-    
-    date = next(
-        (u for u in movies_db if u["release_year"] == movie_date),
-        None
-    )
-    
-    if not date:
-        raise HTTPException(
-            status_code= status.HTTP_404_NOT_FOUND,
-            detail= "No movie with current date"
-        )
-    
-    return {
-        "success": True,
-        "data": date
     }
