@@ -54,7 +54,7 @@ async def get_user_profile(
     
     try:
         user = next(
-        (u for u in user_db if u["id"] == id),
+        (u for u in user_db if u["id"].lower() == '00' + id.lower()),
         None
     )
                 
