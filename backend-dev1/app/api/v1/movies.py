@@ -72,11 +72,13 @@ async def get_current_user(credentials = Depends(security)):
        
 @router.get("/{movie_id}")
 async def get_movie_by_id(
-    movie_id: str = Query(..., description= "get movie by id")
+    movie_id: str
 ):
+    padded_id = f'{movie_id:03d}'
+    padded_str = str(padded_id)
     
     movie = next(
-        (u for u in movies_db if u["id"].lower() == '00'+ movie_id.lower()),
+        (u for u in movies_db if u["id"].lower() == padded_str.lower()),
         None
     )
     
