@@ -110,7 +110,7 @@ async def create_user_profile(
     if not existing_user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail= "User with this email already exists"
+            detail= "User already exists"
         )
         
     new_user = {
