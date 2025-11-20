@@ -347,7 +347,7 @@ movies_db = [
 
 user_db = [
   {
-    "id": "ed0f9045-6f6a-46e5-8f5b-6f165b28e802",
+    "id": "001",
     "phone": "+233-24-682-3277",
     "email": "jessicasmall@example.com",
     "firstName": "Kimberly",
@@ -379,7 +379,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.569727"
   },
   {
-    "id": "5b4fb3be-2e8b-4cb3-8cbc-687fcabeaca0",
+    "id": "002",
     "phone": "+233-20-628-3360",
     "email": "danajones@example.com",
     "firstName": "Erin",
@@ -411,7 +411,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.571417"
   },
   {
-    "id": "8dfc4a90-7519-415c-89bc-c2ed494cb307",
+    "id": "003",
     "phone": "+233-20-103-4610",
     "email": "kparker@example.org",
     "firstName": "Carla",
@@ -443,7 +443,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.572224"
   },
   {
-    "id": "7de58417-3f8c-44c1-89e8-b374b87b0a5f",
+    "id": "004",
     "phone": "+233-24-614-4288",
     "email": "ytate@example.com",
     "firstName": "Amanda",
@@ -475,7 +475,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.573164"
   },
   {
-    "id": "22fe62e6-3186-494f-9422-d7b421af0c76",
+    "id": "005",
     "phone": "+233-27-423-5345",
     "email": "brooksshaun@example.net",
     "firstName": "Jessica",
@@ -603,8 +603,8 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.576896"
   },
   {
-    "id": "11323935-1cd7-4514-b326-1cdb3f0a894d",
-    "phone": "+233-55-310-5254",
+    "id": "009",
+    "phone": "+233-57-717-2859",
     "email": "castroshelley@example.org",
     "firstName": "Kenneth",
     "lastName": "Baldwin",
@@ -763,8 +763,8 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.583784"
   },
   {
-    "id": "91836d59-4f90-4224-85a0-78ae00ad2e5b",
-    "phone": "+233-20-554-2343",
+    "id": "014",
+    "phone": "+233-20-626-2824",
     "email": "amanda42@example.com",
     "firstName": "Destiny",
     "lastName": "Liu",
@@ -795,8 +795,8 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.584957"
   },
   {
-    "id": "93dead5b-b598-456c-972b-1c3535a5b5f3",
-    "phone": "+233-27-349-6123",
+    "id": "015",
+    "phone": "+233-27-322-0206",
     "email": "ashleymartinez@example.com",
     "firstName": "Maria",
     "lastName": "Benson",
@@ -955,7 +955,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.589802"
   },
   {
-    "id": "c3088309-e105-4d6e-9acd-8330cfc1671b",
+    "id": "020",
     "phone": "+233-26-86-3894",
     "email": "robert74@example.com",
     "firstName": "Carrie",
