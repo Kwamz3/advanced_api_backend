@@ -46,6 +46,7 @@ class MovieList(Base):
     
     
 class CreateMovieMock(BaseModel):
+    id : str = Field(..., examples=["001"])    
     title : str = Field(..., examples=["Inception"])
     category : Optional[str] = Field(..., examples=["Action"])
     description : Optional [str] = Field(None, examples=["Action with the best female actress in the bizz"])
@@ -60,10 +61,8 @@ class CreateMovieMock(BaseModel):
     created_at : Optional[datetime] = Field(None, examples=["2025-01-01T00:00:00"])
     updated_at : Optional[datetime] = Field(None, examples=["2025-01-01T00:00:00"])
     is_liked : bool = False
-
-class ResponseMovieMock(CreateMovieMock):
-    id : str = Field(..., examples=["001"])
     
+
     @field_validator('id', mode='before')
     @classmethod
     def format_movie_id(cls, value):

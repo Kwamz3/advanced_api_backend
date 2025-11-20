@@ -13,7 +13,6 @@ import json
 from app.api.v1 import users
 from app.core.database import get_db
 from app.core.mockDB import movies_db
-from app.models.movies import ResponseMovieMock
 from app.models.movies import CreateMovieMock
 from app.core.security import verify_token
 from app.core.database import init_db
@@ -80,16 +79,19 @@ async def create_movie(
         new_dict["id"] = str(uuid.uuid4())
         movies_db.append(new_dict)
         
-        return {"mesage": "Movie added successfully to mock database", "data": new_dict}
+        return {
+            "mesage": "Movie added successfully to mock database",
+            "data": new_dict
+                }
     
     
 @router.get("/", response_model= dict)
 async def get_all_movies():
     
-    return{
+    return {
         "success": True,
-        "data": movies_db   
-        }
+        "data": movies_db
+    }
     
     
 @router.get("/{movie_name}")
