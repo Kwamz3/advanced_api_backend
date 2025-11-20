@@ -119,7 +119,7 @@ class UserCreate(BaseModel):
 
 
 class UserResponse(UserCreate):
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()), examples=["37c65b57-5f58-4a3d-93d8-12a3f8cd71a7"])
+    id: str = Field(..., examples=["001"])
     
 class UserUpdate(BaseModel):
     phone: str = Field(..., examples=["+233-54-768-8745"])
@@ -149,4 +149,4 @@ class UserUpdate(BaseModel):
     notificationSettings: Optional[Dict[str, Any]] = Field(None, examples=[{"email": True, "sms": False}])
     
 class UserUpdateResponse(UserUpdate):
-    id: str = Field(default_factory= lambda: str(uuid.uuid4()), examples=["37c65b57-5f58-4a3d-93d8-12a3f8cd71a7"])
+    id: str = Field(..., examples=["001"])
