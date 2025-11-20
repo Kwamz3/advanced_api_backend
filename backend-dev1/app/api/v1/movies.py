@@ -72,7 +72,7 @@ async def get_current_user(credentials = Depends(security)):
        
 @router.get("/{movie_id}")
 async def get_movie_by_id(
-    movie_id: str
+    movie_id: str = Query(..., description= "get movie by id")
 ):
     
     movie = next(

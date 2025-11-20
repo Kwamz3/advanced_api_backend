@@ -49,12 +49,12 @@ async def get_all_users():
 
 @router.get("/profile")
 async def get_user_profile(
-    id: str = Query(..., description= "user's email")
+    user_id: str = Query(..., description= "user's email")
 ):
     
     try:
         user = next(
-        (u for u in user_db if u["id"].lower() == '00' + id.lower()),
+        (u for u in user_db if u["id"].lower() == '00' + user_id.lower()),
         None
     )
                 
