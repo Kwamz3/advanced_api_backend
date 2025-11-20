@@ -73,7 +73,19 @@ async def get_user_profile(
                 "firstName": user["firstName"],
                 "lastName": user["lastName"],
                 "role": user["role"],
-                "status": user["status"]
+                "status": user["status"],
+                "service": user["ServiceStatus"],
+                "profilePicture": user["profilePicture"],
+                "dateOfbirth": user["dateOfbirth"],
+                "gender": user["GenderStatus"],
+                "bio": user["bio"],
+                "address": user["address"],
+                "isEmailVerified": user["isEmailVerified"],
+                "isPhoneVerified": user["isPhoneVerified"],
+                "preferences": user["preferences"],
+                "notificationSettings": user["notificationSettings"],
+                "createdAt": user["createdAt"],
+                "updatedAt": user["updatedAt"]
             }
         }        
         
