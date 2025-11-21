@@ -69,10 +69,18 @@ async def get_current_user(credentials = Depends(security)):
             headers= {"WWW-Authentication": "Bearer"}
         )
  
+@router.get("/", response_model= dict)
+async def get_all_movies():
+    
+    return {
+        "success": True,
+        "data": movies_db
+    }
        
+
 @router.get("/{movie_id}")
 async def get_movie_by_id(
-    movie_id: str
+    movie_id: int 
 ):
     padded_id = f'{movie_id:03d}'
     padded_str = str(padded_id)
@@ -107,13 +115,6 @@ async def create_movie(
         return {
             "mesage": "Movie added successfully to mock database",
             "data": new_dict
-                }
+            }
     
     
-@router.get("/", response_model= dict)
-async def get_all_movies():
-    
-    return {
-        "success": True,
-        "data": movies_db
-    }

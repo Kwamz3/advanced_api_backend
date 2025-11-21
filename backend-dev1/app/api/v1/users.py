@@ -47,9 +47,9 @@ async def get_all_users():
         "data": user_db
     }
 
-@router.get("/profile")
+@router.get("/{user_id}")
 async def get_user_profile(
-    user_id: str = Query(..., description= "user's id")
+    user_id: int
 ):
     padded_id = f'{int(user_id):03d}'
     padded_str = str(padded_id)
