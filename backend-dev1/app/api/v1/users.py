@@ -137,12 +137,14 @@ async def create_user_profile(
     
 @router.put("/profile")
 async def update_user_profile(
-    find_user: str = Query(..., description= "update user profile"),
+    user_id: int = Query(..., description= "update user profile"),
     update_user: UserUpdate = Query(..., description= "update user profile")
 ):
+    padded_id = f"{user_id:03d}"
+    padded_str = str(padded_id)
     
     existing_user = next(
-        (u for u in user_db if u["email"].lower() == find_user.lower())
+        (u for u in user_db if u["id"].lower() == padded_str.lower())
     )
     
     if not existing_user:
