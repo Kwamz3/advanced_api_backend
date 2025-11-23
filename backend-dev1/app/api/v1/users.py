@@ -51,13 +51,11 @@ async def get_all_users():
 async def get_user_profile(
     user_id: int
 ):
-    padded_id = f'{int(user_id):03d}'
-    padded_str = str(padded_id)
-    
+    padded_id = f'{user_id:03d}'
     
     try:
         user = next(
-        (u for u in user_db if u["id"].lower() == padded_str.lower()),
+        (u for u in user_db if u["id"] == padded_id),
         None
     )
                 
@@ -77,10 +75,10 @@ async def get_user_profile(
                 "lastName": user["lastName"],
                 "role": user["role"],
                 "status": user["status"],
-                "service": user["ServiceStatus"],
+                "service": user["service"],
                 "profilePicture": user["profilePicture"],
                 "dateOfbirth": user["dateOfbirth"],
-                "gender": user["GenderStatus"],
+                "gender": user["gender"],
                 "bio": user["bio"],
                 "address": user["address"],
                 "isEmailVerified": user["isEmailVerified"],

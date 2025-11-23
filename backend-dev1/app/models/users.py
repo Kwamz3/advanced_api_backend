@@ -54,7 +54,7 @@ class User(Base):
     
     __tablename__ = "user"
     
-    id = Column(Integer, primary_key=True, default=uuid.uuid4)
+    id = Column(Integer, primary_key=True, nullable=False)
     phone = Column(String(20), unique=True, index=True, nullable=True)
     email = Column(String(255), unique=True, index=True, nullable=True)
     firstName = Column(String(100), index=True, nullable=True)
@@ -122,6 +122,7 @@ class UserResponse(UserCreate):
     id: str = Field(..., examples=["001"])
     
 class UserUpdate(BaseModel):
+    id: str = Field(..., examples=["001"])
     phone: str = Field(..., examples=["+233-54-768-8745"])
     email: str = Field(..., examples=["john.doe@example.com"])
     firstName: str = Field(..., examples=["John"])

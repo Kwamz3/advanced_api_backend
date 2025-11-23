@@ -83,10 +83,9 @@ async def get_movie_by_id(
     movie_id: int 
 ):
     padded_id = f'{movie_id:03d}'
-    padded_str = str(padded_id)
     
     movie = next(
-        (u for u in movies_db if u["id"].lower() == padded_str.lower()),
+        (u for u in movies_db if u["id"] == padded_id),
         None
     )
     
