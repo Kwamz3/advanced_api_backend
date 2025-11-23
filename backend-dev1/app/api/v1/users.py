@@ -6,8 +6,7 @@ from sqlalchemy import text, select, insert, update, delete
 from jose import JWTError
 
 from app.core.database import get_db
-from app.models.user import UserCreate
-from app.models.user import UserResponse
+from app.models.users import UserResponse, UserUpdate
 from app.core.security import verify_token
 from app.core.mockDB import user_db
 
@@ -40,17 +39,26 @@ async def get_current_user(credentials: str = Depends(security)):
         )
 
 
-@router.get("/profile")
+@router.get("/")
+async def get_all_users():
+    
+    return {
+        "success": True,
+        "data": user_db
+    }
+
+@router.get("/{user_id}")
 async def get_user_profile(
-    email: str = Query(..., description= "user's email")
+    user_id: int
 ):
+    padded_id = f'{user_id:03d}'
     
     try:
         user = next(
-        (u for u in user_db if u["email"].lower() == email.lower()),
+        (u for u in user_db if u["id"] == padded_id),
         None
     )
-        
+                
         if not user:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -66,7 +74,19 @@ async def get_user_profile(
                 "firstName": user["firstName"],
                 "lastName": user["lastName"],
                 "role": user["role"],
-                "status": user["status"]
+                "status": user["status"],
+                "service": user["service"],
+                "profilePicture": user["profilePicture"],
+                "dateOfbirth": user["dateOfbirth"],
+                "gender": user["gender"],
+                "bio": user["bio"],
+                "address": user["address"],
+                "isEmailVerified": user["isEmailVerified"],
+                "isPhoneVerified": user["isPhoneVerified"],
+                "preferences": user["preferences"],
+                "notificationSettings": user["notificationSettings"],
+                "createdAt": user["createdAt"],
+                "updatedAt": user["updatedAt"]
             }
         }        
         
@@ -91,7 +111,7 @@ async def create_user_profile(
     if not existing_user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail= "User with this email already exists"
+            detail= "User already exists"
         )
         
     new_user = {
@@ -110,4 +130,33 @@ async def create_user_profile(
         "success": True,
         "message": "New user created successfully",
         "data": new_user
+    }
+  
+    
+@router.put("/profile")
+async def update_user_profile(
+    user_id: int = Query(..., description= "update user profile"),
+    update_user: UserUpdate = Query(..., description= "update user profile")
+):
+    padded_id = f"{user_id:03d}"
+    padded_str = str(padded_id)
+    
+    existing_user = next(
+        (u for u in user_db if u["id"].lower() == padded_str.lower())
+    )
+    
+    if not existing_user:
+        raise HTTPException(
+            status_code= status.HTTP_404_NOT_FOUND,
+            detail= "User not found"
+        )
+        
+    data_update = update_user.model_dump(exclude_unset= True)
+    
+    for key, value in data_update.items():
+        existing_user[key] = value
+        
+    return{
+        "Success": "Profile updated succesfully",
+        "phone": data_update["phone"]
     }

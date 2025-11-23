@@ -42,7 +42,7 @@ app.add_middleware(
     allow_origins= settings.ALLOWED_ORIGINS,
     allow_credentials= True,
     allow_headers=["*"],
-    allow_methods=["*"],
+    allow_methods=["*"]
 )
 
 @app.get("/health")
@@ -55,7 +55,7 @@ async def health_check():
         "message": "Streamplus API is running",
         "version": "1.0.0",
         "environment": settings.ENVIRONMENT,
-        "timestamp": datetime.utcnow().isoformat(),
+        "timestamp": datetime.now().isoformat(),
         "database": "connected" if settings.effective_database_url else "not configured",
         "python_version": platform.python_version(),
         "platform": platform.system()

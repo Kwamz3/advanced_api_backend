@@ -5,7 +5,7 @@ from sqlalchemy.sql import func
 import uuid
 
 from app.models.types import PostgresUUID
-from app.models.user import Base
+from app.models.users import Base
 
 class Category(Base):
     

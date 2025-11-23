@@ -1,10 +1,10 @@
 from typing import List, Optional
-from app.models.user import UserStatus, UserRole, GenderStatus, ServiceStatus,VerifyEmail, VerifyPhone
+from app.models.users import UserStatus, UserRole, GenderStatus, ServiceStatus,VerifyEmail, VerifyPhone
 
 
 movies_db = [
   {
-    "id": "b41d1c53-f2d4-43d3-83b7-a5984137a725",
+    "id": "001",
     "title": "The Shawshank Redemption",
     "category": "Drama",
     "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
@@ -21,7 +21,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "67ef44e3-1ef4-4ecb-b0c6-8900720b2938",
+    "id": "002",
     "title": "The Dark Knight",
     "category": "Action",
     "description": "When the menace known as the Joker wreaks havoc on Gotham, Batman must accept one of the greatest psychological and physical tests to fight injustice.",
@@ -38,7 +38,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "8728c600-b9b2-4283-a80a-38d7ac4e7238",
+    "id": "003",
     "title": "The Lord of the Rings: The Return of the King",
     "category": "Fantasy",
     "description": "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
@@ -55,7 +55,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "fa64e161-a76a-4897-b2a6-d44fa86c37c1",
+    "id": "004",
     "title": "Inception",
     "category": "Sci-Fi",
     "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",
@@ -72,7 +72,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "1af866f8-eee5-461f-88bf-efa0cf273279",
+    "id": "005",
     "title": "The Matrix",
     "category": "Sci-Fi",
     "description": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
@@ -89,7 +89,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "9e5d9884-8c74-40bf-bd07-8ef2f66251b3",
+    "id": "006",
     "title": "The Lord of the Rings: The Fellowship of the Ring",
     "category": "Fantasy",
     "description": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
@@ -106,7 +106,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "8cabbd90-6afd-43bc-bd30-7a8f0463ea7c",
+    "id": "007",
     "title": "The Silence of the Lambs",
     "category": "Thriller",
     "description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.",
@@ -123,7 +123,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "6ac31d68-414b-49b6-91fa-c38776f65f8d",
+    "id": "008",
     "title": "Interstellar",
     "category": "Sci-Fi",
     "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
@@ -140,7 +140,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "9d9249b6-d324-44ec-afeb-81afef96e3a4",
+    "id": "009",
     "title": "Forrest Gump",
     "category": "Drama",
     "description": "The presidencies of Kennedy and Johnson, the Vietnam War, and other historical events unfold from the perspective of an Alabama man with an IQ of 75.",
@@ -157,7 +157,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "74d856b3-aab4-49f4-8af3-e710a1411833",
+    "id": "010",
     "title": "Gladiator",
     "category": "Action",
     "description": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
@@ -174,7 +174,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "917659e8-eb06-41a8-9065-9de51c6d7afb",
+    "id": "011",
     "title": "Spirited Away",
     "category": "Animation",
     "description": "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits where humans are changed into beasts.",
@@ -191,7 +191,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "64337dc2-dadd-48cc-bb53-7c5e9a088ef3",
+    "id": "012",
     "title": "Parasite",
     "category": "Thriller",
     "description": "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
@@ -208,7 +208,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "d7ac80e5-ebb5-4d1b-8848-01f9afda4f57",
+    "id": "013",
     "title": "The Departed",
     "category": "Thriller",
     "description": "An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.",
@@ -225,7 +225,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "2a3fce9b-8ca2-4188-b57d-dfb2bd7fcbee",
+    "id": "014",
     "title": "Pulp Fiction",
     "category": "Thriller",
     "description": "The lives of two mob hitmen, a boxer, a gangster and his wife intertwine in four tales of violence and redemption.",
@@ -242,7 +242,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "7184178d-44b0-4e78-8f13-73faa9fc6c3c",
+    "id": "015",
     "title": "The Godfather",
     "category": "Drama",
     "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
@@ -259,7 +259,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "789c0bab-289d-48a4-a554-ef4c9bc0ba91",
+    "id": "016",
     "title": "Schindler's List",
     "category": "Drama",
     "description": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution.",
@@ -276,7 +276,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "f896ddf6-dddb-413d-a868-d283638295bb",
+    "id": "017",
     "title": "WALL-E",
     "category": "Animation",
     "description": "In the distant future, a small waste-collecting robot inadvertently embarks on a space journey that will ultimately decide the fate of mankind.",
@@ -293,7 +293,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "61fd3412-d23f-470e-a129-5b9e1aea2ed7",
+    "id": "018",
     "title": "The Green Mile",
     "category": "Drama",
     "description": "The lives of guards on Death Row are affected by one of their charges: a black man accused of child murder who has a mysterious gift.",
@@ -310,7 +310,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "975555af-d6fe-4384-82bb-a6c418c265bf",
+    "id": "019",
     "title": "Django Unchained",
     "category": "Drama",
     "description": "With the help of a German bounty hunter, a freed slave sets out to rescue his wife from a brutal Mississippi plantation owner.",
@@ -327,7 +327,7 @@ movies_db = [
     "is_liked": True
   },
   {
-    "id": "bd28d10a-f38f-41dd-8a1c-c41af283c854",
+    "id": "020",
     "title": "The Prestige",
     "category": "Drama",
     "description": "After a tragic accident, two stage magicians engage in a battle to create the ultimate illusion while sacrificing everything they have to outwit each other.",
@@ -347,7 +347,7 @@ movies_db = [
 
 user_db = [
   {
-    "id": "ed0f9045-6f6a-46e5-8f5b-6f165b28e802",
+    "id": "001",
     "phone": "+233-24-682-3277",
     "email": "jessicasmall@example.com",
     "firstName": "Kimberly",
@@ -379,7 +379,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.569727"
   },
   {
-    "id": "5b4fb3be-2e8b-4cb3-8cbc-687fcabeaca0",
+    "id": "002",
     "phone": "+233-20-628-3360",
     "email": "danajones@example.com",
     "firstName": "Erin",
@@ -411,7 +411,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.571417"
   },
   {
-    "id": "8dfc4a90-7519-415c-89bc-c2ed494cb307",
+    "id": "003",
     "phone": "+233-20-103-4610",
     "email": "kparker@example.org",
     "firstName": "Carla",
@@ -443,7 +443,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.572224"
   },
   {
-    "id": "7de58417-3f8c-44c1-89e8-b374b87b0a5f",
+    "id": "004",
     "phone": "+233-24-614-4288",
     "email": "ytate@example.com",
     "firstName": "Amanda",
@@ -475,7 +475,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.573164"
   },
   {
-    "id": "22fe62e6-3186-494f-9422-d7b421af0c76",
+    "id": "005",
     "phone": "+233-27-423-5345",
     "email": "brooksshaun@example.net",
     "firstName": "Jessica",
@@ -507,7 +507,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.574129"
   },
   {
-    "id": "c10ab939-f4dc-4772-96b2-6e912f3d35c1",
+    "id": "006",
     "phone": "+233-50-613-4725",
     "email": "todd41@example.org",
     "firstName": "Ashley",
@@ -539,7 +539,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.575066"
   },
   {
-    "id": "70076334-3178-4f7a-a38b-7815b0bd2add",
+    "id": "007",
     "phone": "+233-26-817-5910",
     "email": "rodriguezkevin@example.org",
     "firstName": "Tara",
@@ -571,7 +571,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.576046"
   },
   {
-    "id": "fb95ce74-c8b9-4e59-9946-93c3ad903989",
+    "id": "008",
     "phone": "+233-20-205-4995",
     "email": "alison74@example.com",
     "firstName": "Savannah",
@@ -603,8 +603,8 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.576896"
   },
   {
-    "id": "11323935-1cd7-4514-b326-1cdb3f0a894d",
-    "phone": "+233-55-310-5254",
+    "id": "009",
+    "phone": "+233-57-717-2859",
     "email": "castroshelley@example.org",
     "firstName": "Kenneth",
     "lastName": "Baldwin",
@@ -635,7 +635,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.577876"
   },
   {
-    "id": "d8c63aaf-945d-43d6-9576-d1986023f217",
+    "id": "010",
     "phone": "+233-59-319-1821",
     "email": "bbennett@example.net",
     "firstName": "Lindsey",
@@ -667,7 +667,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.578745"
   },
   {
-    "id": "17c3cd40-ce34-4ed6-bd7e-c4166494b201",
+    "id": "011",
     "phone": "+233-55-572-4485",
     "email": "andrescarpenter@example.com",
     "firstName": "Denise",
@@ -699,7 +699,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.579763"
   },
   {
-    "id": "b0632b50-15c7-40f5-9aec-5b603f4f00c3",
+    "id": "012",
     "phone": "+233-20-310-6855",
     "email": "hmiller@example.org",
     "firstName": "Kim",
@@ -731,7 +731,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.582236"
   },
   {
-    "id": "f43083d5-4f1e-47d9-a1ae-2587fe76aeaa",
+    "id": "013",
     "phone": "+233-23-682-3397",
     "email": "patriciapalmer@example.org",
     "firstName": "Anna",
@@ -763,8 +763,8 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.583784"
   },
   {
-    "id": "91836d59-4f90-4224-85a0-78ae00ad2e5b",
-    "phone": "+233-20-554-2343",
+    "id": "014",
+    "phone": "+233-20-626-2824",
     "email": "amanda42@example.com",
     "firstName": "Destiny",
     "lastName": "Liu",
@@ -795,8 +795,8 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.584957"
   },
   {
-    "id": "93dead5b-b598-456c-972b-1c3535a5b5f3",
-    "phone": "+233-27-349-6123",
+    "id": "015",
+    "phone": "+233-27-322-0206",
     "email": "ashleymartinez@example.com",
     "firstName": "Maria",
     "lastName": "Benson",
@@ -827,7 +827,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.586039"
   },
   {
-    "id": "4a4551a2-658f-407d-8d14-4690e924bf43",
+    "id": "016",
     "phone": "+233-23-331-4044",
     "email": "walter93@example.org",
     "firstName": "Heather",
@@ -859,7 +859,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.586895"
   },
   {
-    "id": "ceabe13e-135e-4baa-9fb3-569cf891b503",
+    "id": "017",
     "phone": "+233-23-36-3296",
     "email": "shawnellis@example.com",
     "firstName": "Martha",
@@ -891,7 +891,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.587865"
   },
   {
-    "id": "28ac1971-913c-4c57-86fe-c9c24f4a4165",
+    "id": "018",
     "phone": "+233-23-211-8077",
     "email": "ronaldlopez@example.net",
     "firstName": "Elizabeth",
@@ -923,7 +923,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.588851"
   },
   {
-    "id": "364592dc-0506-4a3c-b616-d5fb93269b0f",
+    "id": "019",
     "phone": "+233-59-797-5386",
     "email": "thomashiggins@example.net",
     "firstName": "Brent",
@@ -955,7 +955,7 @@ user_db = [
     "updatedAt": "2025-11-05T16:40:54.589802"
   },
   {
-    "id": "c3088309-e105-4d6e-9acd-8330cfc1671b",
+    "id": "020",
     "phone": "+233-26-86-3894",
     "email": "robert74@example.com",
     "firstName": "Carrie",
