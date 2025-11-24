@@ -75,7 +75,7 @@ movies_db = [
     "id": "005",
     "title": "The Matrix",
     "category": "Sci-Fi",
-    "description": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+    "description": "A computer hacker learns from mysterious rebels about the True nature of his reality and his role in the war against its controllers.",
     "poster_url": "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
     "trailer_url": "https://youtube.com/watch?v=vKQi3bBA1y8",
     "duration": 136,
@@ -348,88 +348,88 @@ movies_db = [
 user_db = [
   {
     "id": "001",
-    "phone": "+233-24-682-3277",
-    "email": "jessicasmall@example.com",
-    "firstName": "Kimberly",
-    "lastName": "Carson",
-    "role": UserRole.CLIENT,
-    "status": UserStatus.SUSPENDED,
-    "service": ServiceStatus.PREMIUM,
-    "profilePicture": "https://dummyimage.com/674x299",
-    "dateOfbirth": "1989-04-15",
-    "gender": GenderStatus.RATHER_NOT_SAY,
-    "bio": "Choice fear heavy he travel language rather whom as early yourself.",
+    "phone": "+233-50-460-9878",
+    "email": "jfigueroa@example.com",
+    "firstName": "Michael",
+    "lastName": "Jones",
+    "role": "CLIENT",
+    "status": "INACTIVE",
+    "service": "PREMIUM_PLUS",
+    "profilePicture": "https://picsum.photos/776/61",
+    "dateOfbirth": "1976-10-31",
+    "gender": "MALE",
+    "bio": "Check example pretty key approach ground church one house others.",
     "location": {
-      "lat": "8.806164",
-      "lng": "-110.508311"
+      "lat": "30.642257",
+      "lng": "150.455833"
     },
-    "address": "51900 Monica Hill\nVaughnshire, VT 72276",
-    "isEmailVerified": VerifyEmail.PENDING,
-    "isPhoneVerified": VerifyPhone.REJECTED,
+    "address": "35480 Cheryl Branch\nAllenborough, IN 16739",
+    "isEmailVerified": "REJECTED",
+    "isPhoneVerified": "PENDING",
     "preferences": {
-      "theme": "dark",
-      "language": "es"
+      "theme": "light",
+      "language": "fr"
     },
     "notificationSettings": {
-      "emailNotifications": True,
+      "emailNotifications": False,
       "smsNotifications": True,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-05T16:40:54.569721",
-    "updatedAt": "2025-11-05T16:40:54.569727"
+    "createdAt": "2025-11-24T12:50:06.264207",
+    "updatedAt": "2025-11-24T12:50:06.264213"
   },
   {
     "id": "002",
-    "phone": "+233-20-628-3360",
-    "email": "danajones@example.com",
-    "firstName": "Erin",
-    "lastName": "Hernandez",
-    "role": UserRole.ADMIN,
-    "status": UserStatus.ACTIVE,
-    "service": ServiceStatus.FREE,
-    "profilePicture": "https://picsum.photos/137/248",
-    "dateOfbirth": "1983-02-26",
-    "gender": GenderStatus.NOT_SELECTED,
-    "bio": "Even strong smile other others key herself economy rule apply poor need truth heart.",
+    "phone": "+233-20-798-3291",
+    "email": "jonesnicole@example.com",
+    "firstName": "Dennis",
+    "lastName": "Lutz",
+    "role": "ADMIN",
+    "status": "ACTIVE",
+    "service": "PREMIUM",
+    "profilePicture": "https://picsum.photos/97/115",
+    "dateOfbirth": "1967-04-14",
+    "gender": "MALE",
+    "bio": "Stand both factor boy three sort bar ready discuss.",
     "location": {
-      "lat": "61.184431",
-      "lng": "-7.381318"
+      "lat": "81.646189",
+      "lng": "18.699016"
     },
-    "address": "611 Jefferson Island\nPort Dominicmouth, LA 01799",
-    "isEmailVerified": VerifyEmail.REJECTED,
-    "isPhoneVerified": VerifyPhone.PENDING,
+    "address": "98255 Bruce Shoal Suite 412\nRogerstown, ND 90475",
+    "isEmailVerified": "NOT_SUBMITTED",
+    "isPhoneVerified": "NOT_SUBMITTED",
     "preferences": {
-      "theme": "light",
+      "theme": "dark",
       "language": "es"
     },
     "notificationSettings": {
       "emailNotifications": True,
-      "smsNotifications": False,
-      "pushNotifications": False
+      "smsNotifications": True,
+      "pushNotifications": True
     },
-    "createdAt": "2025-11-05T16:40:54.571410",
-    "updatedAt": "2025-11-05T16:40:54.571417"
+    "createdAt": "2025-11-24T12:50:06.265086",
+    "updatedAt": "2025-11-24T12:50:06.265090"
   },
   {
     "id": "003",
-    "phone": "+233-20-103-4610",
-    "email": "kparker@example.org",
-    "firstName": "Carla",
-    "lastName": "Torres",
-    "role": UserRole.CLIENT,
-    "status": UserStatus.ACTIVE,
-    "service": ServiceStatus.PREMIUM,
-    "profilePicture": "https://dummyimage.com/224x505",
-    "dateOfbirth": "1966-01-06",
-    "gender": GenderStatus.FEMALE,
-    "bio": "Office quite agreement source business want ten most memory want pay I mission partner task head.",
+    "phone": "+233-23-911-5812",
+    "email": "pedromurray@example.net",
+    "firstName": "Veronica",
+    "lastName": "Burgess",
+    "role": "CLIENT",
+    "status": "SUSPENDED",
+    "service": "PREMIUM_PLUS",
+    "profilePicture": "https://dummyimage.com/569x985",
+    "dateOfbirth": "1991-08-29",
+    "gender": "FEMALE",
+    "bio": "Look record just note man available kid not social line.",
     "location": {
-      "lat": "21.414355",
-      "lng": "51.814855"
+      "lat": "17.2769895",
+      "lng": "-94.163715"
     },
-    "address": "PSC 5286, Box 8298\nAPO AE 31226",
-    "isEmailVerified": VerifyEmail.APPROVED,
-    "isPhoneVerified": VerifyPhone.PENDING,
+    "address": "15992 Terry Ridges Apt. 134\nWest Russell, IN 17261",
+    "isEmailVerified": "APPROVED",
+    "isPhoneVerified": "APPROVED",
     "preferences": {
       "theme": "light",
       "language": "es"
@@ -437,129 +437,129 @@ user_db = [
     "notificationSettings": {
       "emailNotifications": True,
       "smsNotifications": True,
-      "pushNotifications": False
+      "pushNotifications": True
     },
-    "createdAt": "2025-11-05T16:40:54.572220",
-    "updatedAt": "2025-11-05T16:40:54.572224"
+    "createdAt": "2025-11-24T12:50:06.266010",
+    "updatedAt": "2025-11-24T12:50:06.266014"
   },
   {
     "id": "004",
-    "phone": "+233-24-614-4288",
-    "email": "ytate@example.com",
-    "firstName": "Amanda",
-    "lastName": "Davis",
-    "role": UserRole.ADMIN,
-    "status": UserStatus.SUSPENDED,
-    "service": ServiceStatus.PREMIUM_PLUS,
-    "profilePicture": "https://picsum.photos/370/138",
-    "dateOfbirth": "1987-03-20",
-    "gender": GenderStatus.NOT_SELECTED,
-    "bio": "And office class themselves station argue western.",
+    "phone": "+233-24-809-2803",
+    "email": "nmays@example.net",
+    "firstName": "Aaron",
+    "lastName": "Ray",
+    "role": "TASKER",
+    "status": "SUSPENDED",
+    "service": "PREMIUM",
+    "profilePicture": "https://dummyimage.com/421x842",
+    "dateOfbirth": "1963-04-15",
+    "gender": "MALE",
+    "bio": "Fund beyond wide boy though station conference these rich from.",
     "location": {
-      "lat": "-4.520859",
-      "lng": "48.620901"
+      "lat": "60.5782385",
+      "lng": "-18.910336"
     },
-    "address": "20655 Philip Inlet\nMarquezberg, OH 42133",
-    "isEmailVerified": VerifyEmail.APPROVED,
-    "isPhoneVerified": VerifyPhone.REJECTED,
+    "address": "7675 Brown Rest\nEast Jason, NM 55778",
+    "isEmailVerified": "REJECTED",
+    "isPhoneVerified": "REJECTED",
     "preferences": {
-      "theme": "light",
-      "language": "fr"
+      "theme": "dark",
+      "language": "es"
     },
     "notificationSettings": {
       "emailNotifications": False,
-      "smsNotifications": True,
+      "smsNotifications": False,
       "pushNotifications": False
     },
-    "createdAt": "2025-11-05T16:40:54.573159",
-    "updatedAt": "2025-11-05T16:40:54.573164"
+    "createdAt": "2025-11-24T12:50:06.266720",
+    "updatedAt": "2025-11-24T12:50:06.266723"
   },
   {
     "id": "005",
-    "phone": "+233-27-423-5345",
-    "email": "brooksshaun@example.net",
-    "firstName": "Jessica",
-    "lastName": "Hamilton",
-    "role": UserRole.TASKER,
-    "status": UserStatus.INACTIVE,
-    "service": ServiceStatus.PREMIUM_PLUS,
-    "profilePicture": "https://picsum.photos/950/531",
-    "dateOfbirth": "1960-08-05",
-    "gender": GenderStatus.NOT_SELECTED,
-    "bio": "Republican Mrs item example room good yourself skill fact.",
+    "phone": "+233-54-244-2980",
+    "email": "mporter@example.com",
+    "firstName": "Heather",
+    "lastName": "Kelly",
+    "role": "TASKER",
+    "status": "SUSPENDED",
+    "service": "PREMIUM",
+    "profilePicture": "https://placekitten.com/187/234",
+    "dateOfbirth": "1980-11-11",
+    "gender": "FEMALE",
+    "bio": "Accept hard various conference here address model choice lay quality.",
     "location": {
-      "lat": "20.575970",
-      "lng": "-156.863325"
+      "lat": "-29.8803735",
+      "lng": "-116.029759"
     },
-    "address": "64908 Christine Plaza Suite 096\nToddmouth, AS 94804",
-    "isEmailVerified": VerifyEmail.PENDING,
-    "isPhoneVerified": VerifyEmail.NOT_SUBMITTED,
+    "address": "696 Nicole Overpass\nThompsonville, DC 05267",
+    "isEmailVerified": "NOT_SUBMITTED",
+    "isPhoneVerified": "APPROVED",
     "preferences": {
       "theme": "light",
       "language": "fr"
     },
     "notificationSettings": {
       "emailNotifications": False,
-      "smsNotifications": True,
-      "pushNotifications": False
+      "smsNotifications": False,
+      "pushNotifications": True
     },
-    "createdAt": "2025-11-05T16:40:54.574125",
-    "updatedAt": "2025-11-05T16:40:54.574129"
+    "createdAt": "2025-11-24T12:50:06.267456",
+    "updatedAt": "2025-11-24T12:50:06.267460"
   },
   {
     "id": "006",
-    "phone": "+233-50-613-4725",
-    "email": "todd41@example.org",
-    "firstName": "Ashley",
-    "lastName": "Santiago",
-    "role": UserRole.ADMIN,
-    "status": UserStatus.SUSPENDED,
-    "service": ServiceStatus.PREMIUM,
-    "profilePicture": "https://picsum.photos/914/488",
-    "dateOfbirth": "1970-06-23",
-    "gender": GenderStatus.FEMALE,
-    "bio": "Three see main family make trade employee idea.",
+    "phone": "+233-27-436-6960",
+    "email": "dboyd@example.org",
+    "firstName": "Amy",
+    "lastName": "Wilson",
+    "role": "TASKER",
+    "status": "ACTIVE",
+    "service": "PREMIUM_PLUS",
+    "profilePicture": "https://placekitten.com/849/729",
+    "dateOfbirth": "1989-08-26",
+    "gender": "RATHER_NOT_SAY",
+    "bio": "During step own type fish audience evidence property our rich western radio.",
     "location": {
-      "lat": "85.8743775",
-      "lng": "93.066492"
+      "lat": "-64.0076745",
+      "lng": "-136.702135"
     },
-    "address": "7106 Taylor Club Suite 104\nConleyshire, CA 59160",
-    "isEmailVerified": VerifyEmail.NOT_SUBMITTED,
-    "isPhoneVerified": VerifyEmail.PENDING,
+    "address": "1323 Reese Forest Apt. 834\nEast Andrea, NE 11497",
+    "isEmailVerified": "APPROVED",
+    "isPhoneVerified": "NOT_SUBMITTED",
     "preferences": {
-      "theme": "dark",
-      "language": "es"
+      "theme": "light",
+      "language": "fr"
     },
     "notificationSettings": {
       "emailNotifications": False,
       "smsNotifications": True,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-05T16:40:54.575061",
-    "updatedAt": "2025-11-05T16:40:54.575066"
+    "createdAt": "2025-11-24T12:50:06.268143",
+    "updatedAt": "2025-11-24T12:50:06.268147"
   },
   {
     "id": "007",
-    "phone": "+233-26-817-5910",
-    "email": "rodriguezkevin@example.org",
-    "firstName": "Tara",
-    "lastName": "Delacruz",
-    "role": UserRole.ADMIN,
-    "status": UserStatus.SUSPENDED,
-    "service": ServiceStatus.PREMIUM,
-    "profilePicture": "https://dummyimage.com/364x780",
-    "dateOfbirth": "1988-01-26",
-    "gender": GenderStatus.NOT_SELECTED,
-    "bio": "Peace recently east decision job north past nation force challenge.",
+    "phone": "+233-20-838-5642",
+    "email": "hannah62@example.net",
+    "firstName": "Melissa",
+    "lastName": "White",
+    "role": "TASKER",
+    "status": "INACTIVE",
+    "service": "PREMIUM",
+    "profilePicture": "https://placekitten.com/514/749",
+    "dateOfbirth": "1965-04-08",
+    "gender": "NOT_SELECTED",
+    "bio": "View hard speech education evening go drug series large choose general PM give contain keep fact.",
     "location": {
-      "lat": "72.3807625",
-      "lng": "59.395536"
+      "lat": "-52.6228695",
+      "lng": "-19.402825"
     },
-    "address": "35937 Jacqueline Meadow Suite 077\nNicholastown, VI 41689",
-    "isEmailVerified": VerifyEmail.PENDING,
-    "isPhoneVerified": VerifyEmail.APPROVED,
+    "address": "67394 Hall Ferry Apt. 398\nLake Tara, UT 90969",
+    "isEmailVerified": "NOT_SUBMITTED",
+    "isPhoneVerified": "PENDING",
     "preferences": {
-      "theme": "light",
+      "theme": "dark",
       "language": "en"
     },
     "notificationSettings": {
@@ -567,349 +567,381 @@ user_db = [
       "smsNotifications": False,
       "pushNotifications": False
     },
-    "createdAt": "2025-11-05T16:40:54.576042",
-    "updatedAt": "2025-11-05T16:40:54.576046"
+    "createdAt": "2025-11-24T12:50:06.268802",
+    "updatedAt": "2025-11-24T12:50:06.268805"
   },
   {
     "id": "008",
-    "phone": "+233-20-205-4995",
-    "email": "alison74@example.com",
-    "firstName": "Savannah",
-    "lastName": "Shelton",
-    "role": UserRole.TASKER,
-    "status": UserStatus.INACTIVE,
-    "service": ServiceStatus.PREMIUM,
-    "profilePicture": "https://placekitten.com/4/647",
-    "dateOfbirth": "1989-01-20",
-    "gender": GenderStatus.FEMALE,
-    "bio": "Onto election conference whole heart ok war according key me indicate audience product act.",
+    "phone": "+233-54-307-3056",
+    "email": "elizabethmoore@example.org",
+    "firstName": "Jacob",
+    "lastName": "Ramirez",
+    "role": "ADMIN",
+    "status": "SUSPENDED",
+    "service": "PREMIUM_PLUS",
+    "profilePicture": "https://dummyimage.com/613x427",
+    "dateOfbirth": "1997-03-22",
+    "gender": "MALE",
+    "bio": "Anything stay receive science store soldier relate within.",
     "location": {
-      "lat": "76.829261",
-      "lng": "-153.792289"
+      "lat": "-76.8606685",
+      "lng": "-64.037914"
     },
-    "address": "527 Dunn Prairie\nWest Michaelmouth, WI 90797",
-    "isEmailVerified": VerifyEmail.PENDING,
-    "isPhoneVerified": VerifyPhone.REJECTED,
+    "address": "2022 Joshua Courts Apt. 838\nPort Nicole, WI 90265",
+    "isEmailVerified": "APPROVED",
+    "isPhoneVerified": "APPROVED",
     "preferences": {
       "theme": "light",
-      "language": "en"
+      "language": "fr"
     },
     "notificationSettings": {
-      "emailNotifications": True,
-      "smsNotifications": False,
+      "emailNotifications": False,
+      "smsNotifications": True,
       "pushNotifications": False
     },
-    "createdAt": "2025-11-05T16:40:54.576892",
-    "updatedAt": "2025-11-05T16:40:54.576896"
+    "createdAt": "2025-11-24T12:50:06.269580",
+    "updatedAt": "2025-11-24T12:50:06.269584"
   },
   {
     "id": "009",
-    "phone": "+233-57-717-2859",
-    "email": "castroshelley@example.org",
-    "firstName": "Kenneth",
-    "lastName": "Baldwin",
-    "role": UserRole.CLIENT,
-    "status": UserStatus.INACTIVE,
-    "service": ServiceStatus.FREE,
-    "profilePicture": "https://dummyimage.com/389x738",
-    "dateOfbirth": "1963-07-16",
-    "gender": GenderStatus.MALE,
-    "bio": "Few style need physical fly something page.",
+    "phone": "+233-24-304-7910",
+    "email": "nancymcclain@example.net",
+    "firstName": "Hannah",
+    "lastName": "Payne",
+    "role": "CLIENT",
+    "status": "ACTIVE",
+    "service": "FREE",
+    "profilePicture": "https://placekitten.com/606/172",
+    "dateOfbirth": "1969-01-31",
+    "gender": "RATHER_NOT_SAY",
+    "bio": "Suffer single tell building wife you then for outside produce.",
     "location": {
-      "lat": "-85.8401145",
-      "lng": "-137.351158"
+      "lat": "-79.409332",
+      "lng": "158.492886"
     },
-    "address": "1886 Sarah Plains Suite 423\nEast Sheena, WI 81693",
-    "isEmailVerified": VerifyEmail.PENDING,
-    "isPhoneVerified": VerifyEmail.PENDING,
+    "address": "37348 Kennedy Crossing\nWest David, AR 90939",
+    "isEmailVerified": "APPROVED",
+    "isPhoneVerified": "PENDING",
     "preferences": {
       "theme": "dark",
       "language": "fr"
     },
     "notificationSettings": {
-      "emailNotifications": True,
+      "emailNotifications": False,
       "smsNotifications": False,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-05T16:40:54.577872",
-    "updatedAt": "2025-11-05T16:40:54.577876"
+    "createdAt": "2025-11-24T12:50:06.270340",
+    "updatedAt": "2025-11-24T12:50:06.270344"
   },
   {
     "id": "010",
-    "phone": "+233-59-319-1821",
-    "email": "bbennett@example.net",
-    "firstName": "Lindsey",
-    "lastName": "Macdonald",
-    "role": UserRole.ADMIN,
-    "status": UserStatus.SUSPENDED,
-    "service": ServiceStatus.FREE,
-    "profilePicture": "https://dummyimage.com/311x851",
-    "dateOfbirth": "1956-01-14",
-    "gender": GenderStatus.RATHER_NOT_SAY,
-    "bio": "Product attack attack standard while movie pretty reason Democrat news appear.",
+    "phone": "+233-54-759-9029",
+    "email": "sean57@example.com",
+    "firstName": "Tiffany",
+    "lastName": "Young",
+    "role": "TASKER",
+    "status": "SUSPENDED",
+    "service": "FREE",
+    "profilePicture": "https://picsum.photos/142/752",
+    "dateOfbirth": "1977-03-27",
+    "gender": "NOT_SELECTED",
+    "bio": "Child bad drug appear prove public stay open also director same view minute manager director yet.",
     "location": {
-      "lat": "79.911333",
-      "lng": "-61.513735"
+      "lat": "-61.1882275",
+      "lng": "67.776991"
     },
-    "address": "254 Austin Row Apt. 663\nSouth Michael, AZ 89056",
-    "isEmailVerified": VerifyPhone.REJECTED,
-    "isPhoneVerified": VerifyPhone.REJECTED,
+    "address": "9092 Courtney Crest Suite 283\nLake Omarhaven, IL 80734",
+    "isEmailVerified": "REJECTED",
+    "isPhoneVerified": "PENDING",
     "preferences": {
-      "theme": "light",
-      "language": "fr"
+      "theme": "dark",
+      "language": "es"
     },
     "notificationSettings": {
       "emailNotifications": True,
       "smsNotifications": False,
-      "pushNotifications": True
+      "pushNotifications": False
     },
-    "createdAt": "2025-11-05T16:40:54.578740",
-    "updatedAt": "2025-11-05T16:40:54.578745"
+    "createdAt": "2025-11-24T12:50:06.270976",
+    "updatedAt": "2025-11-24T12:50:06.270979"
   },
   {
     "id": "011",
-    "phone": "+233-55-572-4485",
-    "email": "andrescarpenter@example.com",
-    "firstName": "Denise",
-    "lastName": "Nelson",
-    "role": UserRole.CLIENT,
-    "status": UserStatus.SUSPENDED,
-    "service": ServiceStatus.FREE,
-    "profilePicture": "https://placekitten.com/535/663",
-    "dateOfbirth": "1985-07-28",
-    "gender": GenderStatus.NOT_SELECTED,
-    "bio": "Write agency top skill or those place important.",
+    "phone": "+233-54-990-3206",
+    "email": "colleensmith@example.com",
+    "firstName": "Brooke",
+    "lastName": "Miller",
+    "role": "TASKER",
+    "status": "SUSPENDED",
+    "service": "PREMIUM",
+    "profilePicture": "https://placekitten.com/420/190",
+    "dateOfbirth": "1965-08-31",
+    "gender": "FEMALE",
+    "bio": "Those us drop pull collection fly commercial give professional nice us build cover animal next have.",
     "location": {
-      "lat": "67.972944",
-      "lng": "149.805184"
+      "lat": "44.5786035",
+      "lng": "-162.117485"
     },
-    "address": "75654 Rice Canyon\nEast Nicole, OH 93937",
-    "isEmailVerified": VerifyPhone.REJECTED,
-    "isPhoneVerified": VerifyEmail.APPROVED,
+    "address": "5497 Gilmore Bypass Apt. 416\nAdrienneshire, CT 22672",
+    "isEmailVerified": "APPROVED",
+    "isPhoneVerified": "REJECTED",
     "preferences": {
-      "theme": "dark",
+      "theme": "light",
       "language": "es"
     },
     "notificationSettings": {
       "emailNotifications": True,
-      "smsNotifications": True,
-      "pushNotifications": True
+      "smsNotifications": False,
+      "pushNotifications": False
     },
-    "createdAt": "2025-11-05T16:40:54.579759",
-    "updatedAt": "2025-11-05T16:40:54.579763"
+    "createdAt": "2025-11-24T12:50:06.271736",
+    "updatedAt": "2025-11-24T12:50:06.271740"
   },
   {
     "id": "012",
-    "phone": "+233-20-310-6855",
-    "email": "hmiller@example.org",
-    "firstName": "Kim",
-    "lastName": "White",
-    "role": UserRole.TASKER,
-    "status": UserStatus.SUSPENDED,
-    "service": ServiceStatus.PREMIUM,
-    "profilePicture": "https://placekitten.com/602/309",
-    "dateOfbirth": "1966-01-11",
-    "gender": GenderStatus.NOT_SELECTED,
-    "bio": "Break skin whom rest country whom next act tell change.",
+    "phone": "+233-20-485-2543",
+    "email": "nicoleball@example.org",
+    "firstName": "Melinda",
+    "lastName": "Cooper",
+    "role": "TASKER",
+    "status": "ACTIVE",
+    "service": "FREE",
+    "profilePicture": "https://dummyimage.com/8x455",
+    "dateOfbirth": "1984-12-04",
+    "gender": "FEMALE",
+    "bio": "Success with father beautiful degree give have federal someone among book wide here job.",
     "location": {
-      "lat": "1.2000095",
-      "lng": "114.965582"
+      "lat": "79.790066",
+      "lng": "64.207261"
     },
-    "address": "33121 Rebecca Crest\nLake Christopherbury, ME 92069",
-    "isEmailVerified": VerifyEmail.PENDING,
-    "isPhoneVerified": VerifyEmail.APPROVED,
+    "address": "26208 James Expressway Suite 722\nSouth Michaelborough, MT 35807",
+    "isEmailVerified": "REJECTED",
+    "isPhoneVerified": "REJECTED",
     "preferences": {
       "theme": "dark",
       "language": "en"
     },
     "notificationSettings": {
       "emailNotifications": True,
-      "smsNotifications": False,
-      "pushNotifications": False
+      "smsNotifications": True,
+      "pushNotifications": True
     },
-    "createdAt": "2025-11-05T16:40:54.582225",
-    "updatedAt": "2025-11-05T16:40:54.582236"
+    "createdAt": "2025-11-24T12:50:06.272481",
+    "updatedAt": "2025-11-24T12:50:06.272485"
   },
   {
     "id": "013",
-    "phone": "+233-23-682-3397",
-    "email": "patriciapalmer@example.org",
-    "firstName": "Anna",
-    "lastName": "Ford",
-    "role": UserRole.TASKER,
-    "status": UserStatus.ACTIVE,
-    "service": ServiceStatus.PREMIUM,
-    "profilePicture": "https://placekitten.com/831/387",
-    "dateOfbirth": "1990-12-30",
-    "gender": GenderStatus.NOT_SELECTED,
-    "bio": "Whether pretty minute contain maintain series break three knowledge school but else player plant over.",
+    "phone": "+233-50-566-9975",
+    "email": "jennifer67@example.org",
+    "firstName": "Eric",
+    "lastName": "Alexander",
+    "role": "ADMIN",
+    "status": "INACTIVE",
+    "service": "PREMIUM",
+    "profilePicture": "https://dummyimage.com/996x187",
+    "dateOfbirth": "1984-03-04",
+    "gender": "MALE",
+    "bio": "Certain item community rise type standard health.",
     "location": {
-      "lat": "-7.1412385",
-      "lng": "-59.609381"
+      "lat": "-77.6904355",
+      "lng": "157.715459"
     },
-    "address": "95890 Ashley Estate Apt. 347\nJohnfurt, NH 97519",
-    "isEmailVerified": VerifyPhone.REJECTED,
-    "isPhoneVerified": VerifyEmail.APPROVED,
+    "address": "USNS Harris\nFPO AP 69830",
+    "isEmailVerified": "APPROVED",
+    "isPhoneVerified": "NOT_SUBMITTED",
     "preferences": {
       "theme": "light",
-      "language": "en"
+      "language": "fr"
     },
     "notificationSettings": {
-      "emailNotifications": True,
-      "smsNotifications": False,
-      "pushNotifications": False
+      "emailNotifications": False,
+      "smsNotifications": True,
+      "pushNotifications": True
     },
-    "createdAt": "2025-11-05T16:40:54.583778",
-    "updatedAt": "2025-11-05T16:40:54.583784"
+    "createdAt": "2025-11-24T12:50:06.273019",
+    "updatedAt": "2025-11-24T12:50:06.273023"
   },
   {
     "id": "014",
-    "phone": "+233-20-626-2824",
-    "email": "amanda42@example.com",
-    "firstName": "Destiny",
-    "lastName": "Liu",
-    "role": UserRole.TASKER,
-    "status": UserStatus.ACTIVE,
-    "service": ServiceStatus.FREE,
-    "profilePicture": "https://dummyimage.com/615x634",
-    "dateOfbirth": "1980-02-28",
-    "gender": GenderStatus.RATHER_NOT_SAY,
-    "bio": "Difference citizen watch level only should cultural form this politics not college leader.",
+    "phone": "+233-59-547-6154",
+    "email": "ryan50@example.org",
+    "firstName": "Michael",
+    "lastName": "Meyers",
+    "role": "ADMIN",
+    "status": "INACTIVE",
+    "service": "PREMIUM",
+    "profilePicture": "https://dummyimage.com/807x736",
+    "dateOfbirth": "2000-07-09",
+    "gender": "MALE",
+    "bio": "Himself scene among sit guy point now pull parent contain activity finish bank court degree.",
     "location": {
-      "lat": "55.1908235",
-      "lng": "147.849630"
+      "lat": "85.316912",
+      "lng": "-100.637538"
     },
-    "address": "3899 Stephen Burg Apt. 196\nHensleybury, MO 77518",
-    "isEmailVerified": VerifyEmail.APPROVED,
-    "isPhoneVerified": VerifyPhone.REJECTED,
-    "preferences": {
-      "theme": "dark",
-      "language": "fr"
-    },
-    "notificationSettings": {
-      "emailNotifications": False,
-      "smsNotifications": True,
-      "pushNotifications": False
-    },
-    "createdAt": "2025-11-05T16:40:54.584952",
-    "updatedAt": "2025-11-05T16:40:54.584957"
-  },
-  {
-    "id": "015",
-    "phone": "+233-27-322-0206",
-    "email": "ashleymartinez@example.com",
-    "firstName": "Maria",
-    "lastName": "Benson",
-    "role": UserRole.ADMIN,
-    "status": UserStatus.INACTIVE,
-    "service": ServiceStatus.PREMIUM,
-    "profilePicture": "https://placekitten.com/96/371",
-    "dateOfbirth": "1978-08-11",
-    "gender": GenderStatus.RATHER_NOT_SAY,
-    "bio": "Home week occur know law actually party say or stop manage interview.",
-    "location": {
-      "lat": "13.9466605",
-      "lng": "72.006275"
-    },
-    "address": "00149 Mejia Terrace Apt. 847\nPort Brent, CT 98540",
-    "isEmailVerified": VerifyEmail.NOT_SUBMITTED,
-    "isPhoneVerified": VerifyEmail.PENDING,
+    "address": "21277 Samantha Neck Suite 720\nDavisshire, FM 08201",
+    "isEmailVerified": "APPROVED",
+    "isPhoneVerified": "APPROVED",
     "preferences": {
       "theme": "light",
       "language": "fr"
     },
     "notificationSettings": {
       "emailNotifications": True,
-      "smsNotifications": True,
+      "smsNotifications": False,
+      "pushNotifications": False
+    },
+    "createdAt": "2025-11-24T12:50:06.273865",
+    "updatedAt": "2025-11-24T12:50:06.273868"
+  },
+  {
+    "id": "015",
+    "phone": "+233-59-271-6703",
+    "email": "theresa16@example.net",
+    "firstName": "Jennifer",
+    "lastName": "White",
+    "role": "ADMIN",
+    "status": "INACTIVE",
+    "service": "FREE",
+    "profilePicture": "https://dummyimage.com/412x771",
+    "dateOfbirth": "1981-03-14",
+    "gender": "FEMALE",
+    "bio": "Catch tell administration drop full perform break week deep wrong direction money side across.",
+    "location": {
+      "lat": "67.4960905",
+      "lng": "-119.645570"
+    },
+    "address": "069 Campbell Fork Apt. 762\nDanielfurt, NY 02556",
+    "isEmailVerified": "APPROVED",
+    "isPhoneVerified": "PENDING",
+    "preferences": {
+      "theme": "light",
+      "language": "fr"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": False,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-05T16:40:54.586035",
-    "updatedAt": "2025-11-05T16:40:54.586039"
+    "createdAt": "2025-11-24T12:50:06.274563",
+    "updatedAt": "2025-11-24T12:50:06.274566"
   },
   {
     "id": "016",
-    "phone": "+233-23-331-4044",
-    "email": "walter93@example.org",
-    "firstName": "Heather",
-    "lastName": "Pope",
-    "role": UserRole.ADMIN,
-    "status": UserStatus.ACTIVE,
-    "service": ServiceStatus.FREE,
-    "profilePicture": "https://picsum.photos/401/995",
-    "dateOfbirth": "1992-04-23",
-    "gender": GenderStatus.NOT_SELECTED,
-    "bio": "Pull world forward manager miss information matter every relate protect artist trial.",
+    "phone": "+233-20-444-5307",
+    "email": "nelsonstephanie@example.net",
+    "firstName": "Jennifer",
+    "lastName": "Brown",
+    "role": "ADMIN",
+    "status": "ACTIVE",
+    "service": "PREMIUM_PLUS",
+    "profilePicture": "https://placekitten.com/792/62",
+    "dateOfbirth": "1962-05-23",
+    "gender": "FEMALE",
+    "bio": "Beyond cover safe cause national public choice say need she.",
     "location": {
-      "lat": "58.803478",
-      "lng": "165.043151"
+      "lat": "-47.3366305",
+      "lng": "-118.395846"
     },
-    "address": "5333 Williams Meadows Suite 812\nPort Richardton, CA 26596",
-    "isEmailVerified": VerifyEmail.PENDING,
-    "isPhoneVerified": VerifyPhone.REJECTED,
+    "address": "71549 Norris Walks Apt. 030\nLaurahaven, LA 65336",
+    "isEmailVerified": "PENDING",
+    "isPhoneVerified": "NOT_SUBMITTED",
     "preferences": {
-      "theme": "light",
+      "theme": "dark",
       "language": "es"
     },
     "notificationSettings": {
       "emailNotifications": False,
       "smsNotifications": False,
-      "pushNotifications": True
+      "pushNotifications": False
     },
-    "createdAt": "2025-11-05T16:40:54.586891",
-    "updatedAt": "2025-11-05T16:40:54.586895"
+    "createdAt": "2025-11-24T12:50:06.275393",
+    "updatedAt": "2025-11-24T12:50:06.275396"
   },
   {
     "id": "017",
-    "phone": "+233-23-36-3296",
-    "email": "shawnellis@example.com",
-    "firstName": "Martha",
-    "lastName": "Smith",
-    "role": UserRole.CLIENT,
-    "status": UserStatus.SUSPENDED,
-    "service": ServiceStatus.FREE,
-    "profilePicture": "https://picsum.photos/815/957",
-    "dateOfbirth": "1983-11-29",
-    "gender": GenderStatus.FEMALE,
-    "bio": "Including speak face throw listen system analysis fall among animal push around fine none president.",
+    "phone": "+233-20-160-7063",
+    "email": "katie72@example.com",
+    "firstName": "Mallory",
+    "lastName": "Swanson",
+    "role": "CLIENT",
+    "status": "ACTIVE",
+    "service": "PREMIUM_PLUS",
+    "profilePicture": "https://dummyimage.com/872x355",
+    "dateOfbirth": "1988-11-24",
+    "gender": "RATHER_NOT_SAY",
+    "bio": "Draw position sure easy on economy relate before.",
     "location": {
-      "lat": "70.2919765",
-      "lng": "-90.342151"
+      "lat": "81.203346",
+      "lng": "137.572299"
     },
-    "address": "1801 Donna Fork\nJohnsontown, NM 67304",
-    "isEmailVerified": VerifyEmail.NOT_SUBMITTED,
-    "isPhoneVerified": VerifyEmail.PENDING,
+    "address": "06549 Flowers Groves\nSouth Elizabeth, NV 05540",
+    "isEmailVerified": "PENDING",
+    "isPhoneVerified": "APPROVED",
     "preferences": {
-      "theme": "dark",
+      "theme": "light",
       "language": "fr"
     },
     "notificationSettings": {
       "emailNotifications": True,
-      "smsNotifications": True,
-      "pushNotifications": False
+      "smsNotifications": False,
+      "pushNotifications": True
     },
-    "createdAt": "2025-11-05T16:40:54.587861",
-    "updatedAt": "2025-11-05T16:40:54.587865"
+    "createdAt": "2025-11-24T12:50:06.276095",
+    "updatedAt": "2025-11-24T12:50:06.276098"
   },
   {
     "id": "018",
-    "phone": "+233-23-211-8077",
-    "email": "ronaldlopez@example.net",
-    "firstName": "Elizabeth",
-    "lastName": "West",
-    "role": UserRole.TASKER,
-    "status": UserStatus.INACTIVE,
-    "service": ServiceStatus.PREMIUM_PLUS,
-    "profilePicture": "https://placekitten.com/828/68",
-    "dateOfbirth": "2007-03-22",
-    "gender": GenderStatus.RATHER_NOT_SAY,
-    "bio": "Arm hard number long his north affect future usually series good field vote.",
+    "phone": "+233-20-623-2931",
+    "email": "dcox@example.org",
+    "firstName": "Brandon",
+    "lastName": "Andrews",
+    "role": "TASKER",
+    "status": "ACTIVE",
+    "service": "PREMIUM_PLUS",
+    "profilePicture": "https://dummyimage.com/931x858",
+    "dateOfbirth": "1993-03-13",
+    "gender": "MALE",
+    "bio": "Southern join create mouth must growth expect wide drug may appear put staff girl decade.",
     "location": {
-      "lat": "65.0742705",
-      "lng": "-90.347163"
+      "lat": "75.4481665",
+      "lng": "-20.360215"
     },
-    "address": "020 Smith Fall Apt. 104\nNorth Biancahaven, PR 67520",
-    "isEmailVerified": VerifyEmail.PENDING,
-    "isPhoneVerified": VerifyEmail.PENDING,
+    "address": "6322 Erica Shoals Apt. 120\nPort James, AK 14413",
+    "isEmailVerified": "PENDING",
+    "isPhoneVerified": "REJECTED",
+    "preferences": {
+      "theme": "dark",
+      "language": "es"
+    },
+    "notificationSettings": {
+      "emailNotifications": True,
+      "smsNotifications": False,
+      "pushNotifications": True
+    },
+    "createdAt": "2025-11-24T12:50:06.276742",
+    "updatedAt": "2025-11-24T12:50:06.276745"
+  },
+  {
+    "id": "019",
+    "phone": "+233-59-880-5727",
+    "email": "rhondacummings@example.net",
+    "firstName": "Maria",
+    "lastName": "Daniels",
+    "role": "ADMIN",
+    "status": "INACTIVE",
+    "service": "PREMIUM",
+    "profilePicture": "https://placekitten.com/151/380",
+    "dateOfbirth": "1970-10-10",
+    "gender": "NOT_SELECTED",
+    "bio": "Artist half religious first order degree despite write field might affect.",
+    "location": {
+      "lat": "-80.5208455",
+      "lng": "136.323983"
+    },
+    "address": "8274 Jones Lakes\nOrozcoview, NC 01497",
+    "isEmailVerified": "PENDING",
+    "isPhoneVerified": "NOT_SUBMITTED",
     "preferences": {
       "theme": "dark",
       "language": "es"
@@ -917,73 +949,41 @@ user_db = [
     "notificationSettings": {
       "emailNotifications": True,
       "smsNotifications": True,
-      "pushNotifications": False
-    },
-    "createdAt": "2025-11-05T16:40:54.588846",
-    "updatedAt": "2025-11-05T16:40:54.588851"
-  },
-  {
-    "id": "019",
-    "phone": "+233-59-797-5386",
-    "email": "thomashiggins@example.net",
-    "firstName": "Brent",
-    "lastName": "Burnett",
-    "role": UserRole.CLIENT,
-    "status": UserStatus.SUSPENDED,
-    "service": ServiceStatus.PREMIUM_PLUS,
-    "profilePicture": "https://dummyimage.com/726x217",
-    "dateOfbirth": "1994-05-09",
-    "gender": GenderStatus.MALE,
-    "bio": "Nearly and responsibility research religious this we suffer.",
-    "location": {
-      "lat": "-0.459702",
-      "lng": "82.964145"
-    },
-    "address": "110 Matthew Vista\nNorth Tamara, ND 08564",
-    "isEmailVerified": VerifyEmail.APPROVED,
-    "isPhoneVerified": VerifyEmail.PENDING,
-    "preferences": {
-      "theme": "dark",
-      "language": "en"
-    },
-    "notificationSettings": {
-      "emailNotifications": True,
-      "smsNotifications": True,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-05T16:40:54.589798",
-    "updatedAt": "2025-11-05T16:40:54.589802"
+    "createdAt": "2025-11-24T12:50:06.277757",
+    "updatedAt": "2025-11-24T12:50:06.277760"
   },
   {
     "id": "020",
-    "phone": "+233-26-86-3894",
-    "email": "robert74@example.com",
-    "firstName": "Carrie",
-    "lastName": "Drake",
-    "role": UserRole.CLIENT,
-    "status": UserStatus.INACTIVE,
-    "service": ServiceStatus.PREMIUM,
-    "profilePicture": "https://placekitten.com/667/336",
-    "dateOfbirth": "1964-01-10",
-    "gender": GenderStatus.RATHER_NOT_SAY,
-    "bio": "Assume data tell blood station lot whatever most certain people yeah yes force top.",
+    "phone": "+233-20-518-2062",
+    "email": "fweaver@example.com",
+    "firstName": "Jose",
+    "lastName": "Martin",
+    "role": "ADMIN",
+    "status": "SUSPENDED",
+    "service": "PREMIUM",
+    "profilePicture": "https://placekitten.com/620/51",
+    "dateOfbirth": "1994-03-18",
+    "gender": "MALE",
+    "bio": "Change their establish performance stock hold reality wish strategy.",
     "location": {
-      "lat": "78.7825075",
-      "lng": "78.820564"
+      "lat": "-74.236170",
+      "lng": "30.295528"
     },
-    "address": "11388 Garrett Locks Apt. 339\nToddland, MA 56536",
-    "isEmailVerified": VerifyEmail.NOT_SUBMITTED,
-    "isPhoneVerified": VerifyEmail.PENDING,
+    "address": "831 Bradford Springs Apt. 366\nMichelleton, MD 98432",
+    "isEmailVerified": "PENDING",
+    "isPhoneVerified": "REJECTED",
     "preferences": {
-      "theme": "light",
-      "language": "en"
+      "theme": "dark",
+      "language": "fr"
     },
     "notificationSettings": {
-      "emailNotifications": True,
+      "emailNotifications": False,
       "smsNotifications": True,
       "pushNotifications": False
     },
-    "createdAt": "2025-11-05T16:40:54.590597",
-    "updatedAt": "2025-11-05T16:40:54.590601"
+    "createdAt": "2025-11-24T12:50:06.278422",
+    "updatedAt": "2025-11-24T12:50:06.278426"
   }
 ]

@@ -3,7 +3,7 @@ import random
 import uuid
 import json
 from datetime import datetime
-from app.models.user import UserRole, UserStatus, VerifyEmail, VerifyPhone, ServiceStatus, GenderStatus
+from app.models.users import UserRole, UserStatus, VerifyEmail, VerifyPhone, ServiceStatus, GenderStatus
 
 fake = Faker()
 
@@ -15,7 +15,7 @@ def generate_mock_users(n=20):
         prefixes = ["20", "23", "24", "26", "27", "28", "50", "54", "55", "59"]
         prefix = random.choice(prefixes)
         
-        mid = random.randint(000, 999)
+        mid = random.randint(111, 999)
         end = random.randint(1111, 9999)
         
         return f"+233-{prefix}-{mid}-{end}"

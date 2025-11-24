@@ -101,8 +101,8 @@ async def get_user_profile(
 
 @router.post("/profile")
 async def create_user_profile(
-    user_id: int
-    # create_user: UserCreate 
+    user_id: int,
+    create_user: UserCreate 
 ):
     
     padded_int = f'{user_id:03d}'
@@ -124,12 +124,12 @@ async def create_user_profile(
        
     new_user = {
         "id": new_id,
-        # "phone": create_user.phone,
-        # "email": create_user.email,
-        # "firstName": create_user.firstName,
-        # "lastName": create_user.lastName,
-        # "role": create_user.role,
-        # "status": create_user.status 
+        "phone": create_user.phone,
+        "email": create_user.email,
+        "firstName": create_user.firstName,
+        "lastName": create_user.lastName,
+        "role": create_user.role,
+        "status": create_user.status 
     }
     
     user_db.append(new_user)
