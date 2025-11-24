@@ -6,7 +6,7 @@ from sqlalchemy import text, select, insert, update, delete
 from jose import JWTError
 
 from app.core.database import get_db
-from app.models.users import UserResponse, UserUpdate
+from app.models.users import UserUpdate, UserCreate
 from app.core.security import verify_token
 from app.core.mockDB import user_db
 
@@ -47,7 +47,7 @@ async def get_all_users():
         "data": user_db
     }
 
-@router.get("/{user_id}")
+@router.get("/profile/{user_id}")
 async def get_user_profile(
     user_id: int
 ):
@@ -101,10 +101,14 @@ async def get_user_profile(
 
 @router.post("/profile")
 async def create_user_profile(
-    create_user: UserResponse = Query(..., description= "create new User")
+    user_id: int
+    # create_user: UserCreate 
 ):
+    
+    padded_int = f'{user_id:03d}'
+    
     existing_user = next(
-        (u for u in user_db if u["email"].lower() == create_user.email.lower()),
+        (u for u in user_db if u["id"] == padded_int),
         None
     )
     
@@ -113,15 +117,19 @@ async def create_user_profile(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail= "User already exists"
         )
+    
+    
+    new_id = max((item["id"] for item in user_db ), default=0) + 1
         
+       
     new_user = {
-        "id": create_user.id,
-        "phone": create_user.phone,
-        "email": create_user.email,
-        "firstName": create_user.firstName,
-        "lastName": create_user.lastName,
-        "role": create_user.role,
-        "status": create_user.status 
+        "id": new_id,
+        # "phone": create_user.phone,
+        # "email": create_user.email,
+        # "firstName": create_user.firstName,
+        # "lastName": create_user.lastName,
+        # "role": create_user.role,
+        # "status": create_user.status 
     }
     
     user_db.append(new_user)
@@ -133,9 +141,9 @@ async def create_user_profile(
     }
   
     
-@router.put("/profile")
+@router.put("/profile/{user_id}")
 async def update_user_profile(
-    user_id: int = Query(..., description= "update user profile"),
+    user_id: int,
     update_user: UserUpdate = Query(..., description= "update user profile")
 ):
     padded_id = f"{user_id:03d}"
