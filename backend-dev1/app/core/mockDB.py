@@ -738,7 +738,7 @@ movies_db = [
     "rating": 6.6,
     "cast": "Nia Vardalos, John Corbett, Michael Constantine",
     "producer": "Tom Hanks, Rita Wilson, Gary Goetzman",
-    "views": 3876543,
+    "views": 3876545,
     "created_at": "2025-11-06T19:41:56.917501",
     "updated_at": "2025-11-06T19:41:56.917505",
     "is_liked": True
