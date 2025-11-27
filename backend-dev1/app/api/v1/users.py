@@ -144,27 +144,49 @@ async def create_user_profile(
 @router.put("/profile/{user_id}")
 async def update_user_profile(
     user_id: int,
-    update_user: UserUpdate = Query(..., description= "update user profile")
+    update_user: UserUpdate
 ):
+  
     padded_id = f"{user_id:03d}"
-    padded_str = str(padded_id)
     
-    existing_user = next(
-        (u for u in user_db if u["id"].lower() == padded_str.lower())
-    )
-    
-    if not existing_user:
-        raise HTTPException(
-            status_code= status.HTTP_404_NOT_FOUND,
-            detail= "User not found"
+    try:
+        existing_user = next(
+            (u for u in user_db if u["id"] == padded_id),
+            None
         )
         
-    data_update = update_user.model_dump(exclude_unset= True)
-    
-    for key, value in data_update.items():
-        existing_user[key] = value
+        if not existing_user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User not found"
+            )
         
-    return{
-        "Success": "Profile updated succesfully",
-        "phone": data_update["phone"]
-    }
+        # Get only the fields that were actually provided in the request
+        data_update = update_user.model_dump(exclude_unset=True)
+        
+        data_update.pop('id', None)
+        data_update.pop('role', None)
+        data_update.pop('serviceStatus', None)
+        data_update.pop('isEmailVerified', None)
+        data_update.pop('isPhoneVerified', None)
+        
+        for key, value in data_update.items():
+            if key in existing_user:
+                existing_user[key] = value
+        
+        from datetime import datetime
+        existing_user["updatedAt"] = datetime.now().isoformat()
+        
+        return {
+            "success": True,
+            "message": "Profile updated successfully",
+            "data": existing_user
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to update user profile: {str(e)}"
+        )

@@ -116,10 +116,7 @@ class UserCreate(BaseModel):
     # Timestamps
     createdAt: datetime = Field(default_factory=lambda: datetime.now(), examples=["2025-11-06T00:00:00Z"])
     updatedAt: datetime = Field(default_factory=lambda: datetime.now(), examples=["2025-11-06T00:00:00Z"])
-
-
-# class UserResponse(UserCreate):
-#     id: str = Field(..., examples=["001"])
+    
     
 class UserUpdate(BaseModel):
     id: str = Field(..., examples=["001"])
