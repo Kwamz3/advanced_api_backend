@@ -548,6 +548,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "033",
     "title": "The Kissing Booth",
     "category": "Romantic Comedy",
     "description": "A teenager's secret romance with her best friend’s older brother creates conflict and drama.",
@@ -558,7 +559,10 @@ movies_db = [
     "rating": 6.0,
     "cast": "Joey King, Jacob Elordi, Joel Courtney",
     "producer": "Ed Glauser, Michelle Weiss",
-    "views": "66,000,000"
+    "views": 2734589,
+    "created_at": "2025-11-06T19:41:56.913101",
+    "updated_at": "2025-11-06T19:41:56.913105",
+    "is_liked": True
   },
   {
     "id": "034",
@@ -629,6 +633,7 @@ movies_db = [
     "is_liked": True
   },
   {
+    "id": "038",
     "title": "Sixteen Candles",
     "category": "Comedy, Romance",
     "description": "A teenage girl feels ignored on her 16th birthday because her family is too preoccupied with her sister’s wedding.",
@@ -639,7 +644,10 @@ movies_db = [
     "rating": 6.5,
     "cast": "Molly Ringwald, Anthony Michael Hall, John Hughes",
     "producer": "John Hughes",
-    "views": "45,000,000"
+    "views": 2167890,
+    "created_at": "2025-11-06T19:41:56.915101",
+    "updated_at": "2025-11-06T19:41:56.915105",
+    "is_liked": True
   },
   {
     "id": "039",
