@@ -91,23 +91,23 @@ class UserCreate(BaseModel):
     email: str = Field(..., examples=["john.doe@example.com"])
     firstName: str = Field(..., examples=["John"])
     lastName: str = Field(..., examples=["Doe"])
-    role: UserRole = Field(default=UserRole.CLIENT, examples=["client"])
-    status: UserStatus = Field(default=UserStatus.INACTIVE, examples=["inactive"])
+    role: UserRole = Field(default= UserRole.CLIENT, examples=[UserRole.CLIENT])
+    status: UserStatus = Field(default=UserStatus.INACTIVE, examples=[UserStatus.INACTIVE])
 
     # Profile info
     profilePicture: Optional[str] = Field(None, examples=["https://example.com/avatar.jpg"]) 
     dateOfbirth: Optional[datetime] = Field(None, examples=["2000-01-01T00:00:00Z"])
-    gender: Optional[GenderStatus] = Field(None, examples=["male"])
+    gender: Optional[GenderStatus] = Field(default= GenderStatus.NOT_SELECTED, examples=[GenderStatus.NOT_SELECTED])
     bio: Optional[str] = Field(None, examples=["Creative designer and movie lover."])
-    serverStatus: ServiceStatus = Field(default= ServiceStatus.FREE, examples=["Premium"])
+    serverStatus: ServiceStatus = Field(default= ServiceStatus.FREE, examples=[ServiceStatus.FREE])
 
     # Location
     address: Optional[str] = Field(None, examples=["123 Main Street, Accra"])
     location: Optional[Dict[str, Any]] = Field(None, examples=[{"latitude": 5.6037, "longitude": -0.1870}])
 
     # Verification
-    isEmailVerified: bool = Field(default=False, examples=[False])
-    isPhoneVerified: bool = Field(default=False, examples=[True])
+    isEmailVerified: str = Field(default= VerifyEmail.NOT_SUBMITTED, examples=[VerifyEmail.NOT_SUBMITTED])
+    isPhoneVerified: str = Field(default= VerifyPhone.NOT_SUBMITTED, examples=[VerifyEmail.NOT_SUBMITTED])
 
     # Settings
     preferences: Optional[Dict[str, Any]] = Field(None, examples=[{"theme": "dark"}])
@@ -124,23 +124,23 @@ class UserUpdate(BaseModel):
     email: str = Field(..., examples=["john.doe@example.com"])
     firstName: str = Field(..., examples=["John"])
     lastName: str = Field(..., examples=["Doe"])
-    role: UserRole = Field(default=UserRole.CLIENT, examples=["client"])
-    status: UserStatus = Field(default=UserStatus.INACTIVE, examples=["inactive"])
+    role: UserRole = Field(default=UserRole.CLIENT, examples=[UserRole.CLIENT])
+    status: UserStatus = Field(default=UserStatus.INACTIVE, examples=[UserStatus.INACTIVE])
 
     # Profile info
     profilePicture: Optional[str] = Field(None, examples=["https://example.com/avatar.jpg"]) 
     dateOfbirth: Optional[datetime] = Field(None, examples=["2000-01-01T00:00:00Z"])
-    gender: Optional[GenderStatus] = Field(None, examples=["male"])
+    gender: Optional[GenderStatus] = Field(default= GenderStatus.NOT_SELECTED, examples=[GenderStatus.NOT_SELECTED])
     bio: Optional[str] = Field(None, examples=["Creative designer and movie lover."])
-    serverStatus: ServiceStatus = Field(default= ServiceStatus.FREE, examples=["Premium"])
+    serverStatus: ServiceStatus = Field(default= ServiceStatus.FREE, examples=[ServiceStatus.FREE])
 
     # Location
     address: Optional[str] = Field(None, examples=["123 Main Street, Accra"])
     location: Optional[Dict[str, Any]] = Field(None, examples=[{"latitude": 5.6037, "longitude": -0.1870}])
 
     # Verification
-    isEmailVerified: bool = Field(default=False, examples=[False])
-    isPhoneVerified: bool = Field(default=False, examples=[True])
+    isEmailVerified: str = Field(default= VerifyEmail.NOT_SUBMITTED, examples=[VerifyEmail.NOT_SUBMITTED])
+    isPhoneVerified: str = Field(default= VerifyPhone.NOT_SUBMITTED, examples=[VerifyEmail.NOT_SUBMITTED])
 
      # Settings
     preferences: Optional[Dict[str, Any]] = Field(None, examples=[{"theme": "dark"}])
