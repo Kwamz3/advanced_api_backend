@@ -119,7 +119,6 @@ class UserCreate(BaseModel):
     
     
 class UserUpdate(BaseModel):
-    id: str = Field(..., examples=["001"])
     phone: str = Field(..., examples=["+233-54-768-8745"])
     email: str = Field(..., examples=["john.doe@example.com"])
     firstName: str = Field(..., examples=["John"])
@@ -132,19 +131,11 @@ class UserUpdate(BaseModel):
     dateOfbirth: Optional[datetime] = Field(None, examples=["2000-01-01T00:00:00Z"])
     gender: Optional[GenderStatus] = Field(default= GenderStatus.NOT_SELECTED, examples=[GenderStatus.NOT_SELECTED])
     bio: Optional[str] = Field(None, examples=["Creative designer and movie lover."])
-    serverStatus: ServiceStatus = Field(default= ServiceStatus.FREE, examples=[ServiceStatus.FREE])
 
     # Location
     address: Optional[str] = Field(None, examples=["123 Main Street, Accra"])
     location: Optional[Dict[str, Any]] = Field(None, examples=[{"latitude": 5.6037, "longitude": -0.1870}])
 
-    # Verification
-    isEmailVerified: str = Field(default= VerifyEmail.NOT_SUBMITTED, examples=[VerifyEmail.NOT_SUBMITTED])
-    isPhoneVerified: str = Field(default= VerifyPhone.NOT_SUBMITTED, examples=[VerifyEmail.NOT_SUBMITTED])
-
      # Settings
     preferences: Optional[Dict[str, Any]] = Field(None, examples=[{"theme": "dark"}])
     notificationSettings: Optional[Dict[str, Any]] = Field(None, examples=[{"email": True, "sms": False}])
-    
-class UserUpdateResponse(UserUpdate):
-    id: str = Field(..., examples=["001"])

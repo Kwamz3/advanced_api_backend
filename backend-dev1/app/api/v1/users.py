@@ -164,12 +164,6 @@ async def update_user_profile(
         # Get only the fields that were actually provided in the request
         data_update = update_user.model_dump(exclude_unset=True)
         
-        data_update.pop('id', None)
-        data_update.pop('role', None)
-        data_update.pop('serviceStatus', None)
-        data_update.pop('isEmailVerified', None)
-        data_update.pop('isPhoneVerified', None)
-        
         for key, value in data_update.items():
             if key in existing_user:
                 existing_user[key] = value
