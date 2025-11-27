@@ -101,7 +101,7 @@ async def get_movie_by_id(
     }
 
 
-@router.post("/create", response_model= dict)       
+@router.post("/{movie_id}", response_model= dict)       
 async def create_movie(
     request: CreateMovieMock = Query(..., description= "add a new movie"),
     current_user: dict = Depends(security)
