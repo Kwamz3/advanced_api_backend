@@ -389,7 +389,7 @@ movies_db = [
     "rating": 6.7,
     "cast": "Charlize Theron, KiKi Layne, Marwan Kenzari, Matthias Schoenaerts",
     "producer": "David Ellison, Dana Goldberg, Don Granger, Charlize Theron",
-    "views": 78000000,
+    "views": 7800000,
     "created_at": "2025-11-06T19:41:56.909101",
     "updated_at": "2025-11-06T19:41:56.909105",
     "is_liked": True
@@ -406,7 +406,7 @@ movies_db = [
     "rating": 8.8,
     "cast": "David Corenswet, Rachel Brosnahan, Nicholas Hoult",
     "producer": "James Gunn, Peter Safran",
-    "views": 45000000,
+    "views": 3200000,
     "created_at": "2025-11-06T19:41:56.909501",
     "updated_at": "2025-11-06T19:41:56.909505",
     "is_liked": True
@@ -423,7 +423,7 @@ movies_db = [
     "rating": 9.0,
     "cast": "Florence Pugh, Sebastian Stan, David Harbour, Hannah John-Kamen",
     "producer": "Kevin Feige",
-    "views": 42000000,
+    "views": 2950000,
     "created_at": "2025-11-06T19:41:56.909901",
     "updated_at": "2025-11-06T19:41:56.909905",
     "is_liked": True
@@ -440,7 +440,7 @@ movies_db = [
     "rating": 7.5,
     "cast": "Jason Momoa, Jack Black, Emma Myers",
     "producer": "Mary Parent, Roy Lee",
-    "views": 55000000,
+    "views": 4100000,
     "created_at": "2025-11-06T19:41:56.910301",
     "updated_at": "2025-11-06T19:41:56.910305",
     "is_liked": True
@@ -457,7 +457,7 @@ movies_db = [
     "rating": 7.2,
     "cast": "Haley Lu Richardson, Cole Sprouse",
     "producer": "Cathy Schulman",
-    "views": 10400000,
+    "views": 2340000,
     "created_at": "2025-11-06T19:41:56.910701",
     "updated_at": "2025-11-06T19:41:56.910705",
     "is_liked": True
@@ -474,7 +474,7 @@ movies_db = [
     "rating": 6.5,
     "cast": "Anna Kendrick, Justin Timberlake",
     "producer": "Gina Shay",
-    "views": 38000000,
+    "views": 3820000,
     "created_at": "2025-11-06T19:41:56.911101",
     "updated_at": "2025-11-06T19:41:56.911105",
     "is_liked": True
@@ -491,7 +491,7 @@ movies_db = [
     "rating": 6.1,
     "cast": "Anna Kendrick, Justin Timberlake",
     "producer": "Gina Shay",
-    "views": 10000000,
+    "views": 2100000,
     "created_at": "2025-11-06T19:41:56.911501",
     "updated_at": "2025-11-06T19:41:56.911505",
     "is_liked": True
@@ -508,7 +508,7 @@ movies_db = [
     "rating": 6.4,
     "cast": "Anna Kendrick, Justin Timberlake, Troye Sivan",
     "producer": "Gina Shay",
-    "views": 22000000,
+    "views": 1850000,
     "created_at": "2025-11-06T19:41:56.911901",
     "updated_at": "2025-11-06T19:41:56.911905",
     "is_liked": True
@@ -525,7 +525,7 @@ movies_db = [
     "rating": 6.6,
     "cast": "Jim Parsons, Rihanna, Steve Martin",
     "producer": "Mireille Soria",
-    "views": 43000000,
+    "views": 2680000,
     "created_at": "2025-11-06T19:41:56.912301",
     "updated_at": "2025-11-06T19:41:56.912305",
     "is_liked": True
@@ -542,7 +542,7 @@ movies_db = [
     "rating": 6.4,
     "cast": "Kate Hudson, Matthew McConaughey",
     "producer": "Lynda Obst, Robert Evans",
-    "views": 20000000,
+    "views": 1920000,
     "created_at": "2025-11-06T19:41:56.912701",
     "updated_at": "2025-11-06T19:41:56.912705",
     "is_liked": True
@@ -572,7 +572,7 @@ movies_db = [
     "rating": 6.1,
     "cast": "Joey King, Jacob Elordi, Joel Courtney",
     "producer": "Ed Glauser, Andrew Gunn",
-    "views": 65000000,
+    "views": 4830000,
     "created_at": "2025-11-06T19:41:56.913501",
     "updated_at": "2025-11-06T19:41:56.913505",
     "is_liked": True
@@ -589,7 +589,7 @@ movies_db = [
     "rating": 7.1,
     "cast": "Richard Gere, Julia Roberts, Héctor Elizondo, Ralph Bellamy, Laura San Giacomo",
     "producer": "Arnon Milchan, Steven Reuther, Charles Minsky",
-    "views": 42000000,
+    "views": 3150000,
     "created_at": "2025-11-06T19:41:56.913901",
     "updated_at": "2025-11-06T19:41:56.913905",
     "is_liked": True
@@ -606,7 +606,7 @@ movies_db = [
     "rating": 6.9,
     "cast": "Constance Wu, Henry Golding, Gemma Chan, Michelle Yeoh, Awkwafina, Ken Jeong",
     "producer": "Nina Jacobson, Brad Simpson, John Penotti",
-    "views": 30000000,
+    "views": 2740000,
     "created_at": "2025-11-06T19:41:56.914301",
     "updated_at": "2025-11-06T19:41:56.914305",
     "is_liked": True
@@ -623,7 +623,7 @@ movies_db = [
     "rating": 6.5,
     "cast": "Zoey Deutch, Glen Powell, Lucy Liu, Taye Diggs",
     "producer": "Juliet Berman, Justin Nappi",
-    "views": 25000000,
+    "views": 2280000,
     "created_at": "2025-11-06T19:41:56.914701",
     "updated_at": "2025-11-06T19:41:56.914705",
     "is_liked": True
@@ -653,7 +653,7 @@ movies_db = [
     "rating": 7.7,
     "cast": "Billy Crystal, Meg Ryan, Carrie Fisher",
     "producer": "Rob Reiner, Andy Scheinman",
-    "views": 50000000,
+    "views": 2630000,
     "created_at": "2025-11-06T19:41:56.915501",
     "updated_at": "2025-11-06T19:41:56.915505",
     "is_liked": True
@@ -670,7 +670,7 @@ movies_db = [
     "rating": 7.1,
     "cast": "Jason Segel, Kristen Bell, Mila Kunis, Russell Brand",
     "producer": "Judd Apatow, Shauna Robertson",
-    "views": 20000000,
+    "views": 1940000,
     "created_at": "2025-11-06T19:41:56.915901",
     "updated_at": "2025-11-06T19:41:56.915905",
     "is_liked": True
@@ -687,7 +687,7 @@ movies_db = [
     "rating": 6.9,
     "cast": "Alicia Silverstone, Stacey Dash, Paul Rudd, Brittany Murphy",
     "producer": "Scott Rudin, John Calley",
-    "views": 25000000,
+    "views": 2410000,
     "created_at": "2025-11-06T19:41:56.916301",
     "updated_at": "2025-11-06T19:41:56.916305",
     "is_liked": True
@@ -704,7 +704,7 @@ movies_db = [
     "rating": 7.4,
     "cast": "Eddie Murphy, Arsenio Hall, James Earl Jones, Shari Headley",
     "producer": "Eddie Murphy, David Sheffield",
-    "views": 45000000,
+    "views": 2870000,
     "created_at": "2025-11-06T19:41:56.916701",
     "updated_at": "2025-11-06T19:41:56.916705",
     "is_liked": True
@@ -721,7 +721,7 @@ movies_db = [
     "rating": 6.2,
     "cast": "Jennifer Garner, Mark Ruffalo",
     "producer": "Jordan Kerner, John N. Smith",
-    "views": 22000000,
+    "views": 2150000,
     "created_at": "2025-11-06T19:41:56.917101",
     "updated_at": "2025-11-06T19:41:56.917105",
     "is_liked": True
@@ -738,7 +738,7 @@ movies_db = [
     "rating": 6.6,
     "cast": "Nia Vardalos, John Corbett, Michael Constantine",
     "producer": "Tom Hanks, Rita Wilson, Gary Goetzman",
-    "views": 60000000,
+    "views": 3920000,
     "created_at": "2025-11-06T19:41:56.917501",
     "updated_at": "2025-11-06T19:41:56.917505",
     "is_liked": True
@@ -755,7 +755,7 @@ movies_db = [
     "rating": 8.8,
     "cast": "Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom Hardy",
     "producer": "Emma Thomas, Christopher Nolan",
-    "views": 75000000,
+    "views": 4520000,
     "created_at": "2025-11-06T19:41:56.917901",
     "updated_at": "2025-11-06T19:41:56.917905",
     "is_liked": True
@@ -772,7 +772,7 @@ movies_db = [
     "rating": 7.0,
     "cast": "Adam Sandler, Selena Gomez, Andy Samberg",
     "producer": "Michelle Murdocca",
-    "views": 43000000,
+    "views": 3340000,
     "created_at": "2025-11-06T19:41:56.918301",
     "updated_at": "2025-11-06T19:41:56.918305",
     "is_liked": True
@@ -789,9 +789,60 @@ movies_db = [
     "rating": 6.4,
     "cast": "Anne Hathaway, Julie Andrews",
     "producer": "Whitney Houston, Debra Martin Chase",
-    "views": 28000000,
+    "views": 2580000,
     "created_at": "2025-11-06T19:41:56.918701",
     "updated_at": "2025-11-06T19:41:56.918705",
+    "is_liked": True
+  },
+  {
+    "id": "048",
+    "title": "The Avengers",
+    "category": "Action, Superhero",
+    "description": "Earth's mightiest heroes must come together to stop Loki and his alien army from enslaving humanity.",
+    "poster_url": "https://image.tmdb.org/t/p/w500/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=eOrNdBpGMv8",
+    "duration": 143,
+    "release_year": 2012,
+    "rating": 8.0,
+    "cast": "Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth, Scarlett Johansson",
+    "producer": "Kevin Feige",
+    "views": 8450000,
+    "created_at": "2025-11-06T19:41:56.919101",
+    "updated_at": "2025-11-06T19:41:56.919105",
+    "is_liked": True
+  },
+  {
+    "id": "049",
+    "title": "Avatar",
+    "category": "Sci-Fi, Action",
+    "description": "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+    "poster_url": "https://image.tmdb.org/t/p/w500/jRXYjXNq0Cs2TcJjLkki24MLp7u.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=5PSNL1qE6VY",
+    "duration": 162,
+    "release_year": 2009,
+    "rating": 7.8,
+    "cast": "Sam Worthington, Zoe Saldana, Sigourney Weaver, Stephen Lang",
+    "producer": "James Cameron, Jon Landau",
+    "views": 9120000,
+    "created_at": "2025-11-06T19:41:56.919501",
+    "updated_at": "2025-11-06T19:41:56.919505",
+    "is_liked": True
+  },
+  {
+    "id": "050",
+    "title": "Titanic",
+    "category": "Romance, Drama",
+    "description": "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.",
+    "poster_url": "https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg",
+    "trailer_url": "https://www.youtube.com/watch?v=2e-eXJ6HgkQ",
+    "duration": 194,
+    "release_year": 1997,
+    "rating": 7.9,
+    "cast": "Leonardo DiCaprio, Kate Winslet, Billy Zane, Kathy Bates",
+    "producer": "James Cameron, Jon Landau",
+    "views": 7830000,
+    "created_at": "2025-11-06T19:41:56.919901",
+    "updated_at": "2025-11-06T19:41:56.919905",
     "is_liked": True
   }
 ]
