@@ -94,7 +94,7 @@ class UserCreate(BaseModel):
     dateOfbirth: Optional[datetime] = Field(None, examples=["2000-01-01T00:00:00Z"])
     gender: Optional[GenderStatus] = Field(default= GenderStatus.NOT_SELECTED, examples=[GenderStatus.NOT_SELECTED])
     bio: Optional[str] = Field(None, examples=["Creative designer and movie lover."])
-    serverStatus: ServiceStatus = Field(default= ServiceStatus.FREE, examples=[ServiceStatus.FREE])
+    serviceStatus: ServiceStatus = Field(default= ServiceStatus.FREE, examples=[ServiceStatus.FREE])
     # Location
     address: Optional[str] = Field(None, examples=["123 Main Street, Accra"])
     location: Optional[Dict[str, Any]] = Field(None, examples=[{"latitude": 5.6037, "longitude": -0.1870}])

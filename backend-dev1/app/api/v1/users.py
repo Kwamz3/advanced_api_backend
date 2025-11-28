@@ -107,6 +107,8 @@ async def create_user_profile(
     new_id = str(max((int(item["id"]) for item in user_db), default=0) + 1).zfill(3)
        
        
+    from datetime import datetime
+    
     new_user = {
         "id": new_id,
         "phone": create_user.phone,
@@ -115,22 +117,21 @@ async def create_user_profile(
         "lastName": create_user.lastName,
         "role": create_user.role,
         "status": create_user.status,
-        "service": create_user.service,
-                "profilePicture": user["profilePicture"],
-                "dateOfbirth": user["dateOfbirth"],
-                "gender": user["gender"],
-                "bio": user["bio"],
-                "address": user["address"],
-                "isEmailVerified": user["isEmailVerified"],
-                "isPhoneVerified": user["isPhoneVerified"],
-                "preferences": user["preferences"],
-                "notificationSettings": user["notificationSettings"],
-                "createdAt": user["createdAt"],
-                "updatedAt": user["updatedAt"] 
+        "service": create_user.serviceStatus,
+        "profilePicture": create_user.profilePicture,
+        "dateOfbirth": create_user.dateOfbirth.strftime("%Y-%m-%dT%H:%M:%SZ") if create_user.dateOfbirth else None,
+        "gender": create_user.gender,
+        "bio": create_user.bio,
+        "location": create_user.location,
+        "address": create_user.address,
+        "isEmailVerified": create_user.isEmailVerified,
+        "isPhoneVerified": create_user.isPhoneVerified,
+        "preferences": create_user.preferences,
+        "notificationSettings": create_user.notificationSettings,
+        "createdAt": create_user.createdAt.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "updatedAt": create_user.updatedAt.strftime("%Y-%m-%dT%H:%M:%SZ")
     }
     
-    # Still fixing the create user section done with logic left with returning the data
-    # Also fix not being able to select in the search by user id
     
     user_db.append(new_user)
     
