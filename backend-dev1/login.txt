@@ -1,0 +1,23 @@
+phone = +233-54-356-3657
+email = charles@example.com
+firstName = Charles
+lastName = Appiah
+profilePicture = "https://picsum.photos/776/61"
+dateOfbirth = 2003-10-04T00:00:00Z
+"bio": "Check example pretty key approach ground church one house others."
+"address": "35480 Cheryl Branch\nAllenborough, IN 16739"
+"location": {
+      "latitude": "30.642257",
+      "longitude": "150.455833"
+    }  
+"preferences": {
+    "theme": "light",
+    "language": "eng"
+},
+"notificationSettings": {
+    "emailNotifications": False,
+    "smsNotifications": True,
+    "pushNotifications": True
+},
+"createdAt": 2025-11-28T00:00:00Z
+"updatedAt": 2025-11-28T00:00:00Z

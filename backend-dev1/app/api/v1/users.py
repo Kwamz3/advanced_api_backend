@@ -101,27 +101,14 @@ async def get_user_profile(
 
 @router.post("/profile")
 async def create_user_profile(
-    user_id: int,
-    create_user: UserCreate 
+    # user_id: int,
+    create_user: UserCreate = Query(..., description= "create new user")
 ):
-    
-    padded_int = f'{user_id:03d}'
-    
-    existing_user = next(
-        (u for u in user_db if u["id"] == padded_int),
-        None
-    )
-    
-    if not existing_user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail= "User already exists"
-        )
-    
-    
-    new_id = max((item["id"] for item in user_db ), default=0) + 1
-        
+    new_id = str(max((int(item["id"]) for item in user_db), default=0) + 1).zfill(3)
        
+       
+    from datetime import datetime
+    
     new_user = {
         "id": new_id,
         "phone": create_user.phone,
@@ -129,8 +116,22 @@ async def create_user_profile(
         "firstName": create_user.firstName,
         "lastName": create_user.lastName,
         "role": create_user.role,
-        "status": create_user.status 
+        "status": create_user.status,
+        "service": create_user.serviceStatus,
+        "profilePicture": create_user.profilePicture,
+        "dateOfbirth": create_user.dateOfbirth.strftime("%Y-%m-%dT%H:%M:%SZ") if create_user.dateOfbirth else None,
+        "gender": create_user.gender,
+        "bio": create_user.bio,
+        "location": create_user.location,
+        "address": create_user.address,
+        "isEmailVerified": create_user.isEmailVerified,
+        "isPhoneVerified": create_user.isPhoneVerified,
+        "preferences": create_user.preferences,
+        "notificationSettings": create_user.notificationSettings,
+        "createdAt": create_user.createdAt.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "updatedAt": create_user.updatedAt.strftime("%Y-%m-%dT%H:%M:%SZ")
     }
+    
     
     user_db.append(new_user)
     
@@ -144,27 +145,43 @@ async def create_user_profile(
 @router.put("/profile/{user_id}")
 async def update_user_profile(
     user_id: int,
-    update_user: UserUpdate = Query(..., description= "update user profile")
+    update_user: UserUpdate
 ):
+  
     padded_id = f"{user_id:03d}"
-    padded_str = str(padded_id)
     
-    existing_user = next(
-        (u for u in user_db if u["id"].lower() == padded_str.lower())
-    )
-    
-    if not existing_user:
-        raise HTTPException(
-            status_code= status.HTTP_404_NOT_FOUND,
-            detail= "User not found"
+    try:
+        existing_user = next(
+            (u for u in user_db if u["id"] == padded_id),
+            None
         )
         
-    data_update = update_user.model_dump(exclude_unset= True)
-    
-    for key, value in data_update.items():
-        existing_user[key] = value
+        if not existing_user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User not found"
+            )
         
-    return{
-        "Success": "Profile updated succesfully",
-        "phone": data_update["phone"]
-    }
+        # Get only the fields that were actually provided in the request
+        data_update = update_user.model_dump(exclude_unset=True)
+        
+        for key, value in data_update.items():
+            if key in existing_user:
+                existing_user[key] = value
+        
+        from datetime import datetime
+        existing_user["updatedAt"] = datetime.now().isoformat()
+        
+        return {
+            "success": True,
+            "message": "Profile updated successfully",
+            "data": existing_user
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to update user profile: {str(e)}"
+        )

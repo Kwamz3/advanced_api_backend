@@ -61,26 +61,22 @@ class User(Base):
     lastName = Column(String(100), index=True, nullable=True)
     role = Column(Enum(UserRole), nullable=True)
     status = Column(Enum(UserStatus), default=UserStatus.INACTIVE, nullable=False)
-    
+
     #Profile information
     profilePicture = Column(String(500), nullable=True)
     dateOfbirth = Column(DateTime, nullable=True)
     gender = Column(Enum(GenderStatus), default=GenderStatus.NOT_SELECTED, nullable=True)
     bio = Column(Text, nullable=True)
-    
     #Location
     location = Column(String(255), nullable=True)
     address = Column(Text, nullable=True)
     location = Column(JSON, nullable=True) #{lat, lng}
-    
     #Verifcation
     isEmailVerified = Column(Enum(VerifyEmail), default=VerifyEmail.NOT_SUBMITTED)
     isPhoneVerified = Column(Enum(VerifyPhone), default=VerifyPhone.NOT_SUBMITTED)
-        
     #Settings
     preferences = Column(JSON, nullable=True)
     notificationSettings = Column(JSON, nullable=True)
-    
     #Timestamps
     createdAt = Column(DateTime(timezone=True), server_default=func.now())
     updatedAt = Column(DateTime(timezone=True), onupdate=func.now())
@@ -91,63 +87,43 @@ class UserCreate(BaseModel):
     email: str = Field(..., examples=["john.doe@example.com"])
     firstName: str = Field(..., examples=["John"])
     lastName: str = Field(..., examples=["Doe"])
-    role: UserRole = Field(default=UserRole.CLIENT, examples=["client"])
-    status: UserStatus = Field(default=UserStatus.INACTIVE, examples=["inactive"])
-
+    role: UserRole = Field(default= UserRole.CLIENT, examples=[UserRole.CLIENT])
+    status: UserStatus = Field(default=UserStatus.INACTIVE, examples=[UserStatus.INACTIVE])
     # Profile info
     profilePicture: Optional[str] = Field(None, examples=["https://example.com/avatar.jpg"]) 
     dateOfbirth: Optional[datetime] = Field(None, examples=["2000-01-01T00:00:00Z"])
-    gender: Optional[GenderStatus] = Field(None, examples=["male"])
+    gender: Optional[GenderStatus] = Field(default= GenderStatus.NOT_SELECTED, examples=[GenderStatus.NOT_SELECTED])
     bio: Optional[str] = Field(None, examples=["Creative designer and movie lover."])
-    serverStatus: ServiceStatus = Field(default= ServiceStatus.FREE, examples=["Premium"])
-
+    serviceStatus: ServiceStatus = Field(default= ServiceStatus.FREE, examples=[ServiceStatus.FREE])
     # Location
     address: Optional[str] = Field(None, examples=["123 Main Street, Accra"])
     location: Optional[Dict[str, Any]] = Field(None, examples=[{"latitude": 5.6037, "longitude": -0.1870}])
-
     # Verification
-    isEmailVerified: bool = Field(default=False, examples=[False])
-    isPhoneVerified: bool = Field(default=False, examples=[True])
-
+    isEmailVerified: VerifyEmail = Field(default= VerifyEmail.NOT_SUBMITTED, examples=[VerifyEmail.NOT_SUBMITTED])
+    isPhoneVerified: VerifyPhone = Field(default= VerifyPhone.NOT_SUBMITTED, examples=[VerifyEmail.NOT_SUBMITTED])
     # Settings
     preferences: Optional[Dict[str, Any]] = Field(None, examples=[{"theme": "dark"}])
     notificationSettings: Optional[Dict[str, Any]] = Field(None, examples=[{"email": True, "sms": False}])
-
     # Timestamps
     createdAt: datetime = Field(default_factory=lambda: datetime.now(), examples=["2025-11-06T00:00:00Z"])
     updatedAt: datetime = Field(default_factory=lambda: datetime.now(), examples=["2025-11-06T00:00:00Z"])
-
-
-# class UserResponse(UserCreate):
-#     id: str = Field(..., examples=["001"])
+    
     
 class UserUpdate(BaseModel):
-    id: str = Field(..., examples=["001"])
     phone: str = Field(..., examples=["+233-54-768-8745"])
     email: str = Field(..., examples=["john.doe@example.com"])
     firstName: str = Field(..., examples=["John"])
     lastName: str = Field(..., examples=["Doe"])
-    role: UserRole = Field(default=UserRole.CLIENT, examples=["client"])
-    status: UserStatus = Field(default=UserStatus.INACTIVE, examples=["inactive"])
-
+    role: UserRole = Field(default=UserRole.CLIENT, examples=[UserRole.CLIENT])
+    status: UserStatus = Field(default=UserStatus.INACTIVE, examples=[UserStatus.INACTIVE])
     # Profile info
     profilePicture: Optional[str] = Field(None, examples=["https://example.com/avatar.jpg"]) 
     dateOfbirth: Optional[datetime] = Field(None, examples=["2000-01-01T00:00:00Z"])
-    gender: Optional[GenderStatus] = Field(None, examples=["male"])
+    gender: Optional[GenderStatus] = Field(default= GenderStatus.NOT_SELECTED, examples=[GenderStatus.NOT_SELECTED])
     bio: Optional[str] = Field(None, examples=["Creative designer and movie lover."])
-    serverStatus: ServiceStatus = Field(default= ServiceStatus.FREE, examples=["Premium"])
-
     # Location
     address: Optional[str] = Field(None, examples=["123 Main Street, Accra"])
     location: Optional[Dict[str, Any]] = Field(None, examples=[{"latitude": 5.6037, "longitude": -0.1870}])
-
-    # Verification
-    isEmailVerified: bool = Field(default=False, examples=[False])
-    isPhoneVerified: bool = Field(default=False, examples=[True])
-
      # Settings
     preferences: Optional[Dict[str, Any]] = Field(None, examples=[{"theme": "dark"}])
     notificationSettings: Optional[Dict[str, Any]] = Field(None, examples=[{"email": True, "sms": False}])
-    
-class UserUpdateResponse(UserUpdate):
-    id: str = Field(..., examples=["001"])
