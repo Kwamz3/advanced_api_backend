@@ -866,7 +866,7 @@ user_db = [
     "status": UserStatus.INACTIVE,
     "service": ServiceStatus.PREMIUM_PLUS,
     "profilePicture": "https://picsum.photos/776/61",
-    "dateOfbirth": "1976-10-31",
+    "dateOfbirth": "1976-10-31T00:00:00Z",
     "gender": GenderStatus.MALE,
     "bio": "Check example pretty key approach ground church one house others.",
     "location": {
@@ -885,8 +885,8 @@ user_db = [
       "smsNotifications": True,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-24T12:50:06.264207",
-    "updatedAt": "2025-11-24T12:50:06.264213"
+    "createdAt": "2025-11-24T12:50:06Z",
+    "updatedAt": "2025-11-24T12:50:06Z"
   },
   {
     "id": "002",
@@ -898,7 +898,7 @@ user_db = [
     "status": UserStatus.ACTIVE,
     "service": ServiceStatus.PREMIUM,
     "profilePicture": "https://picsum.photos/97/115",
-    "dateOfbirth": "1967-04-14",
+    "dateOfbirth": "1967-04-14T00:00:00Z",
     "gender": GenderStatus.MALE,
     "bio": "Stand both factor boy three sort bar ready discuss.",
     "location": {
@@ -917,8 +917,8 @@ user_db = [
       "smsNotifications": True,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-24T12:50:06.265086",
-    "updatedAt": "2025-11-24T12:50:06.265090"
+    "createdAt": "2025-11-24T12:50:07Z",
+    "updatedAt": "2025-11-24T12:50:07Z"
   },
   {
     "id": "003",
@@ -930,7 +930,7 @@ user_db = [
     "status": UserStatus.SUSPENDED,
     "service": ServiceStatus.PREMIUM_PLUS,
     "profilePicture": "https://dummyimage.com/569x985",
-    "dateOfbirth": "1991-08-29",
+    "dateOfbirth": "1991-08-29T00:00:00Z",
     "gender": GenderStatus.FEMALE,
     "bio": "Look record just note man available kid not social line.",
     "location": {
@@ -949,8 +949,8 @@ user_db = [
       "smsNotifications": True,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-24T12:50:06.266010",
-    "updatedAt": "2025-11-24T12:50:06.266014"
+    "createdAt": "2025-11-24T12:50:08Z",
+    "updatedAt": "2025-11-24T12:50:08Z"
   },
   {
     "id": "004",
@@ -962,7 +962,7 @@ user_db = [
     "status": UserStatus.SUSPENDED,
     "service": ServiceStatus.PREMIUM,
     "profilePicture": "https://dummyimage.com/421x842",
-    "dateOfbirth": "1963-04-15",
+    "dateOfbirth": "1963-04-15T00:00:00Z",
     "gender": GenderStatus.MALE,
     "bio": "Fund beyond wide boy though station conference these rich from.",
     "location": {
@@ -981,8 +981,8 @@ user_db = [
       "smsNotifications": False,
       "pushNotifications": False
     },
-    "createdAt": "2025-11-24T12:50:06.266720",
-    "updatedAt": "2025-11-24T12:50:06.266723"
+    "createdAt": "2025-11-24T12:50:09Z",
+    "updatedAt": "2025-11-24T12:50:09Z"
   },
   {
     "id": "005",
@@ -994,7 +994,7 @@ user_db = [
     "status": UserStatus.SUSPENDED,
     "service": ServiceStatus.PREMIUM,
     "profilePicture": "https://placekitten.com/187/234",
-    "dateOfbirth": "1980-11-11",
+    "dateOfbirth": "1980-11-11T00:00:00Z",
     "gender": GenderStatus.FEMALE,
     "bio": "Accept hard various conference here address model choice lay quality.",
     "location": {
@@ -1013,8 +1013,8 @@ user_db = [
       "smsNotifications": False,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-24T12:50:06.267456",
-    "updatedAt": "2025-11-24T12:50:06.267460"
+    "createdAt": "2025-11-24T12:50:10Z",
+    "updatedAt": "2025-11-24T12:50:10Z"
   },
   {
     "id": "006",
@@ -1026,7 +1026,7 @@ user_db = [
     "status": UserStatus.ACTIVE,
     "service": ServiceStatus.PREMIUM_PLUS,
     "profilePicture": "https://placekitten.com/849/729",
-    "dateOfbirth": "1989-08-26",
+    "dateOfbirth": "1989-08-26T00:00:00Z",
     "gender": GenderStatus.RATHER_NOT_SAY,
     "bio": "During step own type fish audience evidence property our rich western radio.",
     "location": {
@@ -1045,8 +1045,8 @@ user_db = [
       "smsNotifications": True,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-24T12:50:06.268143",
-    "updatedAt": "2025-11-24T12:50:06.268147"
+    "createdAt": "2025-11-24T12:50:08Z",
+    "updatedAt": "2025-11-24T12:50:08Z"
   },
   {
     "id": "007",
@@ -1058,7 +1058,7 @@ user_db = [
     "status": UserStatus.INACTIVE,
     "service": ServiceStatus.PREMIUM,
     "profilePicture": "https://placekitten.com/514/749",
-    "dateOfbirth": "1965-04-08",
+    "dateOfbirth": "1965-04-08T00:00:00Z",
     "gender": GenderStatus.NOT_SELECTED,
     "bio": "View hard speech education evening go drug series large choose general PM give contain keep fact.",
     "location": {
@@ -1077,8 +1077,8 @@ user_db = [
       "smsNotifications": False,
       "pushNotifications": False
     },
-    "createdAt": "2025-11-24T12:50:06.268802",
-    "updatedAt": "2025-11-24T12:50:06.268805"
+    "createdAt": "2025-11-24T12:50:08Z",
+    "updatedAt": "2025-11-24T12:50:08Z"
   },
   {
     "id": "008",
@@ -1090,7 +1090,7 @@ user_db = [
     "status": UserStatus.SUSPENDED,
     "service": ServiceStatus.PREMIUM_PLUS,
     "profilePicture": "https://dummyimage.com/613x427",
-    "dateOfbirth": "1997-03-22",
+    "dateOfbirth": "1997-03-22T00:00:00Z",
     "gender": GenderStatus.MALE,
     "bio": "Anything stay receive science store soldier relate within.",
     "location": {
@@ -1109,8 +1109,8 @@ user_db = [
       "smsNotifications": True,
       "pushNotifications": False
     },
-    "createdAt": "2025-11-24T12:50:06.269580",
-    "updatedAt": "2025-11-24T12:50:06.269584"
+    "createdAt": "2025-11-24T12:50:11Z",
+    "updatedAt": "2025-11-24T12:50:11Z"
   },
   {
     "id": "009",
@@ -1122,7 +1122,7 @@ user_db = [
     "status": UserStatus.ACTIVE,
     "service": ServiceStatus.FREE,
     "profilePicture": "https://placekitten.com/606/172",
-    "dateOfbirth": "1969-01-31",
+    "dateOfbirth": "1969-01-31T00:00:00Z",
     "gender": GenderStatus.RATHER_NOT_SAY,
     "bio": "Suffer single tell building wife you then for outside produce.",
     "location": {
@@ -1141,8 +1141,8 @@ user_db = [
       "smsNotifications": False,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-24T12:50:06.270340",
-    "updatedAt": "2025-11-24T12:50:06.270344"
+    "createdAt": "2025-11-24T12:50:12Z",
+    "updatedAt": "2025-11-24T12:50:12Z"
   },
   {
     "id": "010",
@@ -1154,7 +1154,7 @@ user_db = [
     "status": UserStatus.SUSPENDED,
     "service": ServiceStatus.FREE,
     "profilePicture": "https://picsum.photos/142/752",
-    "dateOfbirth": "1977-03-27",
+    "dateOfbirth": "1977-03-27T00:00:00Z",
     "gender": GenderStatus.NOT_SELECTED,
     "bio": "Child bad drug appear prove public stay open also director same view minute manager director yet.",
     "location": {
@@ -1173,8 +1173,8 @@ user_db = [
       "smsNotifications": False,
       "pushNotifications": False
     },
-    "createdAt": "2025-11-24T12:50:06.270976",
-    "updatedAt": "2025-11-24T12:50:06.270979"
+    "createdAt": "2025-11-24T12:50:10Z",
+    "updatedAt": "2025-11-24T12:50:10Z"
   },
   {
     "id": "011",
@@ -1186,7 +1186,7 @@ user_db = [
     "status": UserStatus.SUSPENDED,
     "service": ServiceStatus.PREMIUM,
     "profilePicture": "https://placekitten.com/420/190",
-    "dateOfbirth": "1965-08-31",
+    "dateOfbirth": "1965-08-31T00:00:00Z",
     "gender": GenderStatus.FEMALE,
     "bio": "Those us drop pull collection fly commercial give professional nice us build cover animal next have.",
     "location": {
@@ -1205,8 +1205,8 @@ user_db = [
       "smsNotifications": False,
       "pushNotifications": False
     },
-    "createdAt": "2025-11-24T12:50:06.271736",
-    "updatedAt": "2025-11-24T12:50:06.271740"
+    "createdAt": "2025-11-24T12:50:13Z",
+    "updatedAt": "2025-11-24T12:50:13Z"
   },
   {
     "id": "012",
@@ -1218,7 +1218,7 @@ user_db = [
     "status": UserStatus.ACTIVE,
     "service": ServiceStatus.FREE,
     "profilePicture": "https://dummyimage.com/8x455",
-    "dateOfbirth": "1984-12-04",
+    "dateOfbirth": "1984-12-04T00:00:00Z",
     "gender": GenderStatus.FEMALE,
     "bio": "Success with father beautiful degree give have federal someone among book wide here job.",
     "location": {
@@ -1237,8 +1237,8 @@ user_db = [
       "smsNotifications": True,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-24T12:50:06.272481",
-    "updatedAt": "2025-11-24T12:50:06.272485"
+    "createdAt": "2025-11-24T12:50:14Z",
+    "updatedAt": "2025-11-24T12:50:14Z"
   },
   {
     "id": "013",
@@ -1250,7 +1250,7 @@ user_db = [
     "status": UserStatus.INACTIVE,
     "service": ServiceStatus.PREMIUM,
     "profilePicture": "https://dummyimage.com/996x187",
-    "dateOfbirth": "1984-03-04",
+    "dateOfbirth": "1984-03-04T00:00:00Z",
     "gender": GenderStatus.MALE,
     "bio": "Certain item community rise type standard health.",
     "location": {
@@ -1269,8 +1269,8 @@ user_db = [
       "smsNotifications": True,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-24T12:50:06.273019",
-    "updatedAt": "2025-11-24T12:50:06.273023"
+    "createdAt": "2025-11-24T12:50:12Z",
+    "updatedAt": "2025-11-24T12:50:12Z"
   },
   {
     "id": "014",
@@ -1282,7 +1282,7 @@ user_db = [
     "status": UserStatus.INACTIVE,
     "service": ServiceStatus.PREMIUM,
     "profilePicture": "https://dummyimage.com/807x736",
-    "dateOfbirth": "2000-07-09",
+    "dateOfbirth": "2000-07-09T00:00:00Z",
     "gender": GenderStatus.MALE,
     "bio": "Himself scene among sit guy point now pull parent contain activity finish bank court degree.",
     "location": {
@@ -1301,8 +1301,8 @@ user_db = [
       "smsNotifications": False,
       "pushNotifications": False
     },
-    "createdAt": "2025-11-24T12:50:06.273865",
-    "updatedAt": "2025-11-24T12:50:06.273868"
+    "createdAt": "2025-11-24T12:50:13Z",
+    "updatedAt": "2025-11-24T12:50:13Z"
   },
   {
     "id": "015",
@@ -1314,7 +1314,7 @@ user_db = [
     "status": UserStatus.INACTIVE,
     "service": ServiceStatus.FREE,
     "profilePicture": "https://dummyimage.com/412x771",
-    "dateOfbirth": "1981-03-14",
+    "dateOfbirth": "1981-03-14T00:00:00Z",
     "gender": GenderStatus.FEMALE,
     "bio": "Catch tell administration drop full perform break week deep wrong direction money side across.",
     "location": {
@@ -1333,8 +1333,8 @@ user_db = [
       "smsNotifications": False,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-24T12:50:06.274563",
-    "updatedAt": "2025-11-24T12:50:06.274566"
+    "createdAt": "2025-11-24T12:50:15Z",
+    "updatedAt": "2025-11-24T12:50:15Z"
   },
   {
     "id": "016",
@@ -1346,7 +1346,7 @@ user_db = [
     "status": UserStatus.ACTIVE,
     "service": ServiceStatus.PREMIUM_PLUS,
     "profilePicture": "https://placekitten.com/792/62",
-    "dateOfbirth": "1962-05-23",
+    "dateOfbirth": "1962-05-23T00:00:00Z",
     "gender": GenderStatus.FEMALE,
     "bio": "Beyond cover safe cause national public choice say need she.",
     "location": {
@@ -1365,8 +1365,8 @@ user_db = [
       "smsNotifications": False,
       "pushNotifications": False
     },
-    "createdAt": "2025-11-24T12:50:06.275393",
-    "updatedAt": "2025-11-24T12:50:06.275396"
+    "createdAt": "2025-11-24T12:50:16Z",
+    "updatedAt": "2025-11-24T12:50:16Z"
   },
   {
     "id": "017",
@@ -1378,7 +1378,7 @@ user_db = [
     "status": UserStatus.ACTIVE,
     "service": ServiceStatus.PREMIUM_PLUS,
     "profilePicture": "https://dummyimage.com/872x355",
-    "dateOfbirth": "1988-11-24",
+    "dateOfbirth": "1988-11-24T00:00:00Z",
     "gender": GenderStatus.RATHER_NOT_SAY,
     "bio": "Draw position sure easy on economy relate before.",
     "location": {
@@ -1397,8 +1397,8 @@ user_db = [
       "smsNotifications": False,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-24T12:50:06.276095",
-    "updatedAt": "2025-11-24T12:50:06.276098"
+    "createdAt": "2025-11-24T12:50:15Z",
+    "updatedAt": "2025-11-24T12:50:15Z"
   },
   {
     "id": "018",
@@ -1410,7 +1410,7 @@ user_db = [
     "status": UserStatus.ACTIVE,
     "service": ServiceStatus.PREMIUM_PLUS,
     "profilePicture": "https://dummyimage.com/931x858",
-    "dateOfbirth": "1993-03-13",
+    "dateOfbirth": "1993-03-13T00:00:00Z",
     "gender": GenderStatus.MALE,
     "bio": "Southern join create mouth must growth expect wide drug may appear put staff girl decade.",
     "location": {
@@ -1429,8 +1429,8 @@ user_db = [
       "smsNotifications": False,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-24T12:50:06.276742",
-    "updatedAt": "2025-11-24T12:50:06.276745"
+    "createdAt": "2025-11-24T12:50:16Z",
+    "updatedAt": "2025-11-24T12:50:16Z"
   },
   {
     "id": "019",
@@ -1442,7 +1442,7 @@ user_db = [
     "status": UserStatus.INACTIVE,
     "service": ServiceStatus.PREMIUM,
     "profilePicture": "https://placekitten.com/151/380",
-    "dateOfbirth": "1970-10-10",
+    "dateOfbirth": "1970-10-10T00:00:00Z",
     "gender": GenderStatus.NOT_SELECTED,
     "bio": "Artist half religious first order degree despite write field might affect.",
     "location": {
@@ -1461,8 +1461,8 @@ user_db = [
       "smsNotifications": True,
       "pushNotifications": True
     },
-    "createdAt": "2025-11-24T12:50:06.277757",
-    "updatedAt": "2025-11-24T12:50:06.277760"
+    "createdAt": "2025-11-24T12:50:17Z",
+    "updatedAt": "2025-11-24T12:50:17Z"
   },
   {
     "id": "020",
@@ -1474,7 +1474,7 @@ user_db = [
     "status": UserStatus.SUSPENDED,
     "service": ServiceStatus.PREMIUM,
     "profilePicture": "https://placekitten.com/620/51",
-    "dateOfbirth": "1994-03-18",
+    "dateOfbirth": "1994-03-18T00:00:00Z",
     "gender": GenderStatus.MALE,
     "bio": "Change their establish performance stock hold reality wish strategy.",
     "location": {
@@ -1493,7 +1493,7 @@ user_db = [
       "smsNotifications": True,
       "pushNotifications": False
     },
-    "createdAt": "2025-11-24T12:50:06.278422",
-    "updatedAt": "2025-11-24T12:50:06.278426"
+    "createdAt": "2025-11-24T12:50:18Z",
+    "updatedAt": "2025-11-24T12:50:18Z"
   }
 ]

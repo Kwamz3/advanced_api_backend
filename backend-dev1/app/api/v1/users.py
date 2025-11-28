@@ -101,26 +101,11 @@ async def get_user_profile(
 
 @router.post("/profile")
 async def create_user_profile(
-    user_id: int,
-    create_user: UserCreate 
+    # user_id: int,
+    create_user: UserCreate = Query(..., description= "create new user")
 ):
-    
-    padded_int = f'{user_id:03d}'
-    
-    existing_user = next(
-        (u for u in user_db if u["id"] == padded_int),
-        None
-    )
-    
-    if not existing_user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail= "User already exists"
-        )
-    
-    
-    new_id = max((item["id"] for item in user_db ), default=0) + 1
-        
+    new_id = str(max((int(item["id"]) for item in user_db), default=0) + 1).zfill(3)
+       
        
     new_user = {
         "id": new_id,
@@ -129,8 +114,23 @@ async def create_user_profile(
         "firstName": create_user.firstName,
         "lastName": create_user.lastName,
         "role": create_user.role,
-        "status": create_user.status 
+        "status": create_user.status,
+        "service": create_user.service,
+                "profilePicture": user["profilePicture"],
+                "dateOfbirth": user["dateOfbirth"],
+                "gender": user["gender"],
+                "bio": user["bio"],
+                "address": user["address"],
+                "isEmailVerified": user["isEmailVerified"],
+                "isPhoneVerified": user["isPhoneVerified"],
+                "preferences": user["preferences"],
+                "notificationSettings": user["notificationSettings"],
+                "createdAt": user["createdAt"],
+                "updatedAt": user["updatedAt"] 
     }
+    
+    # Still fixing the create user section done with logic left with returning the data
+    # Also fix not being able to select in the search by user id
     
     user_db.append(new_user)
     
