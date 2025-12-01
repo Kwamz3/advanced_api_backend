@@ -2,7 +2,7 @@ phone = +233-54-356-3657
 email = charles@example.com
 firstName = Charles
 lastName = Appiah
-profilePicture = "https://picsum.photos/776/61"
+profilePicture = "https://placehold.co/776x61"
 dateOfbirth = 2003-10-04T00:00:00Z
 "bio": "Check example pretty key approach ground church one house others."
 "address": "35480 Cheryl Branch\nAllenborough, IN 16739"
