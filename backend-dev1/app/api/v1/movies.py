@@ -8,7 +8,6 @@ from pydantic import BaseModel, field_validator
 from datetime import datetime
 from jose import JWTError
 import uuid
-import json
 
 from app.api.v1 import users
 from app.core.database import get_db
