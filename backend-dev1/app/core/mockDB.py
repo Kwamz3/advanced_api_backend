@@ -780,7 +780,7 @@ movies_db = [
     "rating": 7.2,
     "cast": "Stephanie Beatriz, María Cecilia Botero, John Leguizamo, Jessica Darrow",
     "producer": "Yvett Merino, Clark Spencer",
-    "views": 4234567,
+    "views": 4234569,
     "created_at": "2025-12-02T10:00:00.000000",
     "updated_at": "2025-12-02T10:00:00.000000",
     "is_liked": True
