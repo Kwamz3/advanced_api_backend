@@ -162,7 +162,6 @@ async def update_user_profile(
                 detail="User not found"
             )
         
-        # Get only the fields that were actually provided in the request
         data_update = update_user.model_dump(exclude_unset=True)
         
         for key, value in data_update.items():

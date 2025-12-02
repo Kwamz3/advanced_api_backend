@@ -1,10 +1,17 @@
 from sqlalchemy import Column, String, Integer, DateTime, Enum, Text, Boolean, JSON, ForeignKey
 from sqlalchemy.sql import func
 import uuid
+import enum
 
 from app.models.types import UUID
 from app.models.users import Base
 
+
+class Priority(str, enum.Enum):
+    HIGH = "HIGH"
+    MEDIUM = "MEDIUM"
+    LOW = "LOW"
+    NOT_SET = "NOT_SET"
 
 class SystemSettings(Base):
     
@@ -26,7 +33,7 @@ class AuditLog(Base):
     __tablename__ = "audit_log"
     
     id = Column(UUID(), primary_key=True, default=uuid.uuid4)
-    user_id = Column(UUID(), ForeignKey("user.id"),nullable=True)
+    user_id = Column(Integer, ForeignKey("user.id"),nullable=True)
     action = Column(String(100), nullable=False)
     resource = Column(String(100), nullable=False)
     resource_id = Column(String(100), nullable=True)
@@ -43,13 +50,13 @@ class SupportTicket(Base):
     __tablename__ = "support_ticket"
     
     id = Column(UUID(), primary_key=True, default=uuid.uuid4)
-    user_id = Column(UUID(), ForeignKey("user.id"), nullable=False) 
+    user_id = Column(Integer, ForeignKey("user.id"), nullable=False) 
     
     # Ticket details
     subject = Column(String(255), nullable=False)
     description = Column(Text, nullable=False)
     category = Column(String(50), nullable=False)
-    priority = Column(String(20), default="MEDIUM")
+    priority = Column(Enum(Priority), default= Priority.NOT_SET)
     status = Column(String(20), default="OPEN")
     
     # Assignment
