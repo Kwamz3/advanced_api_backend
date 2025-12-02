@@ -450,7 +450,7 @@ movies_db = [
     "title": "The Marvels",
     "category": "Action, Adventure, Science Fiction",
     "description": "Carol Danvers gets her powers entangled with those of Kamala Khan and Monica Rambeau, forcing them to work together to save the universe.",
-    "poster_url": "https://image.tmdb.org/t/p/w500/9GBhzXMFjgcZ3FdkLCCzp6rM3Ez.jpg",
+    "poster_url": "https://www.fulguropop.com/wp-content/uploads/2023/11/marvels-poster-jpeg.webp",
     "trailer_url": "https://www.youtube.com/watch?v=wS_qbDztgVY",
     "duration": 105,
     "release_year": 2023,
