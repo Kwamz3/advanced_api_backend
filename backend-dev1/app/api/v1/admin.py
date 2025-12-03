@@ -27,6 +27,7 @@ async def get_all_users():
     }
         
  
+@router.delete("dashboard/{user_id}")
 async def remove_user(
   user_id : int,
   remove_this_user: UserCreate  
