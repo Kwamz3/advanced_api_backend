@@ -57,3 +57,53 @@ async def remove_user(
             status_code= status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail= f"Failed to remove user: {str(e)}"
         )
+        
+
+async def account_approval(
+    user_remove: UserCreate
+):
+    
+    try:
+        unapproved_account = next(
+            (u for u in user_db if u["isEmailVerified"] == "PENDING" or u["isPhoneVerified"] == "PENDING"),
+            None
+        )
+        
+        if not unapproved_account:
+            raise HTTPException(
+                status_code= status.HTTP_404_NOT_FOUND,
+                detail= "User not found"
+            )
+        
+        return{
+            "success": True,
+            "data": {
+                "id": unapproved_account["id"],
+                "phone": unapproved_account["phone"],
+                "email": unapproved_account["email"],
+                "firstName": unapproved_account["firstName"],
+                "lastName": unapproved_account["lastName"],
+                "role": unapproved_account["role"],
+                "status": unapproved_account["status"],
+                "service": unapproved_account["service"],
+                "profilePicture": unapproved_account["profilePicture"],
+                "dateOfbirth": unapproved_account["dateOfbirth"],
+                "gender": unapproved_account["gender"],
+                "bio": unapproved_account["bio"],
+                "address": unapproved_account["address"],
+                "isEmailVerified": unapproved_account["isEmailVerified"],
+                "isPhoneVerified": unapproved_account["isPhoneVerified"],
+                "preferences": unapproved_account["preferences"],
+                "notificationSettings": unapproved_account["notificationSettings"],
+                "createdAt": unapproved_account["createdAt"],
+                "updatedAt": unapproved_account["updatedAt"]
+            }
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code= status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail= f"Failed to approve unapproved accounts: {str(e)}"
+        )
