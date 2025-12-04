@@ -196,7 +196,7 @@ async def service_Status(
         )
 
 
-@router.delete("users/{user_id}")
+@router.delete("/users/{user_id}")
 async def remove_user(
     user_id : int
 ):
