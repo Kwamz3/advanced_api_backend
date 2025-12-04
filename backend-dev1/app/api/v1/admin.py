@@ -2,7 +2,8 @@ from fastapi import APIRouter, HTTPException, Query, status
 
 from app.core.mockDB import user_db, movies_db
 from app.models.movies import CreateMovieMock
-from app.models.users import UserCreate
+from app.models.users import UserCreate 
+from app.models.admin import AccountApproval
 
 router = APIRouter()
 
@@ -27,10 +28,31 @@ async def get_all_users():
     }
         
  
+async def get_pending():
+     
+    pending_accounts= [
+        u for u in user_db if u["isEmailVerified"] == "PENDING" or u["isPhoneVerified"] == "PENDING"
+    ]
+        
+    count = len(pending_accounts)
+    
+    if not pending_accounts:
+        raise HTTPException(
+            status_code= status.HTTP_404_NOT_FOUND,
+            detail= "No pending accounts"
+        )
+        
+    return{
+        "success": True,
+        "count": f"You have {count} unapproved accounts",
+        "data": pending_accounts
+    }
+        
+         
 @router.put("/dashboard/{user_id}/account_approval")
 async def account_approval(
     user_id: int,
-    user_approval: UserCreate
+    user_approval: AccountApproval
 ):
     padded_id = f'{user_id:03d}'
     

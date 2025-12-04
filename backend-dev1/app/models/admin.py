@@ -1,10 +1,11 @@
 from sqlalchemy import Column, String, Integer, DateTime, Enum, Text, Boolean, JSON, ForeignKey
+from pydantic import BaseModel, Field
 from sqlalchemy.sql import func
 import uuid
 import enum
 
 from app.models.types import UUID
-from app.models.users import Base
+from app.models.users import Base, VerifyStatus
 
 
 class Priority(str, enum.Enum):
@@ -69,3 +70,12 @@ class SupportTicket(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
     resolved_at = Column(DateTime(timezone=True), nullable=True)
+    
+
+class AccountApproval(BaseModel):
+    """
+    Account Approval Base Model for admin
+    refer to admin.py/ account_approval
+    """
+    isEmailVerified: VerifyStatus = Field(default= VerifyStatus.NOT_SUBMITTED, examples=[VerifyStatus.NOT_SUBMITTED])
+    isPhoneVerified: VerifyStatus = Field(default= VerifyStatus.NOT_SUBMITTED, examples=[VerifyStatus.NOT_SUBMITTED])
