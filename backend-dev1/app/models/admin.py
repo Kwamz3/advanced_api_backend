@@ -5,7 +5,7 @@ import uuid
 import enum
 
 from app.models.types import UUID
-from app.models.users import Base, VerifyStatus
+from app.models.users import Base, VerifyStatus, UserStatus, ServiceStatus
 
 
 class Priority(str, enum.Enum):
@@ -79,3 +79,17 @@ class AccountApproval(BaseModel):
     """
     isEmailVerified: VerifyStatus = Field(default= VerifyStatus.NOT_SUBMITTED, examples=[VerifyStatus.NOT_SUBMITTED])
     isPhoneVerified: VerifyStatus = Field(default= VerifyStatus.NOT_SUBMITTED, examples=[VerifyStatus.NOT_SUBMITTED])
+
+class AccountBan(BaseModel):
+    """
+    Account Ban Base Model for admin
+    refer to admin.py/ account_ban
+    """
+    status: UserStatus = Field(default=UserStatus.INACTIVE, examples=[UserStatus.INACTIVE])
+
+class Status(BaseModel):
+    """
+    Account Service status Base Model for admin
+    refer to admin.py/ serviceStatus
+    """
+    service: ServiceStatus = Field(default=ServiceStatus.FREE, examples=[ServiceStatus.PREMIUM])

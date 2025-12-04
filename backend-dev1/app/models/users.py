@@ -61,6 +61,7 @@ class User(Base):
     dateOfbirth = Column(DateTime, nullable=True)
     gender = Column(Enum(GenderStatus), default=GenderStatus.NOT_SELECTED, nullable=True)
     bio = Column(Text, nullable=True)
+    service = Column(Enum(ServiceStatus), nullable= True)
     #Location
     location = Column(String(255), nullable=True)
     address = Column(Text, nullable=True)

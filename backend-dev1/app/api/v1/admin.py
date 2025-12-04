@@ -3,7 +3,7 @@ from fastapi import APIRouter, HTTPException, Query, status
 from app.core.mockDB import user_db, movies_db
 from app.models.movies import CreateMovieMock
 from app.models.users import UserCreate 
-from app.models.admin import AccountApproval
+from app.models.admin import AccountApproval, AccountBan, Status
 
 router = APIRouter()
 
@@ -27,7 +27,7 @@ async def get_all_users():
         "data": user_db
     }
         
- 
+@router.get("/approvals") 
 async def get_pending():
      
     pending_accounts= [
@@ -47,9 +47,10 @@ async def get_pending():
         "count": f"You have {count} unapproved accounts",
         "data": pending_accounts
     }
+
         
          
-@router.put("/dashboard/{user_id}/account_approval")
+@router.put("/approvals/{user_id}")
 async def account_approval(
     user_id: int,
     user_approval: AccountApproval
@@ -91,10 +92,72 @@ async def account_approval(
             detail= f"Failed to approve unapproved accounts: {str(e)}"
         )
 
-@router.put("/dashboard/{user_id}/account_ban")
+@router.put("/bans/{user_id}")
 async def account_ban(
     user_id: int,
-    user_ban: UserCreate
+    user_ban: AccountBan
+):
+    padded_id = f'{user_id:03d}'
+    
+    try:
+        ban_account = next(
+            (u for u in user_db if u["id"] == padded_id),
+            None
+        )
+        
+        if not ban_account:
+            raise HTTPException(
+                status_code= status.HTTP_404_NOT_FOUND,
+                detail= "No account pending approval"
+            )
+            
+        update_data = user_ban.model_dump(exclude_unset=True)
+        
+        for key, item in update_data.items():
+            ban_account[key] = item
+        
+        return{
+            "success": True,
+            "message": "User account ban successfully",
+            "data": {
+                "id": ban_account["id"],
+                "status": ban_account["status"],
+            }
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code= status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail= f"Failed to ban user: {str(e)}"
+        )
+
+@router.get("/serviceStatus")
+async def get_serviceStatus():
+     
+    serviceStatus_accounts= [
+        u for u in user_db if u["status"] == "PENDING"
+    ]
+        
+    count = len(serviceStatus_accounts)
+    
+    if not serviceStatus_accounts:
+        raise HTTPException(
+            status_code= status.HTTP_404_NOT_FOUND,
+            detail= "No pending accounts"
+        )
+        
+    return{
+        "success": True,
+        "count": f"You have {count} unapproved accounts",
+        "data": serviceStatus_accounts
+    }
+
+@router.put("/serviceStatus/{user_id}")
+async def service_Status(
+    user_id: int,
+    user_ban: Status
 ):
     padded_id = f'{user_id:03d}'
     
@@ -133,7 +196,7 @@ async def account_ban(
         )
 
 
-@router.delete("dashboard/{user_id}")
+@router.delete("users/{user_id}")
 async def remove_user(
     user_id : int
 ):
