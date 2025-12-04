@@ -201,6 +201,12 @@ async def get_watchlist(
             status_code= status.HTTP_404_NOT_FOUND,
             detail= "Watchlist not found"
         )
+    
+    if user_watchlist["watchlist"] == []:
+        raise HTTPException(
+            status_code= status.HTTP_404_NOT_FOUND,
+            detail= "No movies added to watchlist"
+        )
         
     return{
         "success": True,
