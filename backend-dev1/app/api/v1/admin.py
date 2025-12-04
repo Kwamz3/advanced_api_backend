@@ -32,7 +32,7 @@ async def account_approval(
     user_id: int,
     user_approval: UserCreate
 ):
-    padded_id = f'{user_db:03d}'
+    padded_id = f'{user_id:03d}'
     
     try:
         unapproved_account = next(
@@ -74,7 +74,7 @@ async def account_ban(
     user_id: int,
     user_ban: UserCreate
 ):
-    padded_id = f'{user_db:03d}'
+    padded_id = f'{user_id:03d}'
     
     try:
         ban_account = next(
@@ -107,7 +107,7 @@ async def account_ban(
     except Exception as e:
         raise HTTPException(
             status_code= status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail= f"Failed to approve unapproved accounts: {str(e)}"
+            detail= f"Failed to ban user: {str(e)}"
         )
 
 
