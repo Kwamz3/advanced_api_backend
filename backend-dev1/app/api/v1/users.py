@@ -185,7 +185,7 @@ async def update_user_profile(
             detail=f"Failed to update user profile: {str(e)}"
         )
         
-
+@router.get("/watchlist/user/{user_id}")
 async def get_watchlist(
     user_id: int
 ):
@@ -207,7 +207,8 @@ async def get_watchlist(
         "data": user_watchlist["watchlist"]
     }
 
-        
+
+@router.post("/watchlist/user/{user_id}")        
 async def add_to_watchlist(
     user_id: int,
     add_movie: WatchListItem
@@ -249,8 +250,9 @@ async def add_to_watchlist(
             status_code= status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail= f"Failed to add movie to watchlist: {str(e)}"
         )
+     
         
-        
+@router.put("/watchlist/user/{user_id}")        
 async def remove_movie(
     user_id: int,
     movie_id: str
@@ -297,7 +299,7 @@ async def remove_movie(
             detail= f"Failed to remove watchlist: {str(e)}"
         )
         
-        
+@router.delete("/watchlist/user/{user_id}")        
 async def clear_watchlist(
     user_id: int
 ):
