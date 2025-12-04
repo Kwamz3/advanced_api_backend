@@ -27,40 +27,9 @@ async def get_all_users():
     }
         
  
-@router.delete("dashboard/{user_id}")
-async def remove_user(
-  user_id : int,
-  remove_this_user: UserCreate  
-):
-    
-    padded_id = f'{user_id:03d}'
-    
-    try:
-        existing_user = next(
-            (u for u in user_db if u["id"] == padded_id)
-        )
-        
-        if not existing_user:
-            raise HTTPException(
-                status_code= status.HTTP_404_NOT_FOUND,
-                detail= "User not found"
-            )
-        
-        data_update = remove_this_user.model_dump(exclude_unset=True)
-        
-        user_db.remove(data_update)
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(
-            status_code= status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail= f"Failed to remove user: {str(e)}"
-        )
-        
-
+@router.put("/dashboard/account_approval")
 async def account_approval(
-    user_remove: UserCreate
+    user_approval: UserCreate
 ):
     
     try:
@@ -79,24 +48,8 @@ async def account_approval(
             "success": True,
             "data": {
                 "id": unapproved_account["id"],
-                "phone": unapproved_account["phone"],
-                "email": unapproved_account["email"],
-                "firstName": unapproved_account["firstName"],
-                "lastName": unapproved_account["lastName"],
-                "role": unapproved_account["role"],
-                "status": unapproved_account["status"],
-                "service": unapproved_account["service"],
-                "profilePicture": unapproved_account["profilePicture"],
-                "dateOfbirth": unapproved_account["dateOfbirth"],
-                "gender": unapproved_account["gender"],
-                "bio": unapproved_account["bio"],
-                "address": unapproved_account["address"],
                 "isEmailVerified": unapproved_account["isEmailVerified"],
                 "isPhoneVerified": unapproved_account["isPhoneVerified"],
-                "preferences": unapproved_account["preferences"],
-                "notificationSettings": unapproved_account["notificationSettings"],
-                "createdAt": unapproved_account["createdAt"],
-                "updatedAt": unapproved_account["updatedAt"]
             }
         }
         
@@ -106,4 +59,38 @@ async def account_approval(
         raise HTTPException(
             status_code= status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail= f"Failed to approve unapproved accounts: {str(e)}"
+        )
+
+
+@router.delete("dashboard/{user_id}")
+async def remove_user(
+    user_id : int
+):
+    
+    padded_id = f'{user_id:03d}'
+    
+    try:
+        existing_user = next(
+            (u for u in user_db if u["id"] == padded_id),
+            None
+        )
+        
+        if not existing_user:
+            raise HTTPException(
+                status_code= status.HTTP_404_NOT_FOUND,
+                detail= "User not found"
+            )
+    
+        
+        user_db.remove(existing_user)
+        return{
+            "message": f"User {padded_id} removed successfully"
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code= status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail= f"Failed to remove user: {str(e)}"
         )
