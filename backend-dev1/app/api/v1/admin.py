@@ -41,15 +41,63 @@ async def account_approval(
         if not unapproved_account:
             raise HTTPException(
                 status_code= status.HTTP_404_NOT_FOUND,
-                detail= "User not found"
+                detail= "No account pending approval"
             )
+            
+        update_data = user_approval.model_dump(exclude_unset=True)
+        
+        for key, item in update_data.items():
+            unapproved_account[key] = item
         
         return{
             "success": True,
+            "message": "Account approved successfully",
             "data": {
                 "id": unapproved_account["id"],
                 "isEmailVerified": unapproved_account["isEmailVerified"],
                 "isPhoneVerified": unapproved_account["isPhoneVerified"],
+            }
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code= status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail= f"Failed to approve unapproved accounts: {str(e)}"
+        )
+
+
+@router.put("/dashboard/account_ban")
+async def account_ban(
+    user_ban: UserCreate
+):
+    """
+    Used to reject account verifications and ban users
+    """
+    try:
+        ban_account = next(
+            (u for u in user_db if u["isEmailVerified"]  or u["isPhoneVerified"]),
+            None
+        )
+        
+        if not ban_account:
+            raise HTTPException(
+                status_code= status.HTTP_404_NOT_FOUND,
+                detail= "No account pending approval"
+            )
+            
+        update_data = user_ban.model_dump(exclude_unset=True)
+        
+        for key, item in update_data.items():
+            ban_account[key] = item
+        
+        return{
+            "success": True,
+            "data": {
+                "id": ban_account["id"],
+                "isEmailVerified": ban_account["isEmailVerified"],
+                "isPhoneVerified": ban_account["isPhoneVerified"],
             }
         }
         
