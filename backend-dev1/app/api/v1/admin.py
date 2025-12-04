@@ -137,7 +137,7 @@ async def account_ban(
 async def get_serviceStatus():
      
     serviceStatus_accounts= [
-        u for u in user_db if u["status"] == "PENDING"
+        u for u in user_db if u["service"] == "FREE" or u["service"] == "PREMIUM"
     ]
         
     count = len(serviceStatus_accounts)
@@ -145,12 +145,12 @@ async def get_serviceStatus():
     if not serviceStatus_accounts:
         raise HTTPException(
             status_code= status.HTTP_404_NOT_FOUND,
-            detail= "No pending accounts"
+            detail= "No modifications recorded"
         )
         
     return{
         "success": True,
-        "count": f"You have {count} unapproved accounts",
+        "count": f"You have {count} service modifications",
         "data": serviceStatus_accounts
     }
 
@@ -162,28 +162,28 @@ async def service_Status(
     padded_id = f'{user_id:03d}'
     
     try:
-        ban_account = next(
+        serviceStatus = next(
             (u for u in user_db if u["id"] == padded_id),
             None
         )
         
-        if not ban_account:
+        if not serviceStatus:
             raise HTTPException(
                 status_code= status.HTTP_404_NOT_FOUND,
-                detail= "No account pending approval"
+                detail= "No service modification recorded"
             )
             
         update_data = user_ban.model_dump(exclude_unset=True)
         
         for key, item in update_data.items():
-            ban_account[key] = item
+            serviceStatus[key] = item
         
         return{
             "success": True,
-            "message": "User account ban successfully",
+            "message": "User account modified successfully",
             "data": {
-                "id": ban_account["id"],
-                "status": ban_account["status"],
+                "id": serviceStatus["id"],
+                "service_status": serviceStatus["service"],
             }
         }
         
@@ -192,10 +192,63 @@ async def service_Status(
     except Exception as e:
         raise HTTPException(
             status_code= status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail= f"Failed to ban user: {str(e)}"
+            detail= f"Failed to modify account: {str(e)}"
         )
 
 
+@router.get("/users/{user_id}")
+async def get_user(
+    user_id : int
+):
+    
+    padded_id = f'{user_id:03d}'
+    
+    try:
+        existing_user = next(
+            (u for u in user_db if u["id"] == padded_id),
+            None
+        )
+        
+        if not existing_user:
+            raise HTTPException(
+                status_code= status.HTTP_404_NOT_FOUND,
+                detail= "User not found"
+            )
+    
+        return{
+            "success": True,
+            "data": {
+                "id": existing_user["id"],
+                "phone": existing_user["phone"],
+                "email": existing_user["email"],
+                "firstName": existing_user["firstName"],
+                "lastName": existing_user["lastName"],
+                "role": existing_user["role"],
+                "status": existing_user["status"],
+                "service": existing_user["service"],
+                "profilePicture": existing_user["profilePicture"],
+                "dateOfbirth": existing_user["dateOfbirth"],
+                "gender": existing_user["gender"],
+                "bio": existing_user["bio"],
+                "address": existing_user["address"],
+                "isEmailVerified": existing_user["isEmailVerified"],
+                "isPhoneVerified": existing_user["isPhoneVerified"],
+                "preferences": existing_user["preferences"],
+                "notificationSettings": existing_user["notificationSettings"],
+                "createdAt": existing_user["createdAt"],
+                "updatedAt": existing_user["updatedAt"]
+            }
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code= status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail= f"Failed to remove user: {str(e)}"
+        )
+        
+        
 @router.delete("/users/{user_id}")
 async def remove_user(
     user_id : int
