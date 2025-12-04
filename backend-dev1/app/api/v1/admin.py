@@ -27,14 +27,16 @@ async def get_all_users():
     }
         
  
-@router.put("/dashboard/account_approval")
+@router.put("/dashboard/{user_id}/account_approval")
 async def account_approval(
+    user_id: int,
     user_approval: UserCreate
 ):
+    padded_id = f'{user_db:03d}'
     
     try:
         unapproved_account = next(
-            (u for u in user_db if u["isEmailVerified"] == "PENDING" or u["isPhoneVerified"] == "PENDING"),
+            (u for u in user_db if u["id"] == padded_id),
             None
         )
         
@@ -67,17 +69,16 @@ async def account_approval(
             detail= f"Failed to approve unapproved accounts: {str(e)}"
         )
 
-
-@router.put("/dashboard/account_ban")
+@router.put("/dashboard/{user_id}/account_ban")
 async def account_ban(
+    user_id: int,
     user_ban: UserCreate
 ):
-    """
-    Used to reject account verifications and ban users
-    """
+    padded_id = f'{user_db:03d}'
+    
     try:
         ban_account = next(
-            (u for u in user_db if u["isEmailVerified"]  or u["isPhoneVerified"]),
+            (u for u in user_db if u["id"] == padded_id),
             None
         )
         
@@ -94,10 +95,10 @@ async def account_ban(
         
         return{
             "success": True,
+            "message": "User account ban successfully",
             "data": {
                 "id": ban_account["id"],
-                "isEmailVerified": ban_account["isEmailVerified"],
-                "isPhoneVerified": ban_account["isPhoneVerified"],
+                "status": ban_account["status"],
             }
         }
         
