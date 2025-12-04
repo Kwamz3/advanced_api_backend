@@ -185,6 +185,28 @@ async def update_user_profile(
             detail=f"Failed to update user profile: {str(e)}"
         )
         
+
+async def get_watchlist(
+    user_id: int
+):
+    
+    padded_id = f'{user_id:03d}'
+    
+    user_watchlist = next(
+        (u for u in user_db if u["id"] == padded_id)
+    )
+    
+    if not user_watchlist:
+        raise HTTPException(
+            status_code= status.HTTP_404_NOT_FOUND,
+            detail= "Watchlist not found"
+        )
+        
+    return{
+        "success": True,
+        "data": user_watchlist["watchlist"]
+    }
+
         
 async def add_to_watchlist(
     user_id: int,
@@ -227,3 +249,75 @@ async def add_to_watchlist(
             status_code= status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail= f"Failed to add movie to watchlist: {str(e)}"
         )
+        
+        
+async def remove_movie(
+    user_id: int,
+    movie_id: str
+):
+    padded_id = f'{user_id:03d}'
+    padded_movieId = f'{movie_id}'
+    
+    try:
+        user = next(
+            (u for u in user_db if u["id"] == padded_id)
+        )
+        
+        if not user:
+            raise HTTPException(
+                status_code= status.HTTP_404_NOT_FOUND,
+                detail= "User not found"
+            )
+            
+        watchlist = user["watchlist"]  
+            
+        movie = next(
+            (m for m in watchlist if m["id"] == padded_movieId)
+        )
+        
+        if not movie:
+            raise HTTPException(
+                status_code= status.HTTP_404_NOT_FOUND,
+                detail= "Movie not found in watchlist"
+            )
+            
+        watchlist.remove(movie)
+        
+        return{
+            "success": True,
+            "message": "Movie rem"
+            
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code= status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail= f"Failed to remove watchlist: {str(e)}"
+        )
+        
+        
+async def clear_watchlist(
+    user_id: int
+):
+    
+    padded_id = f'{user_id:03d}'
+    
+    user = next(
+        (u for u in user_db if u["id"] == padded_id)
+    )
+    
+    if not user:
+        raise HTTPException(
+            status_code= status.HTTP_404_NOT_FOUND,
+            detail= "User not found"
+        )
+    
+    user["watchlist"] = []
+    
+    return{
+        "success": True,
+        "message": "Watchlist cleared successfully"
+    }
+    
