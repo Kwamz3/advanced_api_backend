@@ -2,7 +2,7 @@
 User model and related schemas
 """
 
-from sqlalchemy import Column, String, Integer, Enum, JSON, DateTime, Boolean, Text
+from sqlalchemy import Column, String, Integer, Enum, JSON, DateTime, Boolean, Text, ARRAY
 from sqlalchemy.orm import relationship
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any,Union
@@ -55,13 +55,14 @@ class User(Base):
     lastName = Column(String(100), index=True, nullable=True)
     role = Column(Enum(UserRole), nullable=True)
     status = Column(Enum(UserStatus), default=UserStatus.INACTIVE, nullable=False)
-
     #Profile information
     profilePicture = Column(String(500), nullable=True)
     dateOfbirth = Column(DateTime, nullable=True)
     gender = Column(Enum(GenderStatus), default=GenderStatus.NOT_SELECTED, nullable=True)
     bio = Column(Text, nullable=True)
+    # Account infomation
     service = Column(Enum(ServiceStatus), nullable= True)
+    watchlist = Column(ARRAY(String), nullable= True)
     #Location
     location = Column(String(255), nullable=True)
     address = Column(Text, nullable=True)
@@ -122,3 +123,10 @@ class UserUpdate(BaseModel):
      # Settings
     preferences: Optional[Dict[str, Any]] = Field(None, examples=[{"theme": "dark"}])
     notificationSettings: Optional[Dict[str, Any]] = Field(None, examples=[{"email": True, "sms": False}])
+    
+
+class WatchListItem(BaseModel):
+    movie_id: str = Field(..., examples=["001"])
+    title: str = Field(..., examples=["Inception"])
+    poster_url: Optional[str] = Field(None, examples=["https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg"])
+    trailer_url: Optional[str] = Field(None, examples=["https://www.youtube.com/watch?v=LEjhY15eCx0"])

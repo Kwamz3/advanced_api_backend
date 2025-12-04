@@ -876,6 +876,7 @@ user_db = [
     "address": "35480 Cheryl Branch\nAllenborough, IN 16739",
     "isEmailVerified": VerifyStatus.REJECTED,
     "isPhoneVerified": VerifyStatus.PENDING,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -908,6 +909,7 @@ user_db = [
     "address": "98255 Bruce Shoal Suite 412\nRogerstown, ND 90475",
     "isEmailVerified": VerifyStatus.NOT_SUBMITTED,
     "isPhoneVerified": VerifyStatus.NOT_SUBMITTED,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "es"
@@ -940,6 +942,7 @@ user_db = [
     "address": "15992 Terry Ridges Apt. 134\nWest Russell, IN 17261",
     "isEmailVerified": VerifyStatus.APPROVED,
     "isPhoneVerified": VerifyStatus.APPROVED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "es"
@@ -972,6 +975,7 @@ user_db = [
     "address": "7675 Brown Rest\nEast Jason, NM 55778",
     "isEmailVerified": VerifyStatus.REJECTED,
     "isPhoneVerified": VerifyStatus.REJECTED,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "es"
@@ -1004,6 +1008,7 @@ user_db = [
     "address": "696 Nicole Overpass\nThompsonville, DC 05267",
     "isEmailVerified": VerifyStatus.NOT_SUBMITTED,
     "isPhoneVerified": VerifyStatus.APPROVED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -1036,6 +1041,7 @@ user_db = [
     "address": "1323 Reese Forest Apt. 834\nEast Andrea, NE 11497",
     "isEmailVerified": VerifyStatus.APPROVED,
     "isPhoneVerified": VerifyStatus.NOT_SUBMITTED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -1068,6 +1074,7 @@ user_db = [
     "address": "67394 Hall Ferry Apt. 398\nLake Tara, UT 90969",
     "isEmailVerified": VerifyStatus.NOT_SUBMITTED,
     "isPhoneVerified": VerifyStatus.PENDING,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "en"
@@ -1100,6 +1107,7 @@ user_db = [
     "address": "2022 Joshua Courts Apt. 838\nPort Nicole, WI 90265",
     "isEmailVerified": VerifyStatus.APPROVED,
     "isPhoneVerified": VerifyStatus.APPROVED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -1132,6 +1140,7 @@ user_db = [
     "address": "37348 Kennedy Crossing\nWest David, AR 90939",
     "isEmailVerified": VerifyStatus.APPROVED,
     "isPhoneVerified": VerifyStatus.PENDING,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "fr"
@@ -1164,6 +1173,7 @@ user_db = [
     "address": "9092 Courtney Crest Suite 283\nLake Omarhaven, IL 80734",
     "isEmailVerified": VerifyStatus.REJECTED,
     "isPhoneVerified": VerifyStatus.PENDING,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "es"
@@ -1196,6 +1206,7 @@ user_db = [
     "address": "5497 Gilmore Bypass Apt. 416\nAdrienneshire, CT 22672",
     "isEmailVerified": VerifyStatus.APPROVED,
     "isPhoneVerified": VerifyStatus.REJECTED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "es"
@@ -1228,6 +1239,7 @@ user_db = [
     "address": "26208 James Expressway Suite 722\nSouth Michaelborough, MT 35807",
     "isEmailVerified": VerifyStatus.REJECTED,
     "isPhoneVerified": VerifyStatus.REJECTED,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "en"
@@ -1260,6 +1272,7 @@ user_db = [
     "address": "USNS Harris\nFPO AP 69830",
     "isEmailVerified": VerifyStatus.APPROVED,
     "isPhoneVerified": VerifyStatus.NOT_SUBMITTED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -1292,6 +1305,7 @@ user_db = [
     "address": "21277 Samantha Neck Suite 720\nDavisshire, FM 08201",
     "isEmailVerified": VerifyStatus.APPROVED,
     "isPhoneVerified": VerifyStatus.APPROVED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -1324,6 +1338,7 @@ user_db = [
     "address": "069 Campbell Fork Apt. 762\nDanielfurt, NY 02556",
     "isEmailVerified": VerifyStatus.APPROVED,
     "isPhoneVerified": VerifyStatus.PENDING,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -1356,6 +1371,7 @@ user_db = [
     "address": "71549 Norris Walks Apt. 030\nLaurahaven, LA 65336",
     "isEmailVerified": VerifyStatus.PENDING,
     "isPhoneVerified": VerifyStatus.NOT_SUBMITTED,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "es"
@@ -1388,6 +1404,7 @@ user_db = [
     "address": "06549 Flowers Groves\nSouth Elizabeth, NV 05540",
     "isEmailVerified": VerifyStatus.PENDING,
     "isPhoneVerified": VerifyStatus.APPROVED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -1420,6 +1437,7 @@ user_db = [
     "address": "6322 Erica Shoals Apt. 120\nPort James, AK 14413",
     "isEmailVerified": VerifyStatus.PENDING,
     "isPhoneVerified": VerifyStatus.REJECTED,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "es"
@@ -1452,6 +1470,7 @@ user_db = [
     "address": "8274 Jones Lakes\nOrozcoview, NC 01497",
     "isEmailVerified": VerifyStatus.PENDING,
     "isPhoneVerified": VerifyStatus.NOT_SUBMITTED,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "es"
@@ -1484,6 +1503,7 @@ user_db = [
     "address": "831 Bradford Springs Apt. 366\nMichelleton, MD 98432",
     "isEmailVerified": VerifyStatus.PENDING,
     "isPhoneVerified": VerifyStatus.REJECTED,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "fr"
