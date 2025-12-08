@@ -62,9 +62,9 @@ async def health_check():
     }
     
     
+app.include_router(admin.router, prefix="/api/v1/admin", tags=["Admin"])
 app.include_router(users.router, prefix= "/api/v1/users", tags=["Users"])
 app.include_router(movies.router, prefix="/api/v1/movies", tags=["Movies"])
-app.include_router(admin.router, prefix="/api/v1/admin", tags=["Admin"])
 
 @app.get("/")
 async def root():

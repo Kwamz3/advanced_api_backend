@@ -2,7 +2,7 @@
 User model and related schemas
 """
 
-from sqlalchemy import Column, String, Integer, Enum, JSON, DateTime, Boolean, Text
+from sqlalchemy import Column, String, Integer, Enum, JSON, DateTime, Boolean, Text, ARRAY
 from sqlalchemy.orm import relationship
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any,Union
@@ -27,13 +27,7 @@ class UserStatus(str, enum.Enum):
     INACTIVE = "INACTIVE"
     SUSPENDED = "SUSPENDED"
     
-class VerifyEmail(str, enum.Enum):
-    NOT_SUBMITTED = "NOT_SUBMITTED"
-    PENDING = "PENDING"
-    APPROVED = "APPROVED"
-    REJECTED = "REJECTED"
-    
-class VerifyPhone(str, enum.Enum):
+class VerifyStatus(str, enum.Enum):
     NOT_SUBMITTED = "NOT_SUBMITTED"
     PENDING = "PENDING"
     APPROVED = "APPROVED"
@@ -61,19 +55,21 @@ class User(Base):
     lastName = Column(String(100), index=True, nullable=True)
     role = Column(Enum(UserRole), nullable=True)
     status = Column(Enum(UserStatus), default=UserStatus.INACTIVE, nullable=False)
-
     #Profile information
     profilePicture = Column(String(500), nullable=True)
     dateOfbirth = Column(DateTime, nullable=True)
     gender = Column(Enum(GenderStatus), default=GenderStatus.NOT_SELECTED, nullable=True)
     bio = Column(Text, nullable=True)
+    # Account infomation
+    service = Column(Enum(ServiceStatus), nullable= True)
+    watchlist = Column(ARRAY(String), nullable= True)
     #Location
     location = Column(String(255), nullable=True)
     address = Column(Text, nullable=True)
     location = Column(JSON, nullable=True) #{lat, lng}
     #Verifcation
-    isEmailVerified = Column(Enum(VerifyEmail), default=VerifyEmail.NOT_SUBMITTED)
-    isPhoneVerified = Column(Enum(VerifyPhone), default=VerifyPhone.NOT_SUBMITTED)
+    isEmailVerified = Column(Enum(VerifyStatus), default=VerifyStatus.NOT_SUBMITTED)
+    isPhoneVerified = Column(Enum(VerifyStatus), default=VerifyStatus.NOT_SUBMITTED)
     #Settings
     preferences = Column(JSON, nullable=True)
     notificationSettings = Column(JSON, nullable=True)
@@ -99,8 +95,8 @@ class UserCreate(BaseModel):
     address: Optional[str] = Field(None, examples=["123 Main Street, Accra"])
     location: Optional[Dict[str, Any]] = Field(None, examples=[{"latitude": 5.6037, "longitude": -0.1870}])
     # Verification
-    isEmailVerified: VerifyEmail = Field(default= VerifyEmail.NOT_SUBMITTED, examples=[VerifyEmail.NOT_SUBMITTED])
-    isPhoneVerified: VerifyPhone = Field(default= VerifyPhone.NOT_SUBMITTED, examples=[VerifyEmail.NOT_SUBMITTED])
+    isEmailVerified: VerifyStatus = Field(default= VerifyStatus.NOT_SUBMITTED, examples=[VerifyStatus.NOT_SUBMITTED])
+    isPhoneVerified: VerifyStatus = Field(default= VerifyStatus.NOT_SUBMITTED, examples=[VerifyStatus.NOT_SUBMITTED])
     # Settings
     preferences: Optional[Dict[str, Any]] = Field(None, examples=[{"theme": "dark"}])
     notificationSettings: Optional[Dict[str, Any]] = Field(None, examples=[{"email": True, "sms": False}])
@@ -127,3 +123,10 @@ class UserUpdate(BaseModel):
      # Settings
     preferences: Optional[Dict[str, Any]] = Field(None, examples=[{"theme": "dark"}])
     notificationSettings: Optional[Dict[str, Any]] = Field(None, examples=[{"email": True, "sms": False}])
+    
+
+class WatchListItem(BaseModel):
+    movie_id: str = Field(..., examples=["001"])
+    title: str = Field(..., examples=["Inception"])
+    poster_url: Optional[str] = Field(None, examples=["https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg"])
+    trailer_url: Optional[str] = Field(None, examples=["https://www.youtube.com/watch?v=LEjhY15eCx0"])

@@ -1,5 +1,5 @@
 from typing import List, Optional
-from app.models.users import UserStatus, UserRole, GenderStatus, ServiceStatus,VerifyEmail, VerifyPhone
+from app.models.users import UserStatus, UserRole, GenderStatus, ServiceStatus,VerifyStatus, VerifyStatus
 
 
 movies_db = [
@@ -874,8 +874,9 @@ user_db = [
       "lng": "150.455833"
     },
     "address": "35480 Cheryl Branch\nAllenborough, IN 16739",
-    "isEmailVerified": VerifyEmail.REJECTED,
-    "isPhoneVerified": VerifyPhone.PENDING,
+    "isEmailVerified": VerifyStatus.REJECTED,
+    "isPhoneVerified": VerifyStatus.PENDING,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -906,8 +907,9 @@ user_db = [
       "lng": "18.699016"
     },
     "address": "98255 Bruce Shoal Suite 412\nRogerstown, ND 90475",
-    "isEmailVerified": VerifyEmail.NOT_SUBMITTED,
-    "isPhoneVerified": VerifyPhone.NOT_SUBMITTED,
+    "isEmailVerified": VerifyStatus.NOT_SUBMITTED,
+    "isPhoneVerified": VerifyStatus.NOT_SUBMITTED,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "es"
@@ -938,8 +940,9 @@ user_db = [
       "lng": "-94.163715"
     },
     "address": "15992 Terry Ridges Apt. 134\nWest Russell, IN 17261",
-    "isEmailVerified": VerifyEmail.APPROVED,
-    "isPhoneVerified": VerifyPhone.APPROVED,
+    "isEmailVerified": VerifyStatus.APPROVED,
+    "isPhoneVerified": VerifyStatus.APPROVED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "es"
@@ -970,8 +973,9 @@ user_db = [
       "lng": "-18.910336"
     },
     "address": "7675 Brown Rest\nEast Jason, NM 55778",
-    "isEmailVerified": VerifyEmail.REJECTED,
-    "isPhoneVerified": VerifyEmail.REJECTED,
+    "isEmailVerified": VerifyStatus.REJECTED,
+    "isPhoneVerified": VerifyStatus.REJECTED,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "es"
@@ -1002,8 +1006,9 @@ user_db = [
       "lng": "-116.029759"
     },
     "address": "696 Nicole Overpass\nThompsonville, DC 05267",
-    "isEmailVerified": VerifyEmail.NOT_SUBMITTED,
-    "isPhoneVerified": VerifyPhone.APPROVED,
+    "isEmailVerified": VerifyStatus.NOT_SUBMITTED,
+    "isPhoneVerified": VerifyStatus.APPROVED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -1034,8 +1039,9 @@ user_db = [
       "lng": "-136.702135"
     },
     "address": "1323 Reese Forest Apt. 834\nEast Andrea, NE 11497",
-    "isEmailVerified": VerifyEmail.APPROVED,
-    "isPhoneVerified": VerifyPhone.NOT_SUBMITTED,
+    "isEmailVerified": VerifyStatus.APPROVED,
+    "isPhoneVerified": VerifyStatus.NOT_SUBMITTED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -1066,8 +1072,9 @@ user_db = [
       "lng": "-19.402825"
     },
     "address": "67394 Hall Ferry Apt. 398\nLake Tara, UT 90969",
-    "isEmailVerified": VerifyEmail.NOT_SUBMITTED,
-    "isPhoneVerified": VerifyPhone.PENDING,
+    "isEmailVerified": VerifyStatus.NOT_SUBMITTED,
+    "isPhoneVerified": VerifyStatus.PENDING,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "en"
@@ -1098,8 +1105,9 @@ user_db = [
       "lng": "-64.037914"
     },
     "address": "2022 Joshua Courts Apt. 838\nPort Nicole, WI 90265",
-    "isEmailVerified": VerifyEmail.APPROVED,
-    "isPhoneVerified": VerifyPhone.APPROVED,
+    "isEmailVerified": VerifyStatus.APPROVED,
+    "isPhoneVerified": VerifyStatus.APPROVED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -1130,8 +1138,9 @@ user_db = [
       "lng": "158.492886"
     },
     "address": "37348 Kennedy Crossing\nWest David, AR 90939",
-    "isEmailVerified": VerifyEmail.APPROVED,
-    "isPhoneVerified": VerifyPhone.PENDING,
+    "isEmailVerified": VerifyStatus.APPROVED,
+    "isPhoneVerified": VerifyStatus.PENDING,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "fr"
@@ -1162,8 +1171,9 @@ user_db = [
       "lng": "67.776991"
     },
     "address": "9092 Courtney Crest Suite 283\nLake Omarhaven, IL 80734",
-    "isEmailVerified": VerifyEmail.REJECTED,
-    "isPhoneVerified": VerifyPhone.PENDING,
+    "isEmailVerified": VerifyStatus.REJECTED,
+    "isPhoneVerified": VerifyStatus.PENDING,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "es"
@@ -1194,8 +1204,9 @@ user_db = [
       "lng": "-162.117485"
     },
     "address": "5497 Gilmore Bypass Apt. 416\nAdrienneshire, CT 22672",
-    "isEmailVerified": VerifyEmail.APPROVED,
-    "isPhoneVerified": VerifyEmail.REJECTED,
+    "isEmailVerified": VerifyStatus.APPROVED,
+    "isPhoneVerified": VerifyStatus.REJECTED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "es"
@@ -1226,8 +1237,9 @@ user_db = [
       "lng": "64.207261"
     },
     "address": "26208 James Expressway Suite 722\nSouth Michaelborough, MT 35807",
-    "isEmailVerified": VerifyEmail.REJECTED,
-    "isPhoneVerified": VerifyEmail.REJECTED,
+    "isEmailVerified": VerifyStatus.REJECTED,
+    "isPhoneVerified": VerifyStatus.REJECTED,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "en"
@@ -1258,8 +1270,9 @@ user_db = [
       "lng": "157.715459"
     },
     "address": "USNS Harris\nFPO AP 69830",
-    "isEmailVerified": VerifyEmail.APPROVED,
-    "isPhoneVerified": VerifyPhone.NOT_SUBMITTED,
+    "isEmailVerified": VerifyStatus.APPROVED,
+    "isPhoneVerified": VerifyStatus.NOT_SUBMITTED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -1290,8 +1303,9 @@ user_db = [
       "lng": "-100.637538"
     },
     "address": "21277 Samantha Neck Suite 720\nDavisshire, FM 08201",
-    "isEmailVerified": VerifyEmail.APPROVED,
-    "isPhoneVerified": VerifyPhone.APPROVED,
+    "isEmailVerified": VerifyStatus.APPROVED,
+    "isPhoneVerified": VerifyStatus.APPROVED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -1322,8 +1336,9 @@ user_db = [
       "lng": "-119.645570"
     },
     "address": "069 Campbell Fork Apt. 762\nDanielfurt, NY 02556",
-    "isEmailVerified": VerifyEmail.APPROVED,
-    "isPhoneVerified": VerifyPhone.PENDING,
+    "isEmailVerified": VerifyStatus.APPROVED,
+    "isPhoneVerified": VerifyStatus.PENDING,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -1354,8 +1369,9 @@ user_db = [
       "lng": "-118.395846"
     },
     "address": "71549 Norris Walks Apt. 030\nLaurahaven, LA 65336",
-    "isEmailVerified": VerifyPhone.PENDING,
-    "isPhoneVerified": VerifyPhone.NOT_SUBMITTED,
+    "isEmailVerified": VerifyStatus.PENDING,
+    "isPhoneVerified": VerifyStatus.NOT_SUBMITTED,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "es"
@@ -1386,8 +1402,9 @@ user_db = [
       "lng": "137.572299"
     },
     "address": "06549 Flowers Groves\nSouth Elizabeth, NV 05540",
-    "isEmailVerified": VerifyPhone.PENDING,
-    "isPhoneVerified": VerifyPhone.APPROVED,
+    "isEmailVerified": VerifyStatus.PENDING,
+    "isPhoneVerified": VerifyStatus.APPROVED,
+    "watchlist": [],
     "preferences": {
       "theme": "light",
       "language": "fr"
@@ -1418,8 +1435,9 @@ user_db = [
       "lng": "-20.360215"
     },
     "address": "6322 Erica Shoals Apt. 120\nPort James, AK 14413",
-    "isEmailVerified": VerifyPhone.PENDING,
-    "isPhoneVerified": VerifyEmail.REJECTED,
+    "isEmailVerified": VerifyStatus.PENDING,
+    "isPhoneVerified": VerifyStatus.REJECTED,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "es"
@@ -1450,8 +1468,9 @@ user_db = [
       "lng": "136.323983"
     },
     "address": "8274 Jones Lakes\nOrozcoview, NC 01497",
-    "isEmailVerified": VerifyPhone.PENDING,
-    "isPhoneVerified": VerifyPhone.NOT_SUBMITTED,
+    "isEmailVerified": VerifyStatus.PENDING,
+    "isPhoneVerified": VerifyStatus.NOT_SUBMITTED,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "es"
@@ -1482,8 +1501,9 @@ user_db = [
       "lng": "30.295528"
     },
     "address": "831 Bradford Springs Apt. 366\nMichelleton, MD 98432",
-    "isEmailVerified": VerifyPhone.PENDING,
-    "isPhoneVerified": VerifyEmail.REJECTED,
+    "isEmailVerified": VerifyStatus.PENDING,
+    "isPhoneVerified": VerifyStatus.REJECTED,
+    "watchlist": [],
     "preferences": {
       "theme": "dark",
       "language": "fr"
