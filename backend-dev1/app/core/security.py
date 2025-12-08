@@ -10,6 +10,7 @@ from fastapi import HTTPException, status
 import secrets
 import string
 
+
 from app.core.config import settings
 
 
@@ -59,11 +60,87 @@ def get_password_hash(password: str) -> str:
     """Generate a hashed password"""
     return pwd_context.hash(password)
 
-# # otp storage with expiration
-# class OTPEntry(NamedTuple):
-#     code: str
-#     expires_at: datetime
-#     attempts: int = 0
+# OTP storage with expiration
+class OTPEntry(NamedTuple):
+    code: str
+    expires_at: datetime
+    attempts: int = 0
     
-# # In-memory OTP storage (use Redis in production for scalability)
-# otp_storage: Dict[str, OTPEntry] = {}
+# In-memory OTP storage (use Redis in production for scalability)
+otp_storage: Dict[str, OTPEntry] = {}
+
+def generate_otp(length: Optional[int] = None) -> str:
+    """Generate a random OTP code"""
+    if settings.USE_FIXED_OTP_LENGTH_FOR_TESTING and settings.ENVIRONMENT == "development":
+        return settings.FIXED_OTP_VALUE
+    
+    otp_length = length or settings.OTP_LENGTH
+    return ''.join(secrets.choice(string.digits) for _ in range(otp_length))
+
+def store_otp(phone: str, code: str) -> None:
+    """Store OTP code with expiration time"""
+    expires_at = datetime.now() + timedelta(minutes=settings.OTP_EXPIRE_IN_MINS)
+    otp_storage[phone] = OTPEntry(code=code, expires_at=expires_at, attempts=0)
+
+def verify_otp(phone: str, code: str) -> bool:
+    """Verify OTP code for a phone number"""
+    if phone not in otp_storage:
+        return False
+    
+    otp_entry = otp_storage[phone]
+    
+    # Check if OTP has expired
+    if datetime.now() > otp_entry.expires_at:
+        del otp_storage[phone]
+        return False
+    
+    # Check if max attempts exceeded
+    if otp_entry.attempts >= 3:
+        del otp_storage[phone]
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail="Too many failed attempts. Please request a new OTP."
+        )
+    
+    # Verify the code
+    if otp_entry.code == code:
+        del otp_storage[phone]
+        return True
+    else:
+        # Increment attempts
+        otp_storage[phone] = OTPEntry(
+            code=otp_entry.code,
+            expires_at=otp_entry.expires_at,
+            attempts=otp_entry.attempts + 1
+        )
+        return False
+
+def cleanup_expired_otps() -> None:
+    """Remove expired OTPs from storage"""
+    current_time = datetime.now()
+    expired_phones = [phone for phone, entry in otp_storage.items() 
+                      if current_time > entry.expires_at]
+    for phone in expired_phones:
+        del otp_storage[phone]
+
+def send_otp_via_sms(phone: str, code: str) -> bool:
+    """Send OTP via SMS using Twilio"""
+    try:
+        # In development mode, just log the OTP
+        if settings.ENVIRONMENT == "development":
+            print(f"[DEV MODE] OTP for {phone}: {code}")
+            return True
+        
+        # In production, use Twilio
+        from twilio.rest import Client
+        client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
+        
+        message = client.messages.create(
+            body=f"Your {settings.APP_NAME} verification code is: {code}. Valid for {settings.OTP_EXPIRE_IN_MINS} minutes.",
+            from_=settings.TWILIO_PHONE_NUMBER,
+            to=phone
+        )
+        return message.sid is not None
+    except Exception as e:
+        print(f"Error sending SMS: {str(e)}")
+        return False
