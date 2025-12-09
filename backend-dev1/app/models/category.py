@@ -16,6 +16,6 @@ class Category(Base):
     description = Column(Text, nullable=True)
     
     # Relationship
-    movies_rel = relationship("MovieList", back_populates="catergory_rel")
-    series_rel = relationship("SeriesList", back_populates="catergory_rel")
+    movies_rel = relationship("MovieList", back_populates="category_rel")
+    series_rel = relationship("SeriesList", back_populates="category_rel")
     category_chosen = relationship("User", back_populates="user_category")
