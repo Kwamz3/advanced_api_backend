@@ -101,8 +101,8 @@ async def verify_otp_endpoint(request: OTPVerifyRequest, db: AsyncSession = Depe
         )
     
     # Update user verification status
-    user["isPhoneVerified"] = VerifyStatus.APPROVED
-    user["status"] = UserStatus.ACTIVE
+    user.isPhoneVerified = VerifyStatus.APPROVED
+    user.status = UserStatus.ACTIVE
     await db.commit()
     await db.refresh(user)
     

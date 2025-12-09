@@ -18,4 +18,3 @@ class Category(Base):
     # Relationship
     movies_rel = relationship("MovieList", back_populates="category_rel")
     series_rel = relationship("SeriesList", back_populates="category_rel")
-    category_chosen = relationship("User", back_populates="user_category")
