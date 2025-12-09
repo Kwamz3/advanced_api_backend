@@ -60,19 +60,14 @@ class Settings(BaseSettings):
     MINIO_BUCKET_NAME: str = "streamplus"
     MINIO_SECURE: bool = False
     
-    # SMS Settings (Twilio)
-    TWILIO_ACCOUNT_SID: str = "twilio_account_sid"
-    TWILIO_AUTH_TOKEN: str = "twilio_account_token"
-    TWILIO_PHONE_NUMBER: str = "+1234567890"
-    
-    # Email Settings
+    # Email Settings for OTP
     SMTP_TLS: bool = True
-    SMTP_PORT: Optional[str] = None
-    SMTP_HOST: Optional[str] = None
-    SMTP_USER: Optional[str] = None
-    SMTP_PASSWORD: Optional[str] = None
-    EMAILS_FROM_EMAIL: Optional[str] = None
-    EMAILS_FROM_NAME: Optional[str] = None
+    SMTP_PORT: int = 587
+    SMTP_HOST: str = "smtp.gmail.com"
+    SMTP_USER: str = "your-email@gmail.com"
+    SMTP_PASSWORD: str = "your-app-password"
+    EMAILS_FROM_EMAIL: str = "noreply@streamplus.com"
+    EMAILS_FROM_NAME: str = "StreamPlus"
     
     
     class Config:

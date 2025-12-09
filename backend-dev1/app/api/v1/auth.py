@@ -1,25 +1,22 @@
 """
-Authentication endpoints for OTP-based phone verification
+Authentication endpoints for OTP-based email verification
 """
 
 from fastapi import APIRouter, HTTPException, status, Depends
-from pydantic import BaseModel, Field, field_validator
 from sqlalchemy.orm import Session
-from typing import Optional
-import re
 
 from app.core.database import get_db
 from app.core.security import (
     generate_otp,
     store_otp,
     verify_otp,
-    send_otp_via_sms,
+    send_otp_via_email,
     create_user_token,
     create_refresh_token,
     cleanup_expired_otps
 )
 from app.models.users import User, UserRole, UserStatus, VerifyStatus
-from app.models.auth import OTPResponse, PhoneNumberRequest, TokenResponse, OTPVerifyRequest
+from app.models.auth import OTPResponse, EmailRequest, TokenResponse, OTPVerifyRequest
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
@@ -28,22 +25,22 @@ router = APIRouter(prefix="/auth", tags=["Authentication"])
 
 
 @router.post("/send-otp", response_model=OTPResponse, status_code=status.HTTP_200_OK)
-async def send_otp(request: PhoneNumberRequest, db: Session = Depends(get_db)):
+async def send_otp(request: EmailRequest, db: Session = Depends(get_db)):
     """
-    Send OTP to phone number for verification.
+    Send OTP to email for verification.
     Creates user if doesn't exist.
     """
     # Clean up expired OTPs first
     cleanup_expired_otps()
     
-    phone = request.phone
+    email = request.email
     
     # Check if user exists, create if not
-    user = db.query(User).filter(User.phone == phone).first()
+    user = db.query(User).filter(User.email == email).first()
     if not user:
         # Create new user with minimal info
         user = User(
-            phone=phone,
+            email=email,
             role=UserRole.CLIENT,
             status=UserStatus.INACTIVE,
             isPhoneVerified=VerifyStatus.NOT_SUBMITTED
@@ -54,12 +51,12 @@ async def send_otp(request: PhoneNumberRequest, db: Session = Depends(get_db)):
     
     # Generate and store OTP
     otp_code = generate_otp()
-    store_otp(phone, otp_code)
+    store_otp(email, otp_code)
     
-    # Send OTP via SMS
-    sms_sent = send_otp_via_sms(phone, otp_code)
+    # Send OTP via Email
+    email_sent = send_otp_via_email(email, otp_code)
     
-    if not sms_sent:
+    if not email_sent:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to send OTP. Please try again."
@@ -68,7 +65,7 @@ async def send_otp(request: PhoneNumberRequest, db: Session = Depends(get_db)):
     from app.core.config import settings
     return OTPResponse(
         message="OTP sent successfully",
-        phone=phone,
+        email=email,
         expires_in_minutes=settings.OTP_EXPIRE_IN_MINS
     )
 
@@ -77,14 +74,14 @@ async def send_otp(request: PhoneNumberRequest, db: Session = Depends(get_db)):
 async def verify_otp_endpoint(request: OTPVerifyRequest, db: Session = Depends(get_db)):
     """
     Verify OTP and return access token.
-    Marks phone as verified and activates user account.
+    Marks email as verified and activates user account.
     """
-    phone = request.phone
+    email = request.email
     otp = request.otp
     
     # Verify OTP
     try:
-        is_valid = verify_otp(phone, otp)
+        is_valid = verify_otp(email, otp)
     except HTTPException:
         raise
     
@@ -95,7 +92,7 @@ async def verify_otp_endpoint(request: OTPVerifyRequest, db: Session = Depends(g
         )
     
     # Get user
-    user = db.query(User).filter(User.phone == phone).first()
+    user = db.query(User).filter(User.email == email).first()
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -131,31 +128,31 @@ async def verify_otp_endpoint(request: OTPVerifyRequest, db: Session = Depends(g
 
 
 @router.post("/resend-otp", response_model=OTPResponse, status_code=status.HTTP_200_OK)
-async def resend_otp(request: PhoneNumberRequest, db: Session = Depends(get_db)):
+async def resend_otp(request: EmailRequest, db: Session = Depends(get_db)):
     """
-    Resend OTP to phone number.
+    Resend OTP to email.
     """
     # Clean up expired OTPs
     cleanup_expired_otps()
     
-    phone = request.phone
+    email = request.email
     
     # Check if user exists
-    user = db.query(User).filter(User.phone == phone).first()
+    user = db.query(User).filter(User.email == email).first()
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Phone number not registered. Please use /send-otp first."
+            detail="Email not registered. Please use /send-otp first."
         )
     
     # Generate and store new OTP
     otp_code = generate_otp()
-    store_otp(phone, otp_code)
+    store_otp(email, otp_code)
     
-    # Send OTP via SMS
-    sms_sent = send_otp_via_sms(phone, otp_code)
+    # Send OTP via Email
+    email_sent = send_otp_via_email(email, otp_code)
     
-    if not sms_sent:
+    if not email_sent:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to send OTP. Please try again."
@@ -164,6 +161,6 @@ async def resend_otp(request: PhoneNumberRequest, db: Session = Depends(get_db))
     from app.core.config import settings
     return OTPResponse(
         message="OTP resent successfully",
-        phone=phone,
+        email=email,
         expires_in_minutes=settings.OTP_EXPIRE_IN_MINS
     )

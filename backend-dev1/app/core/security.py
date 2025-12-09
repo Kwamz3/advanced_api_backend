@@ -77,26 +77,26 @@ def generate_otp(length: Optional[int] = None) -> str:
     otp_length = length or settings.OTP_LENGTH
     return ''.join(secrets.choice(string.digits) for _ in range(otp_length))
 
-def store_otp(phone: str, code: str) -> None:
+def store_otp(email: str, code: str) -> None:
     """Store OTP code with expiration time"""
     expires_at = datetime.now() + timedelta(minutes=settings.OTP_EXPIRE_IN_MINS)
-    otp_storage[phone] = OTPEntry(code=code, expires_at=expires_at, attempts=0)
+    otp_storage[email] = OTPEntry(code=code, expires_at=expires_at, attempts=0)
 
-def verify_otp(phone: str, code: str) -> bool:
-    """Verify OTP code for a phone number"""
-    if phone not in otp_storage:
+def verify_otp(email: str, code: str) -> bool:
+    """Verify OTP code for an email address"""
+    if email not in otp_storage:
         return False
     
-    otp_entry = otp_storage[phone]
+    otp_entry = otp_storage[email]
     
     # Check if OTP has expired
     if datetime.now() > otp_entry.expires_at:
-        del otp_storage[phone]
+        del otp_storage[email]
         return False
     
     # Check if max attempts exceeded
     if otp_entry.attempts >= 3:
-        del otp_storage[phone]
+        del otp_storage[email]
         raise HTTPException(
             status_code=status.HTTP_429_TOO_MANY_REQUESTS,
             detail="Too many failed attempts. Please request a new OTP."
@@ -104,11 +104,11 @@ def verify_otp(phone: str, code: str) -> bool:
     
     # Verify the code
     if otp_entry.code == code:
-        del otp_storage[phone]
+        del otp_storage[email]
         return True
     else:
         # Increment attempts
-        otp_storage[phone] = OTPEntry(
+        otp_storage[email] = OTPEntry(
             code=otp_entry.code,
             expires_at=otp_entry.expires_at,
             attempts=otp_entry.attempts + 1
@@ -118,29 +118,58 @@ def verify_otp(phone: str, code: str) -> bool:
 def cleanup_expired_otps() -> None:
     """Remove expired OTPs from storage"""
     current_time = datetime.now()
-    expired_phones = [phone for phone, entry in otp_storage.items() 
+    expired_emails = [email for email, entry in otp_storage.items() 
                       if current_time > entry.expires_at]
-    for phone in expired_phones:
-        del otp_storage[phone]
+    for email in expired_emails:
+        del otp_storage[email]
 
-def send_otp_via_sms(phone: str, code: str) -> bool:
-    """Send OTP via SMS using Twilio"""
+def send_otp_via_email(email: str, code: str) -> bool:
+    """Send OTP via email"""
     try:
         # In development mode, just log the OTP
         if settings.ENVIRONMENT == "development":
-            print(f"[DEV MODE] OTP for {phone}: {code}")
+            print(f"[DEV MODE] OTP for {email}: {code}")
             return True
         
-        # In production, use Twilio
-        from twilio.rest import Client
-        client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
+        # In production, send actual email
+        import smtplib
+        from email.mime.text import MIMEText
+        from email.mime.multipart import MIMEMultipart
         
-        message = client.messages.create(
-            body=f"Your {settings.APP_NAME} verification code is: {code}. Valid for {settings.OTP_EXPIRE_IN_MINS} minutes.",
-            from_=settings.TWILIO_PHONE_NUMBER,
-            to=phone
-        )
-        return message.sid is not None
+        # Create message
+        msg = MIMEMultipart('alternative')
+        msg['Subject'] = f"Your {settings.APP_NAME} Verification Code"
+        msg['From'] = f"{settings.EMAILS_FROM_NAME} <{settings.EMAILS_FROM_EMAIL}>"
+        msg['To'] = email
+        
+        # Email body
+        html = f"""
+        <html>
+          <body>
+            <h2>Your Verification Code</h2>
+            <p>Your {settings.APP_NAME} verification code is:</p>
+            <h1 style="color: #4CAF50; font-size: 36px; letter-spacing: 5px;">{code}</h1>
+            <p>This code will expire in {settings.OTP_EXPIRE_IN_MINS} minutes.</p>
+            <p>If you didn't request this code, please ignore this email.</p>
+          </body>
+        </html>
+        """
+        
+        text = f"Your {settings.APP_NAME} verification code is: {code}. Valid for {settings.OTP_EXPIRE_IN_MINS} minutes."
+        
+        part1 = MIMEText(text, 'plain')
+        part2 = MIMEText(html, 'html')
+        msg.attach(part1)
+        msg.attach(part2)
+        
+        # Send email
+        with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT) as server:
+            if settings.SMTP_TLS:
+                server.starttls()
+            server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
+            server.send_message(msg)
+        
+        return True
     except Exception as e:
-        print(f"Error sending SMS: {str(e)}")
+        print(f"Error sending email: {str(e)}")
         return False
