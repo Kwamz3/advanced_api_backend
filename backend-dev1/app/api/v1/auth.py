@@ -3,7 +3,8 @@ Authentication endpoints for OTP-based email verification
 """
 
 from fastapi import APIRouter, HTTPException, status, Depends
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 
 from app.core.database import get_db
 from app.core.security import (
@@ -23,7 +24,7 @@ router = APIRouter()
 
 
 @router.post("/send-otp", response_model=OTPResponse, status_code=status.HTTP_200_OK)
-async def send_otp(request: EmailRequest, db: Session = Depends(get_db)):
+async def send_otp(request: EmailRequest, db: AsyncSession = Depends(get_db)):
     """
     Send OTP to email for verification.
     Creates user if doesn't exist.
@@ -34,7 +35,8 @@ async def send_otp(request: EmailRequest, db: Session = Depends(get_db)):
     email = request.email
     
     # Check if user exists, create if not
-    user = db.query(User).filter(User.email == email).first()
+    result = await db.execute(select(User).filter(User.email == email))
+    user = result.scalar_one_or_none()
     if not user:
         # Create new user with minimal info
         user = User(
@@ -44,8 +46,8 @@ async def send_otp(request: EmailRequest, db: Session = Depends(get_db)):
             isPhoneVerified=VerifyStatus.NOT_SUBMITTED
         )
         db.add(user)
-        db.commit()
-        db.refresh(user)
+        await db.commit()
+        await db.refresh(user)
     
     # Generate and store OTP
     otp_code = generate_otp()
@@ -69,7 +71,7 @@ async def send_otp(request: EmailRequest, db: Session = Depends(get_db)):
 
 
 @router.post("/verify-otp", response_model=TokenResponse, status_code=status.HTTP_200_OK)
-async def verify_otp_endpoint(request: OTPVerifyRequest, db: Session = Depends(get_db)):
+async def verify_otp_endpoint(request: OTPVerifyRequest, db: AsyncSession = Depends(get_db)):
     """
     Verify OTP and return access token.
     Marks email as verified and activates user account.
@@ -90,7 +92,8 @@ async def verify_otp_endpoint(request: OTPVerifyRequest, db: Session = Depends(g
         )
     
     # Get user
-    user = db.query(User).filter(User.email == email).first()
+    result = await db.execute(select(User).filter(User.email == email))
+    user = result.scalar_one_or_none()
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -100,8 +103,8 @@ async def verify_otp_endpoint(request: OTPVerifyRequest, db: Session = Depends(g
     # Update user verification status
     user["isPhoneVerified"] = VerifyStatus.APPROVED
     user["status"] = UserStatus.ACTIVE
-    db.commit()
-    db.refresh(user)
+    await db.commit()
+    await db.refresh(user)
     
     # Create tokens
     token_data = {"sub": str(user.id), "phone": user.phone, "role": user.role.value}
@@ -126,7 +129,7 @@ async def verify_otp_endpoint(request: OTPVerifyRequest, db: Session = Depends(g
 
 
 @router.post("/resend-otp", response_model=OTPResponse, status_code=status.HTTP_200_OK)
-async def resend_otp(request: EmailRequest, db: Session = Depends(get_db)):
+async def resend_otp(request: EmailRequest, db: AsyncSession = Depends(get_db)):
     """
     Resend OTP to email.
     """
@@ -136,7 +139,8 @@ async def resend_otp(request: EmailRequest, db: Session = Depends(get_db)):
     email = request.email
     
     # Check if user exists
-    user = db.query(User).filter(User.email == email).first()
+    result = await db.execute(select(User).filter(User.email == email))
+    user = result.scalar_one_or_none()
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,

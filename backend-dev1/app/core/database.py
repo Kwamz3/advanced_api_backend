@@ -57,7 +57,6 @@ AsyncSessionLocal = async_sessionmaker(
     bind = engine,
     class_ = AsyncSession,
     autoflush= False,
-    autocommit=True,
     expire_on_commit=False
 )
 

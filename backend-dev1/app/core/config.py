@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     USE_SQLITE_FOR_DEV: bool = True
     
     # ENVIRONMENT
-    ENVIRONMENT: str = "production"
+    ENVIRONMENT: str = "development"
     DEBUG: bool = True
     
     @property
