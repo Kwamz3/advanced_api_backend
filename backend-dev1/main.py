@@ -9,7 +9,7 @@ import uvicorn
 import os
 load_dotenv()
 
-from app.api.v1 import users, movies, admin
+from app.api.v1 import users, movies, admin,auth
 from app.core.config import settings
 from app.core.database import init_db
 from app.core.security import verify_token
@@ -65,6 +65,7 @@ async def health_check():
 app.include_router(admin.router, prefix="/api/v1/admin", tags=["Admin"])
 app.include_router(users.router, prefix= "/api/v1/users", tags=["Users"])
 app.include_router(movies.router, prefix="/api/v1/movies", tags=["Movies"])
+app.include_router(auth.router, prefix= "/api/v1/auth", tags= ["Auth"])
 
 @app.get("/")
 async def root():
