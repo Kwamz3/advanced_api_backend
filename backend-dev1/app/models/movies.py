@@ -40,7 +40,7 @@ class MovieList(Base):
 
     
     # Relationships
-    category_id = Column(UUID(), ForeignKey("categories.id"), nullable=True)
+    category_id = Column(UUID(), ForeignKey("category.id"), nullable=True)
     category_rel = relationship("Category", back_populates="movies_rel")
     
     

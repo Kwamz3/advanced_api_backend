@@ -35,5 +35,5 @@ class SeriesList(Base):
     is_liked = Column(Boolean, default=None)
     
     # Relationships
-    category_id = Column(PostgresUUID(as_uuid=True), ForeignKey("categories.id"), nullable=True)
+    category_id = Column(PostgresUUID(as_uuid=True), ForeignKey("category.id"), nullable=True)
     category_rel = relationship("Category", back_populates="series_rel")
