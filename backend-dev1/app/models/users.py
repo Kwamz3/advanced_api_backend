@@ -2,7 +2,7 @@
 User model and related schemas
 """
 
-from sqlalchemy import Column, String, Integer, Enum, JSON, DateTime, Boolean, Text, ARRAY
+from sqlalchemy import Column, String, Integer, Enum, JSON, DateTime, Boolean, Text
 from sqlalchemy.orm import relationship
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any,Union
@@ -62,7 +62,7 @@ class User(Base):
     bio = Column(Text, nullable=True)
     # Account infomation
     service = Column(Enum(ServiceStatus), nullable= True)
-    watchlist = Column(ARRAY(String), nullable= True)
+    watchlist = Column(JSON, nullable= True)  # Store as JSON array for SQLite compatibility
     #Location
     location = Column(String(255), nullable=True)
     address = Column(Text, nullable=True)

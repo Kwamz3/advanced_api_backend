@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     USE_SQLITE_FOR_DEV: bool = True
     
     # ENVIRONMENT
-    ENVIRONMENT: str = "production"
+    ENVIRONMENT: str = "development"
     DEBUG: bool = True
     
     @property
@@ -33,7 +33,7 @@ class Settings(BaseSettings):
         elif self.ENVIRONMENT == "production":
             # In production, use the DATABASE_URL provided by Render
             return self.DATABASE_URL
-        elif self.ENVIRONMENT and self.USE_SQLITE_FOR_DEV in ["development", "dev"]:
+        elif self.ENVIRONMENT in ["development", "dev"] and self.USE_SQLITE_FOR_DEV:
             return "sqlite:///./streamplus.sqlite3"
         else:
             return self.DATABASE_URL

@@ -21,3 +21,5 @@ dateOfbirth = 2003-10-04T00:00:00Z
 },
 "createdAt": 2025-11-28T00:00:00Z
 "updatedAt": 2025-11-28T00:00:00Z
+
+dailylogins404@gmail.com
