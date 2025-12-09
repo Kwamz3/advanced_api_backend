@@ -18,9 +18,7 @@ from app.core.security import (
 from app.models.users import User, UserRole, UserStatus, VerifyStatus
 from app.models.auth import OTPResponse, EmailRequest, TokenResponse, OTPVerifyRequest
 
-router = APIRouter(prefix="/auth", tags=["Authentication"])
-
-# Pydantic Schemas
+router = APIRouter()
 
 
 
