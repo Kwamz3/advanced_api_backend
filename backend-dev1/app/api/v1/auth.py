@@ -19,6 +19,7 @@ from app.core.security import (
     cleanup_expired_otps
 )
 from app.models.users import User, UserRole, UserStatus, VerifyStatus
+from app.models.auth import OTPResponse, PhoneNumberRequest, TokenResponse, OTPVerifyRequest
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
@@ -102,8 +103,8 @@ async def verify_otp_endpoint(request: OTPVerifyRequest, db: Session = Depends(g
         )
     
     # Update user verification status
-    user.isPhoneVerified = VerifyStatus.APPROVED
-    user.status = UserStatus.ACTIVE
+    user["isPhoneVerified"] = VerifyStatus.APPROVED
+    user["status"] = UserStatus.ACTIVE
     db.commit()
     db.refresh(user)
     
