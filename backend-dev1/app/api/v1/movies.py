@@ -11,8 +11,7 @@ import uuid
 
 from app.api.v1 import users
 from app.core.database import get_db
-from app.core.mockDB import movies_db
-from app.models.movies import CreateMovieMock
+from app.models.movies import CreateMovieMock, MovieList
 from app.core.security import verify_token
 from app.core.database import init_db
 
@@ -69,24 +68,39 @@ async def get_current_user(credentials = Depends(security)):
         )
  
 @router.get("/", response_model= dict)
-async def get_all_movies():
+async def get_all_movies(db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(MovieList))
+    movies = result.scalars().all()
     
     return {
         "success": True,
-        "data": movies_db
+        "data": [{
+            "id": movie.id,
+            "title": movie.title,
+            "category": movie.category,
+            "description": movie.description,
+            "poster_url": movie.poster_url,
+            "trailer_url": movie.trailer_url,
+            "duration": movie.duration,
+            "release_year": movie.release_year,
+            "rating": movie.rating,
+            "cast": movie.cast,
+            "producer": movie.producer,
+            "views": movie.views,
+            "created_at": movie.created_at.isoformat() if movie.created_at else None,
+            "updated_at": movie.updated_at.isoformat() if movie.updated_at else None,
+            "is_liked": movie.is_liked
+        } for movie in movies]
     }
        
 
 @router.get("/{movie_id}")
 async def get_movie_by_id(
-    movie_id: int 
+    movie_id: int,
+    db: AsyncSession = Depends(get_db)
 ):
-    padded_id = f'{movie_id:03d}'
-    
-    movie = next(
-        (u for u in movies_db if u["id"] == padded_id),
-        None
-    )
+    result = await db.execute(select(MovieList).filter(MovieList.id == movie_id))
+    movie = result.scalar_one_or_none()
     
     if not movie:
         raise HTTPException(
@@ -96,23 +110,56 @@ async def get_movie_by_id(
     
     return {
         "success": True,
-        "data": movie
+        "data": {
+            "id": movie.id,
+            "title": movie.title,
+            "category": movie.category,
+            "description": movie.description,
+            "poster_url": movie.poster_url,
+            "trailer_url": movie.trailer_url,
+            "duration": movie.duration,
+            "release_year": movie.release_year,
+            "rating": movie.rating,
+            "cast": movie.cast,
+            "producer": movie.producer,
+            "views": movie.views,
+            "created_at": movie.created_at.isoformat() if movie.created_at else None,
+            "updated_at": movie.updated_at.isoformat() if movie.updated_at else None,
+            "is_liked": movie.is_liked
+        }
     }
 
 
-@router.post("/{movie_id}", response_model= dict)       
+@router.post("/", response_model= dict)       
 async def create_movie(
-    request: CreateMovieMock = Query(..., description= "add a new movie"),
+    request: CreateMovieMock,
+    db: AsyncSession = Depends(get_db),
     current_user: dict = Depends(security)
-):      
-        
-        new_dict = request.model_dump()
-        new_dict["id"] = str(uuid.uuid4())
-        movies_db.append(new_dict)
-        
-        return {
-            "mesage": "Movie added successfully to mock database",
-            "data": new_dict
-            }
+):
+    movie = MovieList(
+        title=request.title,
+        category=request.category if hasattr(request, 'category') else None,
+        description=request.description if hasattr(request, 'description') else None,
+        poster_url=request.poster_url if hasattr(request, 'poster_url') else None,
+        trailer_url=request.trailer_url if hasattr(request, 'trailer_url') else None,
+        duration=request.duration if hasattr(request, 'duration') else None,
+        release_year=request.release_year if hasattr(request, 'release_year') else None,
+        rating=request.rating if hasattr(request, 'rating') else None,
+        cast=request.cast if hasattr(request, 'cast') else None,
+        producer=request.producer if hasattr(request, 'producer') else None
+    )
+    
+    db.add(movie)
+    await db.commit()
+    await db.refresh(movie)
+    
+    return {
+        "message": "Movie added successfully to database",
+        "data": {
+            "id": movie.id,
+            "title": movie.title,
+            "category": movie.category
+        }
+    }
     
     
