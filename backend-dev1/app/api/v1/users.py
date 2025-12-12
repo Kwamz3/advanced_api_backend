@@ -248,7 +248,7 @@ async def add_to_watchlist(
         result = await db.execute(
             select(WatchListBase).filter(
             WatchListBase.user_id == user_id,
-            WatchListBase.id == add_movie.id
+            WatchListBase.movie_id == add_movie.movie_id
             )
                 )
             
