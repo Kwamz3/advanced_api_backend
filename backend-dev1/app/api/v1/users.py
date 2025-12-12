@@ -7,7 +7,7 @@ from jose import JWTError
 
 from app.core.database import get_db
 from app.models.users import UserRole, UserUpdate, UserCreate, WatchListItem, User
-from app.models.movies import MovieList
+from app.models.movies import WatchListItem
 from app.core.security import verify_token
 
 router = APIRouter()
