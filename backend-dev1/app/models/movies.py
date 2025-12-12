@@ -39,7 +39,6 @@ class MovieList(Base):
     category_rel = relationship("Category", back_populates="movies_rel")
     
 class WatchListBase(Base):
-    
     __tablename__ = "watchlist"
     
     id = Column(Integer, primary_key= True, nullable= False)
@@ -65,15 +64,6 @@ class CreateMovieMock(BaseModel):
     created_at : Optional[datetime] = Field(None, examples=["2025-01-01T00:00:00"])
     updated_at : Optional[datetime] = Field(None, examples=["2025-01-01T00:00:00"])
     is_liked : bool = False
-    
-
-    @field_validator('id', mode='before')
-    @classmethod
-    def format_movie_id(cls, value):
-        if isinstance(value, int):
-            return f'{value:03d}'
-        return value
-    
     
 class WatchListItem(BaseModel):
     id: str = Field(..., examples=["001"])
