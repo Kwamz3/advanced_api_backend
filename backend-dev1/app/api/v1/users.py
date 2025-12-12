@@ -7,6 +7,7 @@ from jose import JWTError
 
 from app.core.database import get_db
 from app.models.users import UserRole, UserUpdate, UserCreate, WatchListItem, User
+from app.models.movies import MovieList
 from app.core.security import verify_token
 
 router = APIRouter()
@@ -198,48 +199,45 @@ async def update_user_profile(
             detail=f"Failed to update user profile: {str(e)}"
         )
         
-# @router.get("/watchlist/user/{user_id}")
-# async def get_watchlist(
-#     user_id: int,
-#     watchlist: WatchListItem,
-#     db: AsyncSession = Depends(get_db)
-# ):
-#     try:    
-#         result = await db.execute(select(User).filter(User.id == user_id))
-#         user = result.scalar_one_or_none()
+@router.get("/watchlist/user/{user_id}")
+async def get_watchlist(
+    user_id: int,
+    db: AsyncSession = Depends(get_db)
+):    
+        
+        result = await db.execute(select(User).filter(User.id == user_id))
+        user = result.scalar_one_or_none()
 
-#         if not user:
-#             raise HTTPException(
-#                 status_code= status.HTTP_404_NOT_FOUND,
-#                 detail= "User not found"
-#             )
+        if not user:
+            raise HTTPException(
+                status_code= status.HTTP_404_NOT_FOUND,
+                detail= "User not found"
+            )
             
-#         user_watchlist = user.watchlist
+        user_watchlist = user.watchlist
 
-#         if not user_watchlist or len(user_watchlist) == 0:
-#             raise HTTPException(
-#                 status_code= status.HTTP_404_NOT_FOUND,
-#                 detail= "No movies added to watchlist"
-#             )
+        if not user_watchlist or len(user_watchlist) == 0:
+            raise HTTPException(
+                status_code= status.HTTP_404_NOT_FOUND,
+                detail= "No movies added to watchlist"
+            )
             
-#         return{
-#             "success": True,
-#             "data": user_watchlist
-#         }
+        return{
+            "success": True,
+            "data": user_watchlist
+        }
 
 
 @router.post("/watchlist/user/{user_id}")        
 async def add_to_watchlist(
     user_id: int,
-    add_movie: WatchListItem
+    add_movie: WatchListItem,
+    db: AsyncSession = Depends(get_db)
 ):
-    padded_id = f'{user_id:03d}'
     
     try:
-        user = next(
-            (u for u in user_db if u["id"] == padded_id),
-            None
-        )
+        result = await db.execute(select(User).filter(User.id == user_id))
+        user = result.scalar_one_or_none()
         
         if not user:
             raise HTTPException(
@@ -248,7 +246,7 @@ async def add_to_watchlist(
             )
             
         if any(
-            w["id"] == add_movie.movie_id for w in user["watchlist"]
+            ad == add_movie.movie_id for w in user["watchlist"]
             ):
             raise HTTPException(
                 status_code= status.HTTP_400_BAD_REQUEST,
