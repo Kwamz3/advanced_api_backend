@@ -38,39 +38,6 @@ async def get_current_user(credentials: str = Depends(security)):
         )
 
 
-@router.get("/")
-async def get_all_users(
-    db: AsyncSession = Depends(get_db)
-):
-    result = await db.execute(select(User))
-    users = result.scalars().all()
-    
-    return {
-        "success": True,
-        "data": [{
-            "id": user.id,
-            "phone": user.phone,
-            "email": user.email,
-            "firstName": user.firstName,
-            "lastName": user.lastName,
-            "role": user.role.value if user.role is not None else None,
-            "status": user.status.value if user.status is not None else None,
-            "service": user.service.value if user.service is not None else None,
-            "profilePicture": user.profilePicture,
-            "dateOfbirth": user.dateOfbirth.isoformat() if user.dateOfbirth is not None else None,
-            "gender": user.gender.value if user.gender is not None else None,
-            "bio": user.bio,
-            "address": user.address,
-            "location": user.location,
-            "isEmailVerified": user.isEmailVerified.value if user.isEmailVerified is not None else None,
-            "isPhoneVerified": user.isPhoneVerified.value if user.isPhoneVerified is not None else None,
-            "preferences": user.preferences,
-            "notificationSettings": user.notificationSettings,
-            "createdAt": user.createdAt.isoformat() if user.createdAt is not None else None,
-            "updatedAt": user.updatedAt.isoformat() if user.updatedAt is not None else None
-        } for user in users]
-    }
-
 @router.get("/profile/{user_id}")
 async def get_user_profile(
     user_id: int,
@@ -209,8 +176,12 @@ async def update_user_profile(
         for key, value in data_update.items():
             setattr(existing_user, key, value)
         
+        await db.commit()
+        await db.refresh(existing_user)
+        
         from datetime import datetime
         existing_user.updatedAt = datetime.now()
+        
         
         return {
             "success": True,
@@ -229,22 +200,21 @@ async def update_user_profile(
         
 @router.get("/watchlist/user/{user_id}")
 async def get_watchlist(
-    user_id: int
+    user_id: int,
+    db: AsyncSession = Depends(get_db)
 ):
+    result = await db.execute(select(User).filter(User.id == user_id))
+    user = result.scalar_one_or_none()
     
-    padded_id = f'{user_id:03d}'
-    
-    user_watchlist = next(
-        (u for u in user_db if u["id"] == padded_id)
-    )
-    
-    if not user_watchlist:
+    if not user:
         raise HTTPException(
             status_code= status.HTTP_404_NOT_FOUND,
-            detail= "Watchlist not found"
+            detail= "User not found"
         )
+        
+    user_watchlist = user.watchlist
     
-    if user_watchlist["watchlist"] == []:
+    if not user_watchlist or len(user_watchlist) == 0:
         raise HTTPException(
             status_code= status.HTTP_404_NOT_FOUND,
             detail= "No movies added to watchlist"
@@ -252,7 +222,7 @@ async def get_watchlist(
         
     return{
         "success": True,
-        "data": user_watchlist["watchlist"]
+        "data": user_watchlist
     }
 
 
