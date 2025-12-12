@@ -7,7 +7,7 @@ from jose import JWTError
 
 from app.core.database import get_db
 from app.models.users import UserRole, UserUpdate, UserCreate, User
-from app.models.movies import WatchListItem
+from app.models.movies import WatchListBase, WatchListItem
 from app.core.security import verify_token
 
 router = APIRouter()
@@ -245,14 +245,35 @@ async def add_to_watchlist(
                 detail= "User not found"
             )
             
-        if user.watchlist
+        result = await db.execute(
+            select(WatchListBase).filter(
+            WatchListBase.user_id == user_id,
+            WatchListBase.id == add_movie.id
+            )
+                )
             
-        user["watchlist"].append(add_movie.model_dump())
+        existing_entry = result.scalar_one_or_none()
+        
+        if existing_entry:
+            raise HTTPException(
+                status_code= status.HTTP_400_BAD_REQUEST,
+                detail= "Movie already in watchlist"
+            )
+            
+        new_watchlist_item = WatchListBase(
+            user_id = user_id,
+            movie_id = add_movie.movie_id
+        )
+        
+        db.add(new_watchlist_item)
+        
+        await db.commit()
+        await db.refresh(new_watchlist_item)
         
         return{
             "success": True,
             "message": "Movie added successfully to watchlist",
-            "data": user["watchlist"]
+            "data": new_watchlist_item
         }
         
     except HTTPException:
