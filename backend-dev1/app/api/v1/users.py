@@ -77,7 +77,7 @@ async def get_user_profile(
                 "createdAt": user.createdAt.isoformat() if user.createdAt is not None else None,
                 "updatedAt": user.updatedAt.isoformat() if user.updatedAt is not None else None
             }
-        }        
+        }          
         
     except HTTPException:
         raise
@@ -198,32 +198,34 @@ async def update_user_profile(
             detail=f"Failed to update user profile: {str(e)}"
         )
         
-@router.get("/watchlist/user/{user_id}")
-async def get_watchlist(
-    user_id: int,
-    db: AsyncSession = Depends(get_db)
-):
-    result = await db.execute(select(User).filter(User.id == user_id))
-    user = result.scalar_one_or_none()
-    
-    if not user:
-        raise HTTPException(
-            status_code= status.HTTP_404_NOT_FOUND,
-            detail= "User not found"
-        )
-        
-    user_watchlist = user.watchlist
-    
-    if not user_watchlist or len(user_watchlist) == 0:
-        raise HTTPException(
-            status_code= status.HTTP_404_NOT_FOUND,
-            detail= "No movies added to watchlist"
-        )
-        
-    return{
-        "success": True,
-        "data": user_watchlist
-    }
+# @router.get("/watchlist/user/{user_id}")
+# async def get_watchlist(
+#     user_id: int,
+#     watchlist: WatchListItem,
+#     db: AsyncSession = Depends(get_db)
+# ):
+#     try:    
+#         result = await db.execute(select(User).filter(User.id == user_id))
+#         user = result.scalar_one_or_none()
+
+#         if not user:
+#             raise HTTPException(
+#                 status_code= status.HTTP_404_NOT_FOUND,
+#                 detail= "User not found"
+#             )
+            
+#         user_watchlist = user.watchlist
+
+#         if not user_watchlist or len(user_watchlist) == 0:
+#             raise HTTPException(
+#                 status_code= status.HTTP_404_NOT_FOUND,
+#                 detail= "No movies added to watchlist"
+#             )
+            
+#         return{
+#             "success": True,
+#             "data": user_watchlist
+#         }
 
 
 @router.post("/watchlist/user/{user_id}")        
