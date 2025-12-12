@@ -129,23 +129,23 @@ async def create_user_profile(
     try:
         # Create User model instance
         new_user = User(
-            phone=create_user.phone,
-            email=create_user.email,
-            firstName=create_user.firstName,
-            lastName=create_user.lastName,
-            role=create_user.role,
-            status=create_user.status,
-            service=create_user.serviceStatus,
-            profilePicture=create_user.profilePicture,
-            dateOfbirth=create_user.dateOfbirth,
-            gender=create_user.gender,
-            bio=create_user.bio,
-            location=create_user.location,
-            address=create_user.address,
-            isEmailVerified=create_user.isEmailVerified,
-            isPhoneVerified=create_user.isPhoneVerified,
-            preferences=create_user.preferences,
-            notificationSettings=create_user.notificationSettings
+            phone= create_user.phone,
+            email= create_user.email,
+            firstName= create_user.firstName,
+            lastName= create_user.lastName,
+            role= create_user.role,
+            status= create_user.status,
+            service= create_user.serviceStatus,
+            profilePicture= create_user.profilePicture,
+            dateOfbirth= create_user.dateOfbirth,
+            gender= create_user.gender,
+            bio= create_user.bio,
+            location= create_user.location,
+            address= create_user.address,
+            isEmailVerified= create_user.isEmailVerified,
+            isPhoneVerified= create_user.isPhoneVerified,
+            preferences= create_user.preferences,
+            notificationSettings= create_user.notificationSettings
         )
         
         db.add(new_user)
@@ -190,16 +190,13 @@ async def create_user_profile(
 @router.put("/profile/{user_id}")
 async def update_user_profile(
     user_id: int,
-    update_user: UserUpdate
+    update_user: UserUpdate,
+    db: AsyncSession = Depends(get_db)
 ):
-  
-    padded_id = f"{user_id:03d}"
     
     try:
-        existing_user = next(
-            (u for u in user_db if u["id"] == padded_id),
-            None
-        )
+        result = await db.execute(select(User). filter(User.id == user_id))
+        existing_user = result.scalar_one_or_none()
         
         if not existing_user:
             raise HTTPException(
@@ -210,11 +207,10 @@ async def update_user_profile(
         data_update = update_user.model_dump(exclude_unset=True)
         
         for key, value in data_update.items():
-            if key in existing_user:
-                existing_user[key] = value
+            setattr(existing_user, key, value)
         
         from datetime import datetime
-        existing_user["updatedAt"] = datetime.now().isoformat()
+        existing_user.updatedAt = datetime.now()
         
         return {
             "success": True,
@@ -225,6 +221,7 @@ async def update_user_profile(
     except HTTPException:
         raise
     except Exception as e:
+        await db.rollback()
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Failed to update user profile: {str(e)}"

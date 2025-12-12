@@ -1,30 +1,63 @@
-from fastapi import APIRouter, HTTPException, Query, status
+from fastapi import APIRouter, HTTPException, Query, status, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 
-from app.core.mockDB import user_db, movies_db
-from app.models.movies import CreateMovieMock
-from app.models.users import UserCreate 
+from app.models.movies import CreateMovieMock, MovieList
+from app.models.users import UserCreate, User 
 from app.models.admin import AccountApproval, AccountBan, Status
+from app.core.database import get_db
+from sqlalchemy import func
 
 router = APIRouter()
 
 @router.get("/dashboard")
-async def admin_dashboard():
+async def admin_dashboard(
+    db: AsyncSession = Depends(get_db)
+):
     
-    max_users = str(max((int(item["id"]) for item in user_db), default=0))
-    max_movies = str(max((int(item["id"]) for item in movies_db), default=0))
+    # Count total users
+    user_count_result = await db.execute(select(func.count(User.id)))
+    total_users = user_count_result.scalar()
+    
+    # Count total movies
+    movie_count_result = await db.execute(select(func.count(MovieList.id)))
+    total_movies = movie_count_result.scalar()
     
     return{
-        "Number of movies": max_movies,
-        "Number of users": max_users
+        "Number of movies": str(total_movies),
+        "Number of users": str(total_users)
     }
     
 
 @router.get("/dashboard/users")
-async def get_all_users():
+async def get_all_users(
+    db: AsyncSession = Depends(get_db)
+):
     
-        return{
+    result = await db.execute(select(User))
+    users = result.scalars().all()
+    
+    return{
         "success": True,
-        "data": user_db
+        "data": [{
+            "id": user.id,
+            "phone": user.phone,
+            "email": user.email,
+            "fisrtName": user.firstName,
+            "lastName": user.lastName,
+            "role": user.role.value if user.role is not None else None,
+            "status": user.status.value if user.status is not None else None,
+            "service": user.service.value if user.service is not None else None,
+            "profilePicture": user.profilePicture,
+            "dateOfbirth": user.dateOfbirth,
+            "gender": user.gender,
+            "bio": user.bio,
+            "address": user.address,
+            "location": user.location,
+            "isEmailVerified": user.isEmailVerified.value if user.isEmailVerified is not None else None,
+            "isPhoneVerified": user.isPhoneVerified,
+            
+        } for user in users]
     }
         
 @router.get("/approvals") 
