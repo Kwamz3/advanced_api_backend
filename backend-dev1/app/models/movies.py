@@ -42,6 +42,7 @@ class WatchListBase(Base):
     __tablename__ = "watchlist"
     
     id = Column(Integer, primary_key= True, nullable= False)
+    user_id = Column(Integer, primary_key= True, nullable= False)
     title = Column(String(225), nullable= True)
     poster_url = Column(String(500), nullable=True)
     trailer_url = Column(String(500), nullable=True)

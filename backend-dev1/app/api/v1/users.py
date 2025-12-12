@@ -6,7 +6,7 @@ from sqlalchemy import text, select, insert, update, delete
 from jose import JWTError
 
 from app.core.database import get_db
-from app.models.users import UserRole, UserUpdate, UserCreate, WatchListItem, User
+from app.models.users import UserRole, UserUpdate, UserCreate, User
 from app.models.movies import WatchListItem
 from app.core.security import verify_token
 
@@ -245,13 +245,7 @@ async def add_to_watchlist(
                 detail= "User not found"
             )
             
-        if any(
-            ad == add_movie.movie_id for w in user["watchlist"]
-            ):
-            raise HTTPException(
-                status_code= status.HTTP_400_BAD_REQUEST,
-                detail= "Movie already in watchlist"
-            )
+        if user.watchlist
             
         user["watchlist"].append(add_movie.model_dump())
         
