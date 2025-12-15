@@ -46,7 +46,7 @@ class GenderStatus(str, enum.Enum):
     
 class User(Base):
     
-    __tablename__ = "user"
+    __tablename__ = "users"
     
     id = Column(Integer, primary_key=True, nullable=False)
     phone = Column(String(20), unique=True, index=True, nullable=True)
