@@ -18,12 +18,12 @@ class Settings(BaseSettings):
     ALLOWED_ORIGINS: List[str] = ["*"]
     
     # DATABASE - Dual setup (POSGRESQL for production, SQLite for development/testing)
-    DATABASE_URL: str = "postgresql://postgresql:1234567890@localhost:5432/streamplus"
+    DATABASE_URL: str = "postgresql://postgres:1234567890@localhost:5432/streamplus"
     DATABASE_TEST_URL: str = "sqlite:///./test_db.sqlite3"
     USE_SQLITE_FOR_DEV: bool = True
     
     # ENVIRONMENT
-    ENVIRONMENT: str = "development"
+    ENVIRONMENT: str = "production"
     DEBUG: bool = True
     
     @property
