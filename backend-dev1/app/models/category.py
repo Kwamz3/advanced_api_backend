@@ -11,10 +11,6 @@ class Category(Base):
     
     __tablename__ = "category"
     
-    id = Column(PostgresUUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id = Column(Integer, primary_key=True, nullable=False)
     name = Column(String(500), nullable=True)
     description = Column(Text, nullable=True)
-    
-    # Relationship
-    movies_rel = relationship("MovieList", back_populates="category_rel")
-    series_rel = relationship("SeriesList", back_populates="category_rel")

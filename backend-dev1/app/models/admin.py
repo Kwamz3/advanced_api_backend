@@ -23,7 +23,6 @@ class SystemSettings(Base):
     value = Column(Text, nullable=False)
     description = Column(Text, nullable=True)
     category = Column(String(50), nullable=True)
-    
     #Timestamps
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
@@ -34,14 +33,13 @@ class AuditLog(Base):
     __tablename__ = "audit_log"
     
     id = Column(UUID(), primary_key=True, default=uuid.uuid4)
-    user_id = Column(Integer, ForeignKey("user.id"),nullable=True)
+    user_id = Column(Integer, ForeignKey("users.id"),nullable=True)
     action = Column(String(100), nullable=False)
     resource = Column(String(100), nullable=False)
     resource_id = Column(String(100), nullable=True)
     details = Column(JSON, nullable=True)
     ip_address = Column(String(50), nullable=True)
     user_agent = Column(Text, nullable=True)
-    
     # Timestmps
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     
@@ -51,21 +49,17 @@ class SupportTicket(Base):
     __tablename__ = "support_ticket"
     
     id = Column(UUID(), primary_key=True, default=uuid.uuid4)
-    user_id = Column(Integer, ForeignKey("user.id"), nullable=False) 
-    
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False) 
     # Ticket details
     subject = Column(String(255), nullable=False)
     description = Column(Text, nullable=False)
     category = Column(String(50), nullable=False)
     priority = Column(Enum(Priority), default= Priority.NOT_SET)
     status = Column(String(20), default="OPEN")
-    
     # Assignment
     assigned_to = Column(UUID(), nullable=True)
-    
     # Additional data
     attachments = Column(JSON, nullable=True)
-    
     # Timestamps
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
