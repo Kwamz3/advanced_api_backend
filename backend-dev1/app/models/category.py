@@ -14,7 +14,3 @@ class Category(Base):
     id = Column(Integer, primary_key=True, nullable=False)
     name = Column(String(500), nullable=True)
     description = Column(Text, nullable=True)
-    
-    # Relationship
-    movies_rel = relationship("MovieList", back_populates="category_rel")
-    series_rel = relationship("SeriesList", back_populates="category_rel")

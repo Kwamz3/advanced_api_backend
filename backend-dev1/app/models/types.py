@@ -2,7 +2,7 @@
 Common database types
 """
 
-from sqlalchemy.types import TypeDecorator, CHAR
+from sqlalchemy.types import TypeDecorator, CHAR, Integer
 from sqlalchemy.dialects.postgresql import UUID as PostgresUUID
 
 
@@ -13,7 +13,7 @@ class UUID(TypeDecorator):
     
     def load_dialect_impl(self, dialect):
         if dialect.name == 'postgresql':
-            return dialect.type_descriptor(PostgresUUID())
+            return dialect.type_descriptor(Integer())
         else:
             return dialect.type_descriptor(CHAR(36))
         

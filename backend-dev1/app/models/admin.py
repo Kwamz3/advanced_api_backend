@@ -23,7 +23,6 @@ class SystemSettings(Base):
     value = Column(Text, nullable=False)
     description = Column(Text, nullable=True)
     category = Column(String(50), nullable=True)
-    
     #Timestamps
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
@@ -41,7 +40,6 @@ class AuditLog(Base):
     details = Column(JSON, nullable=True)
     ip_address = Column(String(50), nullable=True)
     user_agent = Column(Text, nullable=True)
-    
     # Timestmps
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     

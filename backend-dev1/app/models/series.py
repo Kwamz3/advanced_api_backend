@@ -30,6 +30,3 @@ class SeriesList(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
     is_liked = Column(Boolean, default=None)
-    # Relationships
-    category_id = Column(Integer, ForeignKey("category.id"), nullable=True)
-    category_rel = relationship("Category", back_populates="series_rel")

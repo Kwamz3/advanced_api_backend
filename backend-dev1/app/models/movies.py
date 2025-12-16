@@ -34,9 +34,6 @@ class MovieList(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
     is_liked = Column(Boolean, default=False)
-    # Relationships
-    category_id = Column(UUID(), ForeignKey("category.id"), nullable=True)
-    category_rel = relationship("Category", back_populates="movies_rel")
     
 class WatchListBase(Base):
     __tablename__ = "watchlist"
