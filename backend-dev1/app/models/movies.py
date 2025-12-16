@@ -30,7 +30,6 @@ class MovieList(Base):
     views = Column(Integer, default=0)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
-    is_liked = Column(Boolean, default=False)
     
 class WatchListBase(Base):
     __tablename__ = "watchlist"
@@ -44,7 +43,7 @@ class WatchListBase(Base):
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
     
 class CreateMovieMock(BaseModel):
-    id : str = Field(...,examples=["001"])    
+    id : str = Field(...,examples=["1"])    
     title : str = Field(..., examples=["Inception"])
     category : Optional[str] = Field(..., examples=["Action"])
     description : Optional [str] = Field(None, examples=["Action with the best female actress in the bizz"])
@@ -58,7 +57,6 @@ class CreateMovieMock(BaseModel):
     views : Optional[int] = Field(None, examples=[1037])
     created_at : Optional[datetime] = Field(None, examples=["2025-01-01T00:00:00"])
     updated_at : Optional[datetime] = Field(None, examples=["2025-01-01T00:00:00"])
-    is_liked : bool = False
     
 class WatchListItem(BaseModel):
     movie_id: str = Field(..., examples=["001"])
