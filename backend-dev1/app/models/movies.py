@@ -24,7 +24,7 @@ class MovieList(Base):
     release_year = Column(Integer, nullable=True)
     # Additional data
     rating = Column(Float, nullable=True)
-    cast = Column(Text, nullable=True)
+    cast_members = Column(Text, nullable=True)
     producer = Column(String(500), nullable=True)
     # Tracking Info
     views = Column(Integer, default=0)
@@ -53,7 +53,7 @@ class CreateMovieMock(BaseModel):
     duration : int =Field(..., examples=[140])
     release_year : int = Field(..., examples=[2024])
     rating : float = Field(..., examples=[7.4])
-    cast : Optional[str] = Field(None, examples=["Leonardo DiCaprio"])
+    cast_members : Optional[str] = Field(None, examples=["Leonardo DiCaprio"])
     producer : Optional[str] = Field(None, examples=["Christopher Nolan"])
     views : Optional[int] = Field(None, examples=[1037])
     created_at : Optional[datetime] = Field(None, examples=["2025-01-01T00:00:00"])
