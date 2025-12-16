@@ -84,12 +84,11 @@ async def get_all_movies(db: AsyncSession = Depends(get_db)):
             "duration": movie.duration,
             "release_year": movie.release_year,
             "rating": movie.rating,
-            "cast": movie.cast,
+            "cast_members": movie.cast_members,
             "producer": movie.producer,
             "views": movie.views,
-            "created_at": movie.created_at.isoformat() if movie.created_at else None,
-            "updated_at": movie.updated_at.isoformat() if movie.updated_at else None,
-            "is_liked": movie.is_liked
+            "created_at": movie.created_at.isoformat() if movie.created_at is not None else None,
+            "updated_at": movie.updated_at.isoformat() if movie.updated_at is not None  else None
         } for movie in movies]
     }
        
@@ -120,12 +119,11 @@ async def get_movie_by_id(
             "duration": movie.duration,
             "release_year": movie.release_year,
             "rating": movie.rating,
-            "cast": movie.cast,
+            "cast_members": movie.cast_members,
             "producer": movie.producer,
             "views": movie.views,
-            "created_at": movie.created_at.isoformat() if movie.created_at else None,
-            "updated_at": movie.updated_at.isoformat() if movie.updated_at else None,
-            "is_liked": movie.is_liked
+            "created_at": movie.created_at.isoformat() if movie.created_at is not None else None,
+            "updated_at": movie.updated_at.isoformat() if movie.updated_at is not None else None
         }
     }
 
@@ -133,8 +131,7 @@ async def get_movie_by_id(
 @router.post("/", response_model= dict)       
 async def create_movie(
     request: CreateMovieMock,
-    db: AsyncSession = Depends(get_db),
-    current_user: dict = Depends(security)
+    db: AsyncSession = Depends(get_db)
 ):
     movie = MovieList(
         title=request.title,
@@ -145,7 +142,7 @@ async def create_movie(
         duration=request.duration if hasattr(request, 'duration') else None,
         release_year=request.release_year if hasattr(request, 'release_year') else None,
         rating=request.rating if hasattr(request, 'rating') else None,
-        cast=request.cast if hasattr(request, 'cast') else None,
+        cast_members=request.cast_members if hasattr(request, 'cast_members') else None,
         producer=request.producer if hasattr(request, 'producer') else None
     )
     

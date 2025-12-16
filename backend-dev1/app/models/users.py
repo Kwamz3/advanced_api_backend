@@ -8,11 +8,8 @@ from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any,Union
 from sqlalchemy.sql import func
 import enum
-import uuid
 from datetime import datetime
 
-
-from app.models.types import UUID 
 from app.core.database import Base
 
 Base()
@@ -69,7 +66,7 @@ class User(Base):
     location = Column(JSON, nullable=True) #{lat, lng}
     #Verifcation
     is_email_verified = Column(Enum(VerifyStatus), default=VerifyStatus.NOT_SUBMITTED)
-    isPhoneVerified = Column(Enum(VerifyStatus), default=VerifyStatus.NOT_SUBMITTED)
+    is_phone_verified = Column(Enum(VerifyStatus), default=VerifyStatus.NOT_SUBMITTED)
     #Settings
     preferences = Column(JSON, nullable=True)
     notification_settings = Column(JSON, nullable=True)

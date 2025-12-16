@@ -1,10 +1,8 @@
 from sqlalchemy import Column, String, Integer, Boolean, DateTime, Enum, Text, JSON, ForeignKey, Float
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-import uuid 
 
 from app.models.users import Base
-from app.models.types import PostgresUUID
  
  
 class SeriesList(Base):
