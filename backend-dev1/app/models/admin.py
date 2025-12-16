@@ -13,7 +13,6 @@ class Priority(str, enum.Enum):
     NOT_SET = "NOT_SET"
 
 class SystemSettings(Base):
-    
     __tablename__ = "system_settings"
     
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -27,7 +26,6 @@ class SystemSettings(Base):
     
 
 class AuditLog(Base):
-    
     __tablename__ = "audit_log"
     
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -43,7 +41,6 @@ class AuditLog(Base):
     
     
 class SupportTicket(Base):
-    
     __tablename__ = "support_ticket"
     
     id = Column(Integer, primary_key=True, autoincrement=True)
