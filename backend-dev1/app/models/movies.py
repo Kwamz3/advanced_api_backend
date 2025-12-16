@@ -4,11 +4,8 @@ from pydantic import BaseModel, Field, field_validator
 from typing import List, Optional, Any
 from datetime import datetime
 from sqlalchemy.sql import func
-import uuid 
 
-from app.models.users import Base
-from app.models.types import PostgresUUID
-from app.models.types import UUID 
+from app.models.users import Base 
  
  
  

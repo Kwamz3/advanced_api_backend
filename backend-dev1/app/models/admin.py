@@ -1,10 +1,8 @@
 from sqlalchemy import Column, String, Integer, DateTime, Enum, Text, Boolean, JSON, ForeignKey
 from pydantic import BaseModel, Field
 from sqlalchemy.sql import func
-import uuid
 import enum
 
-from app.models.types import UUID
 from app.models.users import Base, VerifyStatus, UserStatus, ServiceStatus
 
 
@@ -18,7 +16,7 @@ class SystemSettings(Base):
     
     __tablename__ = "system_settings"
     
-    id = Column(UUID(), primary_key=True, default=uuid.uuid4)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     key = Column(String(100), unique=True, nullable=False)
     value = Column(Text, nullable=False)
     description = Column(Text, nullable=True)
@@ -32,7 +30,7 @@ class AuditLog(Base):
     
     __tablename__ = "audit_log"
     
-    id = Column(UUID(), primary_key=True, default=uuid.uuid4)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey("users.id"),nullable=True)
     action = Column(String(100), nullable=False)
     resource = Column(String(100), nullable=False)
@@ -48,7 +46,7 @@ class SupportTicket(Base):
     
     __tablename__ = "support_ticket"
     
-    id = Column(UUID(), primary_key=True, default=uuid.uuid4)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False) 
     # Ticket details
     subject = Column(String(255), nullable=False)
@@ -57,7 +55,7 @@ class SupportTicket(Base):
     priority = Column(Enum(Priority), default= Priority.NOT_SET)
     status = Column(String(20), default="OPEN")
     # Assignment
-    assigned_to = Column(UUID(), nullable=True)
+    assigned_to = Column(Integer, nullable=True)
     # Additional data
     attachments = Column(JSON, nullable=True)
     # Timestamps

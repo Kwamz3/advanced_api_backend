@@ -8,11 +8,8 @@ from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any,Union
 from sqlalchemy.sql import func
 import enum
-import uuid
 from datetime import datetime
 
-
-from app.models.types import UUID 
 from app.core.database import Base
 
 Base()

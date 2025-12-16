@@ -2,9 +2,7 @@ from sqlalchemy import String, Integer, Column, Text, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 from pydantic import BaseModel
 from sqlalchemy.sql import func
-import uuid
 
-from app.models.types import PostgresUUID
 from app.models.users import Base
 
 class Category(Base):
