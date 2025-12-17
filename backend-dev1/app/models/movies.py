@@ -13,7 +13,7 @@ class MovieList(Base):
     __tablename__ = "movie_list"
     
     #Basic Info
-    id = Column(Integer, primary_key=True, nullable=False)
+    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     title = Column(String(225), nullable=False)
     category = Column(String(50), nullable=True)
     description = Column(Text, nullable=True)
@@ -43,7 +43,6 @@ class WatchListBase(Base):
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
     
 class CreateMovieMock(BaseModel):
-    id : str = Field(...,examples=["1"])    
     title : str = Field(..., examples=["Inception"])
     category : Optional[str] = Field(..., examples=["Action"])
     description : Optional [str] = Field(None, examples=["Action with the best female actress in the bizz"])
