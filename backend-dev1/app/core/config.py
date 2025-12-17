@@ -21,6 +21,7 @@ class Settings(BaseSettings):
     DATABASE_URL: str = "postgresql://postgres:1234567890@localhost:5432/streamplus"
     DATABASE_TEST_URL: str = "sqlite:///./test_db.sqlite3"
     USE_SQLITE_FOR_DEV: bool = True
+    USE_SQLITE: bool = False
     
     # ENVIRONMENT
     ENVIRONMENT: str = "production"
@@ -30,11 +31,11 @@ class Settings(BaseSettings):
     def effective_database_url(self) -> str:
         if self.ENVIRONMENT == "testing":
             return self.DATABASE_TEST_URL
+        elif self.USE_SQLITE or (self.ENVIRONMENT in ["development", "dev"] and self.USE_SQLITE_FOR_DEV):
+            return "sqlite:///./streamplus.sqlite3"
         elif self.ENVIRONMENT == "production":
             # In production, use the DATABASE_URL provided by Render
             return self.DATABASE_URL
-        elif self.ENVIRONMENT in ["development", "dev"] and self.USE_SQLITE_FOR_DEV:
-            return "sqlite:///./streamplus.sqlite3"
         else:
             return self.DATABASE_URL
         
