@@ -4,15 +4,12 @@ User model and related schemas
 
 from sqlalchemy import Column, String, Integer, Enum, JSON, DateTime, Boolean, Text
 from sqlalchemy.orm import relationship
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from typing import List, Optional, Dict, Any,Union
 from sqlalchemy.sql import func
 import enum
-import uuid
 from datetime import datetime
 
-
-from app.models.types import UUID 
 from app.core.database import Base
 
 Base()
@@ -57,7 +54,7 @@ class User(Base):
     status = Column(Enum(UserStatus), default=UserStatus.INACTIVE, nullable=False)
     #Profile information
     profile_picture = Column(String(500), nullable=True)
-    date_of_birth = Column(DateTime, nullable=True)
+    date_of_birth = Column(DateTime(timezone=False), nullable=True)
     gender = Column(Enum(GenderStatus), default=GenderStatus.NOT_SELECTED, nullable=True)
     bio = Column(Text, nullable=True)
     # Account infomation
@@ -69,7 +66,7 @@ class User(Base):
     location = Column(JSON, nullable=True) #{lat, lng}
     #Verifcation
     is_email_verified = Column(Enum(VerifyStatus), default=VerifyStatus.NOT_SUBMITTED)
-    isPhoneVerified = Column(Enum(VerifyStatus), default=VerifyStatus.NOT_SUBMITTED)
+    is_phone_verified = Column(Enum(VerifyStatus), default=VerifyStatus.NOT_SUBMITTED)
     #Settings
     preferences = Column(JSON, nullable=True)
     notification_settings = Column(JSON, nullable=True)

@@ -60,23 +60,23 @@ async def get_user_profile(
                 "id": user.id,
                 "phone": user.phone,
                 "email": user.email,
-                "firstName": user.firstName,
-                "lastName": user.lastName,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
                 "role": user.role.value if user.role is not None else None,
                 "status": user.status.value if user.status is not None else None,
                 "service": user.service.value if user.service is not None else None,
-                "profilePicture": user.profilePicture,
-                "dateOfbirth": user.dateOfbirth.isoformat() if user.dateOfbirth is not None else None,
+                "profile_picture": user.profile_picture,
+                "date_of_birth": user.date_of_birth.isoformat() if user.date_of_birth is not None else None,
                 "gender": user.gender.value if user.gender is not None else None,
                 "bio": user.bio,
                 "address": user.address,
                 "location": user.location,
-                "isEmailVerified": user.isEmailVerified.value if user.isEmailVerified is not None else None,
-                "isPhoneVerified": user.isPhoneVerified.value if user.isPhoneVerified is not None else None,
+                "is_email_verified": user.is_email_verified.value if user.is_email_verified is not None else None,
+                "is_phone_verified": user.is_phone_verified.value if user.is_phone_verified is not None else None,
                 "preferences": user.preferences,
-                "notificationSettings": user.notificationSettings,
-                "createdAt": user.createdAt.isoformat() if user.createdAt is not None else None,
-                "updatedAt": user.updatedAt.isoformat() if user.updatedAt is not None else None
+                "notification_settings": user.notification_settings,
+                "created_at": user.created_at.isoformat() if user.created_at is not None else None,
+                "updated_at": user.updated_at.isoformat() if user.updated_at is not None else None
             }
         }          
         
@@ -99,8 +99,8 @@ async def create_user_profile(
         new_user = User(
             phone= create_user.phone,
             email= create_user.email,
-            firstName= create_user.firstName,
-            lastName= create_user.lastName,
+            firstName= create_user.first_name,
+            lastName= create_user.last_name,
             role= create_user.role,
             status= create_user.status,
             service= create_user.serviceStatus,
@@ -180,14 +180,32 @@ async def update_user_profile(
         await db.commit()
         await db.refresh(existing_user)
         
-        from datetime import datetime
-        existing_user.updatedAt = datetime.now()
-        
-        
         return {
             "success": True,
             "message": "Profile updated successfully",
-            "data": existing_user
+            "data": {
+                "id": existing_user.id,
+                "phone": existing_user.phone,
+                "email": existing_user.email,
+                "first_name": existing_user.first_name,
+                "last_name": existing_user.last_name,
+                "role": existing_user.role.value if existing_user.role is not None else None,
+                "status": existing_user.status.value if existing_user.status is not None else None,
+                "profile_picture": existing_user.profile_picture,
+                "date_of_birth": existing_user.date_of_birth.isoformat() if existing_user.date_of_birth is not None else None,
+                "gender": existing_user.gender.value if existing_user.gender is not None else None,
+                "bio": existing_user.bio,
+                "service": existing_user.service.value if existing_user.service is not None else None,
+                "watch_list": existing_user.watch_list,
+                "location": existing_user.location,
+                "address": existing_user.address,
+                "is_email_verified": existing_user.is_email_verified.value if existing_user.is_email_verified is not None else None,
+                "is_phone_verified": existing_user.is_phone_verified.value if existing_user.is_phone_verified is not None else None,
+                "preferences": existing_user.preferences,
+                "notification_settings": existing_user.notification_settings,
+                "created_at": existing_user.created_at.isoformat() if existing_user.created_at is not None else None,
+                "updated_at": existing_user.updated_at.isoformat() if existing_user.updated_at is not None else None
+            }
         }
         
     except HTTPException:
