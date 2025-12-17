@@ -71,7 +71,7 @@ async def get_db():
 async def init_db():
     """Initialize database tabels"""
     try:
-        from app.models import admin, category, movies, series, types, users
+        from app.models import admin, category, movies, series, users
         
         async with engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
