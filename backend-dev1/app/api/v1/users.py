@@ -95,7 +95,6 @@ async def create_user_profile(
     db: AsyncSession = Depends(get_db)
 ):
     try:
-        # Create User model instance
         new_user = User(
             phone= create_user.phone,
             email= create_user.email,
@@ -105,15 +104,15 @@ async def create_user_profile(
             status= create_user.status,
             service= create_user.service_status,
             profilePicture= create_user.profile_picture,
-            dateOfbirth= create_user.date_of_birth,
+            date_of_birth= create_user.date_of_birth,
             gender= create_user.gender,
             bio= create_user.bio,
             location= create_user.location,
             address= create_user.address,
-            isEmailVerified= create_user.is_email_verified,
-            isPhoneVerified= create_user.is_phone_verified,
+            is_email_verified= create_user.is_email_verified,
+            is_phone_verified= create_user.is_phone_verified,
             preferences= create_user.preferences,
-            notificationSettings= create_user.notification_settings
+            notification_settings= create_user.notification_settings
         )
         
         db.add(new_user)
@@ -133,17 +132,17 @@ async def create_user_profile(
                 "status": new_user.status.value if new_user.status is not None else None,
                 "service": new_user.service.value if new_user.service is not None else None,
                 "profilePicture": new_user.profilePicture,
-                "dateOfbirth": new_user.dateOfbirth.isoformat() if new_user.dateOfbirth is not None else None,
+                "date_of_birth": new_user.date_of_birth.isoformat() if new_user.date_of_birth is not None else None,
                 "gender": new_user.gender.value if new_user.gender is not None else None,
                 "bio": new_user.bio,
                 "address": new_user.address,
                 "location": new_user.location,
-                "isEmailVerified": new_user.isEmailVerified.value if new_user.isEmailVerified is not None else None,
-                "isPhoneVerified": new_user.isPhoneVerified.value if new_user.isPhoneVerified is not None else None,
+                "is_email_verified": new_user.is_email_verified.value if new_user.is_email_verified is not None else None,
+                "is_phone_verified": new_user.is_phone_verified.value if new_user.is_phone_verified is not None else None,
                 "preferences": new_user.preferences,
-                "notificationSettings": new_user.notificationSettings,
-                "createdAt": new_user.createdAt.isoformat() if new_user.createdAt is not None else None,
-                "updatedAt": new_user.updatedAt.isoformat() if new_user.updatedAt is not None else None
+                "notification_settings": new_user.notification_settings,
+                "created_at": new_user.created_at.isoformat() if new_user.created_at is not None else None,
+                "updated_at": new_user.updated_at.isoformat() if new_user.updated_at is not None else None
             }
         }
         
