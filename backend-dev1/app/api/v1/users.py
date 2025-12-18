@@ -103,17 +103,17 @@ async def create_user_profile(
             lastName= create_user.last_name,
             role= create_user.role,
             status= create_user.status,
-            service= create_user.serviceStatus,
-            profilePicture= create_user.profilePicture,
-            dateOfbirth= create_user.dateOfbirth,
+            service= create_user.service_status,
+            profilePicture= create_user.profile_picture,
+            dateOfbirth= create_user.date_of_birth,
             gender= create_user.gender,
             bio= create_user.bio,
             location= create_user.location,
             address= create_user.address,
-            isEmailVerified= create_user.isEmailVerified,
-            isPhoneVerified= create_user.isPhoneVerified,
+            isEmailVerified= create_user.is_email_verified,
+            isPhoneVerified= create_user.is_phone_verified,
             preferences= create_user.preferences,
-            notificationSettings= create_user.notificationSettings
+            notificationSettings= create_user.notification_settings
         )
         
         db.add(new_user)
