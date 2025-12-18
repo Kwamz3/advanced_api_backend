@@ -12,7 +12,7 @@ import uuid
 from datetime import datetime
 
 from app.core.database import Base
-from app.models.types import UUID
+from app.models.user_types import UUID
 
 Base()
 
