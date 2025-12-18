@@ -192,7 +192,6 @@ async def update_user_profile(
                 "role": existing_user.role.value if existing_user.role is not None else None,
                 "status": existing_user.status.value if existing_user.status is not None else None,
                 "profile_picture": existing_user.profile_picture,
-                "date_of_birth": existing_user.date_of_birth.isoformat() if existing_user.date_of_birth is not None else None,
                 "gender": existing_user.gender.value if existing_user.gender is not None else None,
                 "bio": existing_user.bio,
                 "service": existing_user.service.value if existing_user.service is not None else None,

@@ -103,16 +103,16 @@ class UserCreate(BaseModel):
     
     
 class UserUpdate(BaseModel):
-    phone: str = Field(..., examples=["+233-54-768-8745"])
-    email: str = Field(..., examples=["john.doe@example.com"])
-    first_name: str = Field(..., examples=["John"])
-    last_name: str = Field(..., examples=["Doe"])
-    role: UserRole = Field(default=UserRole.CLIENT, examples=[UserRole.CLIENT])
-    status: UserStatus = Field(default=UserStatus.INACTIVE, examples=[UserStatus.INACTIVE])
+    phone: Optional[str] = Field(None, examples=["+233-54-768-8745"])
+    email: Optional[str] = Field(None, examples=["john.doe@example.com"])
+    first_name: Optional[str] = Field(None, examples=["John"])
+    last_name: Optional[str] = Field(None, examples=["Doe"])
+    role: Optional[UserRole] = Field(None, examples=[UserRole.CLIENT])
+    status: Optional[UserStatus] = Field(None, examples=[UserStatus.INACTIVE])
     # Profile info
     profile_picture: Optional[str] = Field(None, examples=["https://example.com/avatar.jpg"]) 
     date_of_birth: Optional[datetime] = Field(None, examples=["2000-01-01T00:00:00Z"])
-    gender: Optional[GenderStatus] = Field(default= GenderStatus.NOT_SELECTED, examples=[GenderStatus.NOT_SELECTED])
+    gender: Optional[GenderStatus] = Field(None, examples=[GenderStatus.NOT_SELECTED])
     bio: Optional[str] = Field(None, examples=["Creative designer and movie lover."])
     # Location
     address: Optional[str] = Field(None, examples=["123 Main Street, Accra"])
