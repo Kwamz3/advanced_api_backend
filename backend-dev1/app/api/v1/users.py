@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends, status, Query
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List, Optional
-from sqlalchemy import text, select, insert, update, delete
+from sqlalchemy import text, select, insert, update, delete, func
 from jose import JWTError
 
 from app.core.database import get_db
@@ -41,7 +41,7 @@ async def get_current_user(credentials: str = Depends(security)):
 
 @router.get("/profile/{user_id}")
 async def get_user_profile(
-    user_id: int,
+    user_id: str,
     db: AsyncSession = Depends(get_db)
 ):
     try:
@@ -95,30 +95,31 @@ async def create_user_profile(
     db: AsyncSession = Depends(get_db)
 ):
     try:
-        # Create User model instance
         new_user = User(
             phone= create_user.phone,
             email= create_user.email,
-            firstName= create_user.first_name,
-            lastName= create_user.last_name,
+            first_name= create_user.first_name,
+            last_name= create_user.last_name,
             role= create_user.role,
             status= create_user.status,
-            service= create_user.serviceStatus,
-            profilePicture= create_user.profilePicture,
-            dateOfbirth= create_user.dateOfbirth,
+            service= create_user.service_status,
+            profile_picture= create_user.profile_picture,
+            date_of_birth= create_user.date_of_birth,
             gender= create_user.gender,
             bio= create_user.bio,
             location= create_user.location,
             address= create_user.address,
-            isEmailVerified= create_user.isEmailVerified,
-            isPhoneVerified= create_user.isPhoneVerified,
+            is_email_verified= create_user.is_email_verified,
+            is_phone_verified= create_user.is_phone_verified,
             preferences= create_user.preferences,
-            notificationSettings= create_user.notificationSettings
+            notification_settings= create_user.notification_settings
         )
         
         db.add(new_user)
         await db.commit()
         await db.refresh(new_user)
+        
+        user_count = await db.execute(select(func.count(User.id)))
         
         return{
             "success": True,
@@ -127,23 +128,23 @@ async def create_user_profile(
                 "id": new_user.id,
                 "phone": new_user.phone,
                 "email": new_user.email,
-                "firstName": new_user.firstName,
-                "lastName": new_user.lastName,
+                "first_name": new_user.firstName,
+                "last_name": new_user.lastName,
                 "role": new_user.role.value if new_user.role is not None else None,
                 "status": new_user.status.value if new_user.status is not None else None,
                 "service": new_user.service.value if new_user.service is not None else None,
-                "profilePicture": new_user.profilePicture,
-                "dateOfbirth": new_user.dateOfbirth.isoformat() if new_user.dateOfbirth is not None else None,
+                "profile_picture": new_user.profilePicture,
+                "date_of_birth": new_user.date_of_birth.isoformat() if new_user.date_of_birth is not None else None,
                 "gender": new_user.gender.value if new_user.gender is not None else None,
                 "bio": new_user.bio,
                 "address": new_user.address,
                 "location": new_user.location,
-                "isEmailVerified": new_user.isEmailVerified.value if new_user.isEmailVerified is not None else None,
-                "isPhoneVerified": new_user.isPhoneVerified.value if new_user.isPhoneVerified is not None else None,
+                "is_email_verified": new_user.is_email_verified.value if new_user.is_email_verified is not None else None,
+                "is_phone_verified": new_user.is_phone_verified.value if new_user.is_phone_verified is not None else None,
                 "preferences": new_user.preferences,
-                "notificationSettings": new_user.notificationSettings,
-                "createdAt": new_user.createdAt.isoformat() if new_user.createdAt is not None else None,
-                "updatedAt": new_user.updatedAt.isoformat() if new_user.updatedAt is not None else None
+                "notification_settings": new_user.notification_settings,
+                "created_at": new_user.created_at.isoformat() if new_user.created_at is not None else None,
+                "updated_at": new_user.updated_at.isoformat() if new_user.updated_at is not None else None
             }
         }
         
@@ -157,7 +158,7 @@ async def create_user_profile(
     
 @router.put("/profile/{user_id}")
 async def update_user_profile(
-    user_id: int,
+    user_id: str,
     update_user: UserUpdate,
     db: AsyncSession = Depends(get_db)
 ):
@@ -218,7 +219,7 @@ async def update_user_profile(
         
 @router.get("/watchlist/user/{user_id}")
 async def get_watchlist(
-    user_id: int,
+    user_id: str,
     db: AsyncSession = Depends(get_db)
 ):    
         
@@ -247,7 +248,7 @@ async def get_watchlist(
 
 @router.post("/watchlist/user/{user_id}")        
 async def add_to_watchlist(
-    user_id: int,
+    user_id: str,
     add_movie: WatchListItem,
     db: AsyncSession = Depends(get_db)
 ):
@@ -304,7 +305,7 @@ async def add_to_watchlist(
         
 @router.put("/watchlist/user/{user_id}")        
 async def remove_movie(
-    user_id: int,
+    user_id: str,
     movie_id: str
 ):
     padded_id = f'{user_id:03d}'
@@ -351,7 +352,7 @@ async def remove_movie(
         
 @router.delete("/watchlist/user/{user_id}")        
 async def clear_watchlist(
-    user_id: int
+    user_id: str
 ):
     
     padded_id = f'{user_id:03d}'

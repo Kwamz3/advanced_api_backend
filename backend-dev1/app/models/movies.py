@@ -5,7 +5,8 @@ from typing import List, Optional, Any
 from datetime import datetime
 from sqlalchemy.sql import func
 
-from app.models.users import Base 
+from app.models.users import Base
+from app.models.movie_types import MovieID, generate_movie_id 
  
  
  
@@ -13,7 +14,7 @@ class MovieList(Base):
     __tablename__ = "movie_list"
     
     #Basic Info
-    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
+    id = Column(MovieID(), primary_key=True, nullable=False)
     title = Column(String(225), nullable=False)
     category = Column(String(50), nullable=True)
     description = Column(Text, nullable=True)
@@ -34,7 +35,7 @@ class MovieList(Base):
 class WatchListBase(Base):
     __tablename__ = "watchlist"
     
-    movie_id = Column(Integer, primary_key= True, nullable= False)
+    movie_id = Column(MovieID(), primary_key= True, nullable= False)
     user_id = Column(Integer, primary_key= True, nullable= False)
     title = Column(String(225), nullable= True)
     poster_url = Column(String(500), nullable=True)

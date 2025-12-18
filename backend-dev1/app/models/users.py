@@ -8,9 +8,11 @@ from pydantic import BaseModel, Field, field_validator
 from typing import List, Optional, Dict, Any,Union
 from sqlalchemy.sql import func
 import enum
+import uuid
 from datetime import datetime
 
 from app.core.database import Base
+from app.models.user_types import UUID
 
 Base()
 
@@ -45,7 +47,7 @@ class User(Base):
     
     __tablename__ = "users"
     
-    id = Column(Integer, primary_key=True, nullable=False)
+    id = Column(UUID(), primary_key=True, default=uuid.uuid4, nullable=False)
     phone = Column(String(20), unique=True, index=True, nullable=True)
     email = Column(String(255), unique=True, index=True, nullable=True)
     first_name = Column(String(100), index=True, nullable=True)
@@ -54,7 +56,7 @@ class User(Base):
     status = Column(Enum(UserStatus), default=UserStatus.INACTIVE, nullable=False)
     #Profile information
     profile_picture = Column(String(500), nullable=True)
-    date_of_birth = Column(DateTime(timezone=False), nullable=True)
+    date_of_birth = Column(DateTime(timezone=True), nullable=True)
     gender = Column(Enum(GenderStatus), default=GenderStatus.NOT_SELECTED, nullable=True)
     bio = Column(Text, nullable=True)
     # Account infomation
