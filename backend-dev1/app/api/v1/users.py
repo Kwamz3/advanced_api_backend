@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends, status, Query
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List, Optional
-from sqlalchemy import text, select, insert, update, delete
+from sqlalchemy import text, select, insert, update, delete, func
 from jose import JWTError
 
 from app.core.database import get_db
@@ -98,12 +98,12 @@ async def create_user_profile(
         new_user = User(
             phone= create_user.phone,
             email= create_user.email,
-            firstName= create_user.first_name,
-            lastName= create_user.last_name,
+            first_name= create_user.first_name,
+            last_name= create_user.last_name,
             role= create_user.role,
             status= create_user.status,
             service= create_user.service_status,
-            profilePicture= create_user.profile_picture,
+            profile_picture= create_user.profile_picture,
             date_of_birth= create_user.date_of_birth,
             gender= create_user.gender,
             bio= create_user.bio,
@@ -119,6 +119,8 @@ async def create_user_profile(
         await db.commit()
         await db.refresh(new_user)
         
+        user_count = await db.execute(select(func.count(User.id)))
+        
         return{
             "success": True,
             "message": "New user created successfully",
@@ -126,12 +128,12 @@ async def create_user_profile(
                 "id": new_user.id,
                 "phone": new_user.phone,
                 "email": new_user.email,
-                "firstName": new_user.firstName,
-                "lastName": new_user.lastName,
+                "first_name": new_user.firstName,
+                "last_name": new_user.lastName,
                 "role": new_user.role.value if new_user.role is not None else None,
                 "status": new_user.status.value if new_user.status is not None else None,
                 "service": new_user.service.value if new_user.service is not None else None,
-                "profilePicture": new_user.profilePicture,
+                "profile_picture": new_user.profilePicture,
                 "date_of_birth": new_user.date_of_birth.isoformat() if new_user.date_of_birth is not None else None,
                 "gender": new_user.gender.value if new_user.gender is not None else None,
                 "bio": new_user.bio,

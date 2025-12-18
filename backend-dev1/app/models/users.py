@@ -54,7 +54,7 @@ class User(Base):
     status = Column(Enum(UserStatus), default=UserStatus.INACTIVE, nullable=False)
     #Profile information
     profile_picture = Column(String(500), nullable=True)
-    date_of_birth = Column(DateTime(timezone=False), nullable=True)
+    date_of_birth = Column(DateTime(timezone=True), nullable=True)
     gender = Column(Enum(GenderStatus), default=GenderStatus.NOT_SELECTED, nullable=True)
     bio = Column(Text, nullable=True)
     # Account infomation
