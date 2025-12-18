@@ -41,7 +41,7 @@ async def get_current_user(credentials: str = Depends(security)):
 
 @router.get("/profile/{user_id}")
 async def get_user_profile(
-    user_id: int,
+    user_id: str,
     db: AsyncSession = Depends(get_db)
 ):
     try:
@@ -158,7 +158,7 @@ async def create_user_profile(
     
 @router.put("/profile/{user_id}")
 async def update_user_profile(
-    user_id: int,
+    user_id: str,
     update_user: UserUpdate,
     db: AsyncSession = Depends(get_db)
 ):
@@ -219,7 +219,7 @@ async def update_user_profile(
         
 @router.get("/watchlist/user/{user_id}")
 async def get_watchlist(
-    user_id: int,
+    user_id: str,
     db: AsyncSession = Depends(get_db)
 ):    
         
@@ -248,7 +248,7 @@ async def get_watchlist(
 
 @router.post("/watchlist/user/{user_id}")        
 async def add_to_watchlist(
-    user_id: int,
+    user_id: str,
     add_movie: WatchListItem,
     db: AsyncSession = Depends(get_db)
 ):
@@ -305,7 +305,7 @@ async def add_to_watchlist(
         
 @router.put("/watchlist/user/{user_id}")        
 async def remove_movie(
-    user_id: int,
+    user_id: str,
     movie_id: str
 ):
     padded_id = f'{user_id:03d}'
@@ -352,7 +352,7 @@ async def remove_movie(
         
 @router.delete("/watchlist/user/{user_id}")        
 async def clear_watchlist(
-    user_id: int
+    user_id: str
 ):
     
     padded_id = f'{user_id:03d}'
