@@ -18,13 +18,13 @@ class Settings(BaseSettings):
     ALLOWED_ORIGINS: List[str] = ["*"]
     
     # DATABASE - Dual setup (POSGRESQL for production, SQLite for development/testing)
-    DATABASE_URL: str = "postgresql://postgres:1234567890@localhost:5432/streamplus"
-    DATABASE_TEST_URL: str = "sqlite:///./test_db.sqlite3"
+    DATABASE_URL: str = "postgresql://streamplus_db_ownerbeeon:632f849968e5e6b9a1ca59ab87999438a0b811ca@rc4gti.h.filess.io:61008/streamplus_db_ownerbeeon?sslmode=require"
+    DATABASE_TEST_URL: str = "sqlite:///./streamplus_db.sqlite3"
     USE_SQLITE_FOR_DEV: bool = True
     USE_SQLITE: bool = False
     
     # ENVIRONMENT
-    ENVIRONMENT: str = "production"
+    ENVIRONMENT: str = "development"
     DEBUG: bool = True
     
     @property
@@ -32,9 +32,8 @@ class Settings(BaseSettings):
         if self.ENVIRONMENT == "testing":
             return self.DATABASE_TEST_URL
         elif self.USE_SQLITE or (self.ENVIRONMENT in ["development", "dev"] and self.USE_SQLITE_FOR_DEV):
-            return "sqlite:///./streamplus.sqlite3"
+            return "sqlite:///./streamplus_db.sqlite3"
         elif self.ENVIRONMENT == "production":
-            # In production, use the DATABASE_URL provided by Render
             return self.DATABASE_URL
         else:
             return self.DATABASE_URL
