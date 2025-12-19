@@ -18,14 +18,14 @@ class Settings(BaseSettings):
     ALLOWED_ORIGINS: List[str] = ["*"]
     
     # DATABASE - Dual setup (POSGRESQL for production, SQLite for development/testing)
-    DATABASE_URL: str = "postgresql://postgres:1234567890@localhost:5432/streamplus"
+    DATABASE_URL: Optional[str] = None
     DATABASE_TEST_URL: str = "sqlite:///./test_db.sqlite3"
     USE_SQLITE_FOR_DEV: bool = True
     USE_SQLITE: bool = False
     
     # ENVIRONMENT
     ENVIRONMENT: str = "production"
-    DEBUG: bool = True
+    DEBUG: bool = False
     
     @property
     def effective_database_url(self) -> str:
@@ -35,9 +35,12 @@ class Settings(BaseSettings):
             return "sqlite:///./streamplus.sqlite3"
         elif self.ENVIRONMENT == "production":
             # In production, use the DATABASE_URL provided by Render
-            return self.DATABASE_URL
+            if self.DATABASE_URL:
+                return self.DATABASE_URL
+            else:
+                raise ValueError("DATABASE_URL must be set in production environment")
         else:
-            return self.DATABASE_URL
+            return self.DATABASE_URL or "postgresql://postgres:1234567890@localhost:5432/streamplus"
         
     # REDIS
     REDIS_URL: str = "redis://localhost:6379"
