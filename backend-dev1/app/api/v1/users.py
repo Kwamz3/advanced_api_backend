@@ -352,14 +352,11 @@ async def remove_movie(
         
 @router.delete("/watchlist/user/{user_id}")        
 async def clear_watchlist(
-    user_id: str
+    user_id: str,
+    db: AsyncSession = Depends(get_db)
 ):
-    
-    padded_id = f'{user_id:03d}'
-    
-    user = next(
-        (u for u in user_db if u["id"] == padded_id)
-    )
+    result = await db.execute(select(User).filter(User.id == user_id))
+    user = result.scalar_one_or_none()
     
     if not user:
         raise HTTPException(
