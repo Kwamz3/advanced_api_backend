@@ -41,16 +41,34 @@ if db_url.startswith("sqlite"):
         connect_args = {"check_same_thread": False}
     )
 else:
-    logger.info(f"Using postgreSQL databse")
+    logger.info(f"Using postgreSQL databse: {db_url}")
     async_db_url = db_url.replace("postgresql://", "postgresql+asyncpg://")
     
-    engine = create_async_engine(
-        async_db_url,
-        echo = settings.DEBUG,
-        future = True,
-        pool_pre_ping= True,
-        pool_recycle= 300
-    )
+    # Determine if SSL is needed (not localhost)
+    is_local = "localhost" in db_url or "127.0.0.1" in db_url
+    
+    if is_local:
+        # Local PostgreSQL without SSL
+        engine = create_async_engine(
+            async_db_url,
+            echo = settings.DEBUG,
+            future = True,
+            pool_pre_ping= True,
+            pool_recycle= 300
+        )
+    else:
+        # Remote PostgreSQL with SSL (e.g., Render)
+        engine = create_async_engine(
+            async_db_url,
+            echo = settings.DEBUG,
+            future = True,
+            pool_pre_ping= True,
+            pool_recycle= 300,
+            connect_args = {
+                "ssl": "require",
+                "server_settings": {"jit": "off"}
+            }
+        )
     
     
 AsyncSessionLocal = async_sessionmaker(
