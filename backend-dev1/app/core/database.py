@@ -3,12 +3,13 @@ Database configuration and connection - Dual database setup
 Supports both PostgreSQL (production) and SQLite (development/testing)
 """
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 import logging
 import os
+import asyncio
 
 from app.core.config import settings
 
@@ -64,9 +65,16 @@ else:
             future = True,
             pool_pre_ping= True,
             pool_recycle= 300,
+            pool_size= 5,
+            max_overflow= 10,
+            pool_timeout= 30,
             connect_args = {
                 "ssl": "require",
-                "server_settings": {"jit": "off"}
+                "server_settings": {
+                    "jit": "off"
+                },
+                "timeout": 60,
+                "command_timeout": 60
             }
         )
     
@@ -88,25 +96,49 @@ async def get_db():
             
 async def init_db():
     """Initialize database tabels"""
-    try:
-        from app.models import admin, category, movies, series, users
-        
-        async with engine.begin() as conn:
-            await conn.run_sync(Base.metadata.create_all)
-            logger.info("Database tables created successfully...")
-            
-    except ImportError as e:
-        logger.warning(f"Could not import models: {e}")
-        logger.warning("Creating tables without model imports...")
+    max_retries = 3
+    retry_count = 0
+    
+    while retry_count < max_retries:
         try:
+            from app.models import admin, category, movies, series, users
+            
+            # Test connection first
+            async with engine.connect() as conn:
+                await conn.execute(text("SELECT 1"))
+                logger.info("Database connection successful")
+            
+            # Create tables
             async with engine.begin() as conn:
                 await conn.run_sync(Base.metadata.create_all)
-                logger.info("Database tables created successfully (without models)...")
-        except ImportError as e2:
-            logger.error(f"Error creating database tables: {e2}")
-            logger.warning("Continuing without database initialization...")
-            
-    except Exception as e:
-        logger.error(f"Error creating database tables: {e}")
-        logger.warning(f"Continuing without database initialization...")
+                logger.info("Database tables created successfully...")
+                return
+                
+        except ImportError as e:
+            logger.warning(f"Could not import models: {e}")
+            logger.warning("Creating tables without model imports...")
+            try:
+                async with engine.begin() as conn:
+                    await conn.run_sync(Base.metadata.create_all)
+                    logger.info("Database tables created successfully (without models)...")
+                    return
+            except Exception as e2:
+                logger.error(f"Error creating database tables: {e2}")
+                retry_count += 1
+                if retry_count < max_retries:
+                    logger.info(f"Retrying database initialization... ({retry_count}/{max_retries})")
+                    await asyncio.sleep(2)
+                else:
+                    logger.warning("Continuing without database initialization...")
+                    return
+                
+        except Exception as e:
+            logger.error(f"Error creating database tables: {e}")
+            retry_count += 1
+            if retry_count < max_retries:
+                logger.info(f"Retrying database initialization... ({retry_count}/{max_retries})")
+                await asyncio.sleep(2)
+            else:
+                logger.warning(f"Continuing without database initialization...")
+                return
             
