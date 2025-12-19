@@ -368,6 +368,6 @@ async def clear_watchlist(
     
     return{
         "success": True,
-        "message": "Watchlist cleared successfully
+        "message": "Watchlist cleared successfully"
     }
     
