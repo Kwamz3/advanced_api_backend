@@ -119,7 +119,7 @@ async def create_user_profile(
         await db.commit()
         await db.refresh(new_user)
         
-        user_count = await db.execute(select(func.count(User.id)))
+        # user_count = await db.execute(select(func.count(User.id)))
         
         return{
             "success": True,
@@ -128,12 +128,12 @@ async def create_user_profile(
                 "id": new_user.id,
                 "phone": new_user.phone,
                 "email": new_user.email,
-                "first_name": new_user.firstName,
-                "last_name": new_user.lastName,
+                "first_name": new_user.first_name,
+                "last_name": new_user.last_name,
                 "role": new_user.role.value if new_user.role is not None else None,
                 "status": new_user.status.value if new_user.status is not None else None,
                 "service": new_user.service.value if new_user.service is not None else None,
-                "profile_picture": new_user.profilePicture,
+                "profile_picture": new_user.profile_picture,
                 "date_of_birth": new_user.date_of_birth.isoformat() if new_user.date_of_birth is not None else None,
                 "gender": new_user.gender.value if new_user.gender is not None else None,
                 "bio": new_user.bio,
@@ -232,9 +232,9 @@ async def get_watchlist(
                 detail= "User not found"
             )
             
-        user_watchlist = user.watchlist
+        user_watchlist = user.watch_list
 
-        if not user_watchlist or len(user_watchlist) == 0:
+        if user_watchlist or len(user_watchlist) == 0:
             raise HTTPException(
                 status_code= status.HTTP_404_NOT_FOUND,
                 detail= "No movies added to watchlist"
@@ -279,8 +279,8 @@ async def add_to_watchlist(
             )
             
         new_watchlist_item = WatchListBase(
-            user_id = user_id,
-            movie_id = add_movie.movie_id
+            new_user_id = user_id,
+            new_movie_id = add_movie.movie_id
         )
         
         db.add(new_watchlist_item)
@@ -364,7 +364,7 @@ async def clear_watchlist(
             detail= "User not found"
         )
     
-    user["watchlist"] = []
+    user_watchlist = user.watch_list
     
     return{
         "success": True,

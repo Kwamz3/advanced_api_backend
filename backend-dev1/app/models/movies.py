@@ -35,7 +35,7 @@ class MovieList(Base):
 class WatchListBase(Base):
     __tablename__ = "watchlist"
     
-    movie_id = Column(MovieID(), primary_key= True, nullable= False)
+    movie_id = Column(ForeignKey('movie_list.id'), primary_key= True, nullable= False)
     user_id = Column(Integer, primary_key= True, nullable= False)
     title = Column(String(225), nullable= True)
     poster_url = Column(String(500), nullable=True)
@@ -59,8 +59,6 @@ class CreateMovieMock(BaseModel):
     updated_at : Optional[datetime] = Field(None, examples=["2025-01-01T00:00:00"])
     
 class WatchListItem(BaseModel):
-    movie_id: str = Field(..., examples=["001"])
-    user_id: str = Field(..., examples=["001"])
     title: str = Field(..., examples=["Inception"])
     poster_url: Optional[str] = Field(None, examples=["https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg"])
     trailer_url: Optional[str] = Field(None, examples=["https://www.youtube.com/watch?v=LEjhY15eCx0"])
