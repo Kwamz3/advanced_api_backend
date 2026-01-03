@@ -279,8 +279,11 @@ async def add_to_watchlist(
             )
             
         new_watchlist_item = WatchListBase(
-            new_user_id = user_id,
-            new_movie_id = add_movie.movie_id
+            user_id=user_id,
+            movie_id=add_movie.movie_id,
+            title=add_movie.title,
+            poster_url=add_movie.poster_url,
+            trailer_url=add_movie.trailer_url
         )
         
         db.add(new_watchlist_item)

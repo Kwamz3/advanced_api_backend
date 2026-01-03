@@ -59,6 +59,7 @@ class CreateMovieMock(BaseModel):
     updated_at : Optional[datetime] = Field(None, examples=["2025-01-01T00:00:00"])
     
 class WatchListItem(BaseModel):
+    movie_id: str = ForeignKey()
     title: str = Field(..., examples=["Inception"])
     poster_url: Optional[str] = Field(None, examples=["https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg"])
     trailer_url: Optional[str] = Field(None, examples=["https://www.youtube.com/watch?v=LEjhY15eCx0"])
