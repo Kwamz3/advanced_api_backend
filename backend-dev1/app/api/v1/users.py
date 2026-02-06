@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends, status, Query
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List, Optional
+from typing import List, Optional, Any, cast
 from sqlalchemy import text, select, insert, update, delete, func
 from jose import JWTError
 
@@ -232,12 +232,12 @@ async def get_watchlist(
                 detail= "User not found"
             )
             
-        user_watchlist = user.watch_list
+        user_watchlist = cast(Optional[Any], user.watch_list)
 
-        if user_watchlist or len(user_watchlist) == 0:
+        if user_watchlist is None or len(user_watchlist) == 0:
             raise HTTPException(
-                status_code= status.HTTP_404_NOT_FOUND,
-                detail= "No movies added to watchlist"
+            status_code= status.HTTP_404_NOT_FOUND,
+            detail= "No movies added to watchlist"
             )
             
         return{
@@ -335,9 +335,9 @@ async def remove_movie(
             
         watchlist = user["watchlist"]  
             
-        movie = next(
-            (m for m in watchlist if m["id"] == padded_movieId)
-        )
+        from app.models.movies import MovieList
+        movie_result = await db.execute(select(MovieList).filter(MovieList.id == movie_id))
+        movie = movie_result.scalar_one_or_none()
         
         if not movie:
             raise HTTPException(
