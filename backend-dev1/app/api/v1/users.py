@@ -262,6 +262,16 @@ async def add_to_watchlist(
                 status_code= status.HTTP_404_NOT_FOUND,
                 detail= "User not found"
             )
+        
+        from app.models.movies import MovieList
+        movie_result = await db.execute(select(MovieList).filter(MovieList.id == add_movie.movie_id))
+        movie = movie_result.scalar_one_or_none()
+        
+        if not movie:
+            raise HTTPException(
+                status_code= status.HTTP_404_NOT_FOUND,
+                detail= f"Movie with id '{add_movie.movie_id}' not found"
+            )
             
         result = await db.execute(
             select(WatchListBase).filter(
@@ -309,15 +319,13 @@ async def add_to_watchlist(
 @router.put("/watchlist/user/{user_id}")        
 async def remove_movie(
     user_id: str,
-    movie_id: str
+    movie_id: str,
+    db: AsyncSession = Depends(get_db)
 ):
-    padded_id = f'{user_id:03d}'
-    padded_movieId = f'{movie_id}'
     
     try:
-        user = next(
-            (u for u in user_db if u["id"] == padded_id)
-        )
+        result = await db.execute(select(User).filter(User.id == user_id))
+        user = result.scalar_one_or_none()
         
         if not user:
             raise HTTPException(
